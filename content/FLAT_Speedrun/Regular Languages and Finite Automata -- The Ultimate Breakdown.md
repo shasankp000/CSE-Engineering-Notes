@@ -1,5 +1,5 @@
 ---
-title: Formal Language and Automata Theory -- Module 1 and Module 2
+title: Regular Languages and Finite Automata -- Formal Language and Automata Theory -- Module 1 and Module 2
 tags:
   - Semester-4
 ---

@@ -1,5 +1,5 @@
 ---
-title: Formal Language and Automata Theory
+title: Context Free Languages and Context-Free Grammar -- Formal Language and Automata Theory
 tags:
   - Semester-4
 ---

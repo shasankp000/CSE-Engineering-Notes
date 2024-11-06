@@ -1,5 +1,5 @@
 ---
-title: Integral Calculus
+title: Integral Calculus -- Mathematics III
 tags:
   - Semester-3
 ---

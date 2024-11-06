@@ -1,5 +1,5 @@
 ---
-title: Operating Systems
+title: Introduction to Operating Systems
 tags:
   - Semester-5
 ---

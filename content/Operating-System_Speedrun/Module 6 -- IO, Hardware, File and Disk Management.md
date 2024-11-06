@@ -1,5 +1,5 @@
 ---
-title: Operating Systems
+title: IO, Hardware, File and Disk Management -- Operating Systems
 tags:
   - Semester-5
 ---

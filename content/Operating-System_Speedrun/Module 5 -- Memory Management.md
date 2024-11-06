@@ -1,5 +1,5 @@
 ---
-title: Operating Systems
+title: Memory Management -- Operating Systems
 tags:
   - Semester-5
 ---

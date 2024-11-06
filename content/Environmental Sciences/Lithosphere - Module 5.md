@@ -1,5 +1,5 @@
 ---
-title: Environmental Sciences
+title: Lithosphere -- Environmental Sciences
 tags:
   - Semester-4
 ---

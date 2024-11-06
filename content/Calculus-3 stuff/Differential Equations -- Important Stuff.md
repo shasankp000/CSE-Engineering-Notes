@@ -1,5 +1,5 @@
 ---
-title: Differential Equations -- Important Stuff
+title: Differential Equations -- Important Stuff -- Mathematics III
 tags:
   - Semester-3
 ---

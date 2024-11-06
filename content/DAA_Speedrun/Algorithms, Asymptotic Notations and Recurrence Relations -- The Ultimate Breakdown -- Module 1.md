@@ -1,5 +1,5 @@
 ---
-title: Design and Analysis of Algorithms -- Module 1
+title: Algorithms, Asymptotic Notations and Recurrence Relations -- Design and Analysis of Algorithms -- Module 1
 tags:
   - Semester-4
 ---

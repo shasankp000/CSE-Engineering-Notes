@@ -1,5 +1,5 @@
 ---
-title: Design and Analysis of Algorithms -- Module 2 and  Module 3
+title: Graph and Tree algorithms -- Design and Analysis of Algorithms -- Module 2 and  Module 3
 tags:
   - Semester-4
 ---

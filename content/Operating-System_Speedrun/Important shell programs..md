@@ -1,5 +1,5 @@
 ---
-title: Operating Systems
+title: Important Shell Programs -- Operating Systems
 tags:
   - Semester-5
   - Linux

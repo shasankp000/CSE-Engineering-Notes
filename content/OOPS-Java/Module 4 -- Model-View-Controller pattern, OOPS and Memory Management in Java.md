@@ -1,5 +1,5 @@
 ---
-title: Object Oriented Programming - Java
+title: MVC and memory management in OOPS -- Object Oriented Programming - Java
 tags:
   - Semester-5
 ---

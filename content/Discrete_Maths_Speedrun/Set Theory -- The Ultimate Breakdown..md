@@ -1,5 +1,5 @@
 ---
-title: Discrete Mathematics
+title: Set Theory -- Discrete Mathematics
 tags:
   - Semester-4
 ---

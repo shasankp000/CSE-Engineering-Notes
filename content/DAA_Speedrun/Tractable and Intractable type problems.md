@@ -1,5 +1,5 @@
 ---
-title: Design and Analysis of Algorithms -- Module 4
+title: Tractable and Intractable type problems -- Design and Analysis of Algorithms -- Module 4
 tags:
   - Semester-4
 ---

@@ -1,5 +1,5 @@
 ---
-title: Design and Analysis of Algorithms -- Module 2
+title: Fundamental Algorithmic Strategies -- Design and Analysis of Algorithms -- Module 2
 tags:
   - Semester-4
 ---

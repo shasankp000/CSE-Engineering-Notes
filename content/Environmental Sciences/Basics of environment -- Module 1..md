@@ -1,5 +1,5 @@
 ---
-title: Environmental Sciences
+title: Basics of environment -- Environmental Sciences
 tags:
   - Semester-4
 ---

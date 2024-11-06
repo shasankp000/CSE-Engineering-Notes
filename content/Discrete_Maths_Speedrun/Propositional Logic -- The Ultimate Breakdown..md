@@ -1,5 +1,5 @@
 ---
-title: Discrete Mathematics
+title: Propositional Logic -- Discrete Mathematics
 tags:
   - Semester-4
 ---

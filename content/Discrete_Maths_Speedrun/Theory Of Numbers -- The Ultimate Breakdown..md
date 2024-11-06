@@ -1,5 +1,5 @@
 ---
-title: Discrete Mathematics
+title: Theory of Numbers -- Discrete Mathematics
 tags:
   - Semester-4
 ---

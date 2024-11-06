@@ -1,5 +1,5 @@
 ---
-title: Operating Systems
+title: Inter Process Communication -- Operating Systems
 tags:
   - Semester-5
 ---

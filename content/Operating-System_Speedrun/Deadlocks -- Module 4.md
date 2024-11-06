@@ -1,5 +1,5 @@
 ---
-title: Operating Systems
+title: Deadlock -- Operating Systems
 tags:
   - Semester-5
 ---

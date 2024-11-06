@@ -1,5 +1,5 @@
 ---
-title: Graph Theory -- Semester-3
+title: Graph Theory -- Semester-3 -- Mathematics III
 tags:
   - Semester-3
 ---
