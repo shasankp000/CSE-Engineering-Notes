@@ -2,7 +2,10 @@
 title: Integral Calculus -- Mathematics III
 tags:
   - Semester-3
+  - Work-In-Progress
 ---
+
+The notes are still a work in progress. In the meantime you can access the playlist below.
 
 https://www.youtube.com/playlist?list=PLF-vWhgiaXWM7Iri0t_AjBfv51tF28PEy (Full playlist link)
 ---
