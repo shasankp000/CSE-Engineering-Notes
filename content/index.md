@@ -1,6 +1,11 @@
 ---
-title: Welcome to Quartz
+title: Welcome to the Computer Science and Engieerning Notes website!
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+## Message from the author.
+
+I specifically created this repository so that students like myself and my peers and juniors and future students can break free from the joke of an education provided by our college and the governing board.
+
+This repository will recieve updates whenever I make new notes or update existing notes.
+
+Happy learning!
