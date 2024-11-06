@@ -9,3 +9,7 @@ I specifically created this repository so that students like myself and my peers
 This repository will recieve updates whenever I make new notes or update existing notes.
 
 Happy learning!
+
+
+
+P.S if you like the notes, and have a github account, then please drop a star on https://github.com/shasankp000/CSE-Engineering-Notes!
