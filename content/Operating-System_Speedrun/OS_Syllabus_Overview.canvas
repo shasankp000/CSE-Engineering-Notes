@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"9acfeb4187ed5a41","type":"file","file":"Operating-System_Speedrun/Processes -- Module 2.md","x":-293,"y":-480,"width":400,"height":400},
+		{"id":"f0727c67160444eb","type":"file","file":"Operating-System_Speedrun/Deadlocks -- Module 4.md","x":222,"y":0,"width":400,"height":400},
+		{"id":"4c40a6e46f83de9b","type":"file","file":"Operating-System_Speedrun/Module 5 -- Memory Management.md","x":-293,"y":0,"width":400,"height":400},
+		{"id":"afbe96cc945453bb","type":"file","file":"Operating-System_Speedrun/Module 6 -- IO, Hardware, File and Disk Management.md","x":-782,"y":0,"width":400,"height":400},
+		{"id":"9e45e8f276a854e6","type":"file","file":"Operating-System_Speedrun/Inter Process Communication -- Module 3.md","x":222,"y":-480,"width":400,"height":400},
+		{"id":"5dacff8715bfa1c0","type":"file","file":"Operating-System_Speedrun/Operating Systems --Module 1.md","x":-782,"y":-480,"width":400,"height":400},
+		{"id":"d12a722d61f517b8","x":-782,"y":520,"width":400,"height":600,"type":"file","file":"Operating-System_Speedrun/Important shell programs..md"},
+		{"id":"bba0d6e238031440","x":-240,"y":534,"width":400,"height":586,"type":"file","file":"Operating-System_Speedrun/Shell Programming Cheatsheet.md"}
+	],
+	"edges":[
+		{"id":"c71a58b48f4b89a6","fromNode":"5dacff8715bfa1c0","fromSide":"right","toNode":"9acfeb4187ed5a41","toSide":"left"},
+		{"id":"487c0e4078fd6c60","fromNode":"9acfeb4187ed5a41","fromSide":"right","toNode":"9e45e8f276a854e6","toSide":"left"},
+		{"id":"25cbf1bab5e32530","fromNode":"9e45e8f276a854e6","fromSide":"bottom","toNode":"f0727c67160444eb","toSide":"top"},
+		{"id":"7d1261ffd956aadb","fromNode":"f0727c67160444eb","fromSide":"left","toNode":"4c40a6e46f83de9b","toSide":"right"},
+		{"id":"7159e9db0d57c60b","fromNode":"4c40a6e46f83de9b","fromSide":"left","toNode":"afbe96cc945453bb","toSide":"right"}
+	]
+}

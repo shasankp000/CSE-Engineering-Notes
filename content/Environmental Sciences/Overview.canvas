@@ -1,0 +1,17 @@
+{
+	"nodes":[
+		{"id":"56feb3e06c9403c4","type":"file","file":"Environmental Sciences/Water Pollution -- Module 4.md","x":-840,"y":60,"width":400,"height":620},
+		{"id":"b881fa3aca0e4f30","type":"file","file":"Environmental Sciences/Atmosphere Composition, Energy balance, Greenhouse effects -- Module 3.md","x":-1300,"y":60,"width":400,"height":620},
+		{"id":"3f9e2933c23b05d3","type":"file","file":"Environmental Sciences/Lithosphere - Module 5.md","x":-400,"y":60,"width":400,"height":620},
+		{"id":"5603d288e22bc70d","type":"file","file":"Environmental Sciences/Noise and Noise Pollution -- Module 6.md","x":40,"y":60,"width":400,"height":620},
+		{"id":"cae0d0785e707486","x":-1780,"y":60,"width":400,"height":620,"type":"file","file":"Environmental Sciences/Basics of environment -- Module 1..md"},
+		{"id":"fe16216222abacf1","type":"text","text":"Environmental Sciences Speedrun","x":-740,"y":-400,"width":200,"height":80}
+	],
+	"edges":[
+		{"id":"8d2154190851af02","fromNode":"fe16216222abacf1","fromSide":"left","toNode":"b881fa3aca0e4f30","toSide":"top"},
+		{"id":"3a762faedf20f6a9","fromNode":"fe16216222abacf1","fromSide":"bottom","toNode":"3f9e2933c23b05d3","toSide":"top"},
+		{"id":"e0ceb13a735554b8","fromNode":"fe16216222abacf1","fromSide":"right","toNode":"5603d288e22bc70d","toSide":"top"},
+		{"id":"3de21494407aa5b9","fromNode":"fe16216222abacf1","fromSide":"left","toNode":"56feb3e06c9403c4","toSide":"top"},
+		{"id":"ead7f11fb5aabc65","fromNode":"fe16216222abacf1","fromSide":"left","toNode":"cae0d0785e707486","toSide":"top"}
+	]
+}

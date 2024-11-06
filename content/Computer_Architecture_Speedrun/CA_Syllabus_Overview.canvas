@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"898a0f7f058ddb87","type":"file","file":"Computer_Architecture_Speedrun/Multiprocessor Architecture -- The ultimate breakdown -- Module 4.md","x":360,"y":0,"width":400,"height":400},
+		{"id":"3304e095cc40df9c","type":"file","file":"Computer_Architecture_Speedrun/Memory Organization -- The Ultimate Breakdown -- Module 2.md","x":-660,"y":0,"width":400,"height":400},
+		{"id":"7dd970194510e037","type":"file","file":"Computer_Architecture_Speedrun/Pipelining -- The Ultimate Breakdown -- Module 1 and Module 3.md","x":-140,"y":-600,"width":400,"height":600}
+	],
+	"edges":[
+		{"id":"3cdd606e413fbee1","fromNode":"7dd970194510e037","fromSide":"left","toNode":"3304e095cc40df9c","toSide":"top"},
+		{"id":"8d7daa2d1a18c19b","fromNode":"7dd970194510e037","fromSide":"right","toNode":"898a0f7f058ddb87","toSide":"top"}
+	]
+}

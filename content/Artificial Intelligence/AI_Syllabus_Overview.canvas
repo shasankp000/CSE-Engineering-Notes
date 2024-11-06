@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"094f236effe43220","type":"file","file":"Artificial Intelligence/Module 1 -- Introduction to AI..md","x":-1020,"y":-560,"width":400,"height":440},
+		{"id":"f10365e3b5acfa65","x":-560,"y":-560,"width":400,"height":440,"type":"file","file":"Artificial Intelligence/Module 2 -- Search Strategies and Adversarial Search.md"},
+		{"id":"47769715f8dddfa6","x":-80,"y":-560,"width":400,"height":440,"type":"file","file":"Artificial Intelligence/Module 3 -- Knowledge Representation in Artificial Intelligence.md"},
+		{"id":"d35f7cd11c570d4f","x":-680,"y":-60,"width":400,"height":540,"type":"file","file":"Artificial Intelligence/Module 5 -- Natural Language Processing (According to Makaut Syllabus, a very watered down version).md"},
+		{"id":"0f924e6be574fd18","x":-80,"y":-60,"width":400,"height":540,"type":"file","file":"Artificial Intelligence/Module 4 -- Predicate logic and Probabilistic reasoning.md"}
+	],
+	"edges":[
+		{"id":"8a3d5a163615a1f6","fromNode":"094f236effe43220","fromSide":"right","toNode":"f10365e3b5acfa65","toSide":"left"},
+		{"id":"29236c22e9cdb2d8","fromNode":"f10365e3b5acfa65","fromSide":"right","toNode":"47769715f8dddfa6","toSide":"left"},
+		{"id":"3742fdbf5c414fd1","fromNode":"47769715f8dddfa6","fromSide":"bottom","toNode":"0f924e6be574fd18","toSide":"top"},
+		{"id":"f445fa1b8314aa72","fromNode":"0f924e6be574fd18","fromSide":"left","toNode":"d35f7cd11c570d4f","toSide":"right"}
+	]
+}

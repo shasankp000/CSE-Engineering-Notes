@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"31948b8e941b0433","x":-800,"y":-480,"width":400,"height":400,"type":"file","file":"OOPS-Java/Module 1 -- Abstract Data Types and their specification.md"},
+		{"id":"b58d5469a436a696","x":-320,"y":-480,"width":400,"height":400,"type":"file","file":"OOPS-Java/Module 2 -- Features of Object Oriented Programming..md"},
+		{"id":"aa6eb86a08b88d06","x":180,"y":-480,"width":400,"height":400,"type":"file","file":"OOPS-Java/Module 3 -- Inheritance in Object Oriented Design.md"},
+		{"id":"5de59ee097e7e131","x":-320,"y":20,"width":400,"height":400,"type":"file","file":"OOPS-Java/Module 5 -- Generics and Collections.md"},
+		{"id":"7dbcaf4054ddcbed","x":180,"y":20,"width":400,"height":400,"type":"file","file":"OOPS-Java/Module 4 -- Model-View-Controller pattern, OOPS and Memory Management in Java.md"}
+	],
+	"edges":[
+		{"id":"a0576836c398043c","fromNode":"31948b8e941b0433","fromSide":"right","toNode":"b58d5469a436a696","toSide":"left"},
+		{"id":"70d8acf28f764572","fromNode":"b58d5469a436a696","fromSide":"right","toNode":"aa6eb86a08b88d06","toSide":"left"},
+		{"id":"a0983c0489a8eb00","fromNode":"aa6eb86a08b88d06","fromSide":"bottom","toNode":"7dbcaf4054ddcbed","toSide":"top"},
+		{"id":"582b23e15b798bb5","fromNode":"7dbcaf4054ddcbed","fromSide":"left","toNode":"5de59ee097e7e131","toSide":"right"}
+	]
+}

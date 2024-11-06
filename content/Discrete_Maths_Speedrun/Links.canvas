@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"e461f5c9f08585e5","type":"file","file":"Discrete_Maths_Speedrun/Discrete Mathematics -- Speedrun.md","x":-700,"y":-260,"width":500,"height":180},
+		{"id":"df40d160b50161ee","type":"file","file":"Discrete_Maths_Speedrun/Set Theory -- The Ultimate Breakdown..md","x":-620,"y":0,"width":660,"height":560},
+		{"id":"7993cc8f0d35ca83","type":"file","file":"Discrete_Maths_Speedrun/Graph Theory (Semester 4) -- The Ultimate Breakdown.md","x":100,"y":-10,"width":540,"height":570},
+		{"id":"fc786322a6b312d5","type":"file","file":"Discrete_Maths_Speedrun/Theory Of Numbers -- The Ultimate Breakdown..md","x":-630,"y":660,"width":680,"height":540},
+		{"id":"f75955725df59376","type":"file","file":"Discrete_Maths_Speedrun/Propositional Logic -- The Ultimate Breakdown..md","x":-1440,"y":0,"width":560,"height":560}
+	],
+	"edges":[
+		{"id":"f3ef31aa7da65baa","fromNode":"e461f5c9f08585e5","fromSide":"left","toNode":"f75955725df59376","toSide":"top"},
+		{"id":"f975646aaae81a10","fromNode":"e461f5c9f08585e5","fromSide":"bottom","toNode":"df40d160b50161ee","toSide":"top"},
+		{"id":"2638e4b22770d040","fromNode":"e461f5c9f08585e5","fromSide":"right","toNode":"7993cc8f0d35ca83","toSide":"top"},
+		{"id":"44c6568b45c73f31","fromNode":"df40d160b50161ee","fromSide":"bottom","toNode":"fc786322a6b312d5","toSide":"top"}
+	]
+}

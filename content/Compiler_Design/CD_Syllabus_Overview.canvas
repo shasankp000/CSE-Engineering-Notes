@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"1f74b25f8f922574","x":-820,"y":-480,"width":400,"height":420,"type":"file","file":"Compiler_Design/Module 1 -- Introduction to Compiling.md"},
+		{"id":"1bd9bd4eebf7bda2","x":-380,"y":-480,"width":400,"height":420,"type":"file","file":"Compiler_Design/Module 2 -- Lexical Analysis.md"},
+		{"id":"22e6fca3f3468559","x":80,"y":-480,"width":400,"height":420,"type":"file","file":"Compiler_Design/Module 3 -- Syntax Analysis and Parser.md"},
+		{"id":"087d0ba9c8a7d8ce","x":80,"y":0,"width":400,"height":460,"type":"file","file":"Compiler_Design/Module 4 -- Syntax Directed Translation.md"},
+		{"id":"2b61359a1186c9e3","x":-380,"y":0,"width":400,"height":460,"type":"file","file":"Compiler_Design/Module 5 -- Type Checking.md"}
+	],
+	"edges":[
+		{"id":"0fede83a7bc6da3e","fromNode":"1f74b25f8f922574","fromSide":"right","toNode":"1bd9bd4eebf7bda2","toSide":"left"},
+		{"id":"f8b809c6dd3455a5","fromNode":"1bd9bd4eebf7bda2","fromSide":"right","toNode":"22e6fca3f3468559","toSide":"left"},
+		{"id":"9c5c0fc53c31cde2","fromNode":"22e6fca3f3468559","fromSide":"bottom","toNode":"087d0ba9c8a7d8ce","toSide":"top"},
+		{"id":"602ef06b19fc46e1","fromNode":"087d0ba9c8a7d8ce","fromSide":"left","toNode":"2b61359a1186c9e3","toSide":"right"}
+	]
+}

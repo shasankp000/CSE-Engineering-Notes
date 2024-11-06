@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"717ec3c212a89b21","x":-198,"y":45,"width":400,"height":400,"type":"file","file":"FLAT_Speedrun/Turing Machines.md"},
+		{"id":"86753ed987d9b1c7","type":"file","file":"FLAT_Speedrun/Formal Languages and Automata Theory.md","x":-198,"y":-297,"width":400,"height":237},
+		{"id":"82dafa8932fe7000","type":"file","file":"FLAT_Speedrun/Regular Languages and Finite Automata -- The Ultimate Breakdown.md","x":-720,"y":37,"width":400,"height":400},
+		{"id":"53e0188bd7e67d6a","type":"file","file":"FLAT_Speedrun/Context-Free Languages and Context-Free Grammar -- The Ultimate Breakdown.md","x":300,"y":37,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"747669d5a19c29d5","fromNode":"86753ed987d9b1c7","fromSide":"left","toNode":"82dafa8932fe7000","toSide":"top"},
+		{"id":"77c4335e348fc09a","fromNode":"86753ed987d9b1c7","fromSide":"right","toNode":"53e0188bd7e67d6a","toSide":"top"},
+		{"id":"54b4dcfa4149772a","fromNode":"86753ed987d9b1c7","fromSide":"bottom","toNode":"717ec3c212a89b21","toSide":"top"}
+	]
+}

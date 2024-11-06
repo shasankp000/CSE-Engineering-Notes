@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"045aa2d2f69cad73","type":"file","file":"DAA_Speedrun/Design and Analysis of Algorithms -- Speedrun.md","x":-520,"y":-420,"width":680,"height":260},
+		{"id":"5cc5c69819c28ffc","type":"file","file":"DAA_Speedrun/Algorithms, Asymptotic Notations and Recurrence Relations -- The Ultimate Breakdown -- Module 1.md","x":-980,"y":-60,"width":540,"height":820},
+		{"id":"19f8b77df469d063","type":"file","file":"DAA_Speedrun/Fundamental Algorithmic Strategies -- The Ultimate breakdown. -- Module 2.md","x":-400,"y":-60,"width":560,"height":820},
+		{"id":"3bebe517dcfe8437","type":"file","file":"DAA_Speedrun/Fundamental Algorithmic Strategies, Graph and Tree algorithms.md","x":240,"y":-60,"width":520,"height":820},
+		{"id":"baa5d13a226df3b4","x":820,"y":-60,"width":580,"height":820,"type":"file","file":"DAA_Speedrun/Tractable and Intractable type problems.md"}
+	],
+	"edges":[
+		{"id":"aeb3b39696b91cd7","fromNode":"045aa2d2f69cad73","fromSide":"left","toNode":"5cc5c69819c28ffc","toSide":"top"},
+		{"id":"7b99d1b8d0e9719e","fromNode":"045aa2d2f69cad73","fromSide":"bottom","toNode":"19f8b77df469d063","toSide":"top"},
+		{"id":"ae64f13628f6f40d","fromNode":"045aa2d2f69cad73","fromSide":"right","toNode":"3bebe517dcfe8437","toSide":"top"},
+		{"id":"d3a3459c3e1460c8","fromNode":"045aa2d2f69cad73","fromSide":"top","toNode":"baa5d13a226df3b4","toSide":"top"}
+	]
+}
