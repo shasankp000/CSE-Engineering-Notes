@@ -10,6 +10,10 @@ This repository will recieve updates whenever I make new notes or update existin
 
 Happy learning!
 
+# Current notes in progress
+
+1. Integral Calculus
+
 
 
 P.S if you like the notes, and have a github account, then please drop a star on https://github.com/shasankp000/CSE-Engineering-Notes!

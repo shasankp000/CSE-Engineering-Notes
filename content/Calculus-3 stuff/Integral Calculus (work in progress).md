@@ -61,4 +61,4 @@ $$\int{f(g(t)).g'(t)dt}$$
 #### Example :
 
 1. $$\int{sin(mx)dx}$$
-Let us set $mx = t$ and differentiate both sides w.r.t
+Let us set $mx = t$ and differentiate both sides w.r.t x
