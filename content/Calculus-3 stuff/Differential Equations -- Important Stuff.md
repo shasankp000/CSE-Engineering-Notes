@@ -187,7 +187,7 @@ After step 3
 8. Put the value of $p$ back in the original equation.
 
 
-==**Both methods are valid. Just depends which one is more applicable, based on the question.**==
+==**Both methods are valid. Just depends which one is more applicable, based on the question**==.
 
 ---
 ### Example explanation
@@ -303,27 +303,60 @@ Integrating both sides, we got a solution in terms of $y$ as: $$y = \frac{2p^{3}
 So applying this value in our original equation, we get the required solution as:
 
 $$\boxed{x = \frac{2p^{3}}{3} + c}$$
+
 ---
 # Clairaut's equation.
 
-A differential equation of the form $$\boxed{y = px + f(p)}$$
+A differential equation of the form 
+
+$$\boxed{y = px + f(p)}$$
+
 is called **Clairaut's form**.
 
 We will use the method of [[#2. Equations solvable for y]] to solve such equations.
+
 
 So we differentiate the equation w.r.t $x$.
 
 $$\frac{dy}{dx} = \frac{dp}{dx}.[x + f'(p)] + p$$
 
-Let $$\frac{dy}{dx} = p$$
+
+
+Let 
+
+$$\frac{dy}{dx} = p$$
+
+
 $$p = p + \frac{dp}{dx}[x + f'(p)]$$
-or $$\frac{dp}{dx}.[x + f'(p)] = 0$$
-Now we set both of the terms $$\frac{dp}{dx} = 0 ... (1)$$ and $$x + f'(p) = 0 .... (2)$$
+
+
+or
+
+$$\frac{dp}{dx}.[x + f'(p)] = 0$$
+
+
+Now we set both of the terms 
+
+$$\frac{dp}{dx} = 0 ... (1)$$
+
+and 
+
+$$x + f'(p) = 0 .... (2)$$
+
+
 From equation 1, we get $p =  c$.
-Thus, $$y = cx + f(c)$$
+Thus, 
+
+$$y = cx + f(c)$$
+
+
 which is the **required general solution**,
 
-And from equation 2, we get : $$x + f'(c) = 0$$
+And from equation 2, we get : 
+
+$$x + f'(c) = 0$$
+
+
 which is the **singular solution** in terms of **x** and **y** only.
 
 ---
@@ -418,39 +451,106 @@ Now a few important cases of $f(x)$ and formulae for those cases.
 ---
 2. $$\frac{1}{D}.X = \int{X}dx$$
 ---
-3. If you have $$\frac{1}{(D-m_1)(D+m_2)}.X$$ or $$\frac{1}{f(D)}.X$$, where $m_1$ and $m_2$ are roots of $f(D)$, then we can get the P.I as follows: $$\frac{1}{f(D)} = \frac{A_1}{D-m_1} + \frac{A_2}{D-m_2}$$
-   which is solved as: $$\frac{1}{f(D)}.X = A_1.e^{m_1.x}.\int{X.e^{-m_1.x}} + A_2.e^{m_2.x}.\int{X.e^{-m_2.x}}$$
+3. If you have : 
+   
+   $$\frac{1}{(D-m_1)(D+m_2)}.X$$
+   
+   
+    or 
+   
+   $$\frac{1}{f(D)}.X$$
+   
+   , where $m_1$ and $m_2$ are roots of $f(D)$, then we can get the P.I as follows: 
+   
+   $$\frac{1}{f(D)} = \frac{A_1}{D-m_1} + \frac{A_2}{D-m_2}$$
+   
+   
+   which is solved as:  
+   
+   $$\frac{1}{f(D)}.X = A_1.e^{m_1.x}.\int{X.e^{-m_1.x}} + A_2.e^{m_2.x}.\int{X.e^{-m_2.x}}$$
+---   
+
    Now to find the values of $A_1$ and $A_2$.
    
-   Let's say we have a given expression $$\frac{1}{(D-1)(D+1)}.(x.e^{2x})$$
+   
+   Let's say we have a given expression 
+   
+   $$\frac{1}{(D-1)(D+1)}.(x.e^{2x})$$
+   
+   
    where $m_1 = 1$ and $m_2 = -1$.
    
-   We can write $$\frac{1}{(D-1)(D+1)}.(x.e^{2x}) = [\frac{A}{D-1} + \frac{B}{D+1}].(x.e^{2x})$$
-   or $$\frac{1}{(D-1)(D+1)}.(x.e^{2x}) = \frac{A(D+1) + B(D-1)}{(D-1)(D+1)} . (x.e^{2x})$$
+   We can write 
+   
+   $$\frac{1}{(D-1)(D+1)}.(x.e^{2x}) = [\frac{A}{D-1} + \frac{B}{D+1}].(x.e^{2x})$$
+   
+   
+   
+   or  
+
+   $$\frac{1}{(D-1)(D+1)}.(x.e^{2x}) = \frac{A(D+1) + B(D-1)}{(D-1)(D+1)} . (x.e^{2x})$$
+---   
+
    Cancelling out $x.e^{2x}$ from both sides and multiplying both sides by $(D-1)(D+1)$, 
    
-   We get $$1 = \frac{A_1}{D-1} + \frac{A_2}{D+1}$$
-   or $$1 = (A+B)D + (A-B)$$
+   We get  
+   
+   $$1 = \frac{A_1}{D-1} + \frac{A_2}{D+1}$$
+   
+   
+   or  
+   $$1 = (A+B)D + (A-B)$$
+   
+---
    
    Now we compare both the coefficient of $D$ and constant terms to the other side.
    
-   Since there is no $D$ on the other side, $(A+B) = 0$, and $1$ is on the other side, so $A-B = 1 => A = B$
+   
+   Since there is no $D$ on the other side, $(A+B) = 0$, and $1$ is on the other side, so
+   
+	 $A-B = 1 => A = B$
+	 
+	 
    
    From the two equations, we get $A = \frac{1}{2}$ , $B = -\frac{1}{2}$
+
+---
    
-   So we get our P.I as $$\frac{1}{2}.e^x.\int{x.e^{2x}.e^{-x}dx} - \frac{1}{2}e^{-x}.\int{x.e^{2x}.e^xdx}$$
+   So we get our P.I as: 
+   
+   $$\frac{1}{2}.e^x.\int{x.e^{2x}.e^{-x}dx} - \frac{1}{2}e^{-x}.\int{x.e^{2x}.e^xdx}$$
+   
+   
+   
+   
    which, when solved completely, gives us:
+   
    $$\frac{e^{2x}}{(3x-4)}$$
+   
+   
    as the solution for this P.I.
 
 ---
 
-4. If you have : $$\frac{1}{f(D)}.X$$ where $X = P(x)$, is a polynomial function of some degree $m$, we get the P.I as:
+4. If you have :  
    
+   $$\frac{1}{f(D)}.X$$
+   
+
+	where $X = P(x)$, is a polynomial function of some degree $m$, we get the P.I as:
+
+
    $$[f(D)]^{-1}.P(x)$$
+
+
    where we expand $D$ till $D^m$ and then solve $P(x)$.
 ---
-5. If you have: $$\frac{1}{f(D)}.e^{ax}.V$$, where $V$ is a function of a $x$. We can get the solution as:
+5. If you have:  
+   
+   $$\frac{1}{f(D)}.e^{ax}.V$$
+   
+   
+   , where $V$ is a function of a $x$. We can get the solution as:
    
    $$P.I = e^{ax}.\frac{1}{f(D+a)}.V$$
 ---
@@ -471,27 +571,25 @@ y'_1 \ y'_2 \\
 \end{vmatrix}
 $$
 
-and $$
-u' = 
+and $$u' = 
 \begin{vmatrix}
 0 \ y_2 \\
 X \ y'_2 \\
 \end{vmatrix}
-= \frac{-y_2.X}{W}
-$$
+= \frac{-y_2.X}{W}$$
 
-and $$
-v' = 
-\begin{vmatrix}
-y_1 \ 0 \\
-y'_1 \ X \\
-\end{vmatrix}
-= \frac{y_1 . X}{W}
-$$
-or $$
-\boxed{u = \int{\frac{-y_2.X}{W}}} 
-$$
-and $$\boxed{v = \int{\frac{y_1 . X}{W}}}$$
+and 
+
+$$v' = \begin{vmatrix} y_1 \ 0 \\ y'_1 \ X \\ \end{vmatrix} = \frac{y_1 . X}{W}$$
+
+
+or 
+
+$$\boxed{u = \int{\frac{-y_2.X}{W}}}$$
+and 
+
+$$\boxed{v = \int{\frac{y_1 . X}{W}}}$$
+
 
 Put these values back into your P.I equation to get the full general solution to the D.E
 

@@ -405,11 +405,29 @@ So, in these type of integrals we need to solve the interdependent limits first.
 
 $$\therefore \int_0^1 [4x+x^2-y^2.x]_{0}^{2y} dy$$
 
-or $$\int_0^1 [4(2y)+4y^2 - 2y^3]dy$$
-or $$8\int_0^1 ydy + 4\int_0^1y^2dy - 2\int_0^1y^3dy$$
-or $$8[\frac{y^2}{2}]_0^1 + 4[\frac{y^3}{3}]_0^1 - 2[\frac{y^4}{4}]_0^1$$
-or $$4 + \frac{4}{3} - \frac{1}{2}$$
-or $$\frac{29}{6}$$
+or 
+
+$$\int_0^1 [4(2y)+4y^2 - 2y^3]dy$$
+
+or 
+
+$$8\int_0^1 ydy + 4\int_0^1y^2dy - 2\int_0^1y^3dy$$
+
+
+or 
+
+$$8[\frac{y^2}{2}]_0^1 + 4[\frac{y^3}{3}]_0^1 - 2[\frac{y^4}{4}]_0^1$$
+
+
+or 
+
+$$4 + \frac{4}{3} - \frac{1}{2}$$
+
+
+or 
+
+$$\frac{29}{6}$$
+
 
 ---
 ### Or if you are indeed keen on changing the order here.
@@ -506,15 +524,40 @@ So we start with the integration with respect to $z$.
 
 $$\therefore \int_0^3 \int_0^x 4xy[z]_0^{x-y}dy \, dx$$
 
-or $$\int_0^3 \int_0^x 4xy(x-y) dy \, dx$$
-or $$\int_0^3 \int_0^x [4x^2y-4xy^2]dy\,dx$$
-or $$\int_0^3 4x^2[\frac{y^2}{2}]_0^x dx - \int_0^3 4x.[\frac{y^3}{3}]_0^xdx$$
-or $$2\int_0^3 x^4dx - \frac{4}{3}\int_0^3 x^4dx$$
-or $$2[\frac{x^5}{5}]_0^3 - \frac{4}{3}[\frac{x^5}{5}]_0^3$$
-or $$2.\frac{243}{5} - \frac{4}{3}.\frac{243}{5}$$
-or $$\frac{243}{5}.[2 - \frac{4}{3}]$$
-or $$\frac{243}{5} . \frac{2}{3} = \frac{81}{5}.2$$
-or $$\frac{162}{5}$$
+or 
+$$\int_0^3 \int_0^x 4xy(x-y) dy \, dx$$
+
+
+or 
+
+$$\int_0^3 \int_0^x [4x^2y-4xy^2]dy\,dx$$
+or 
+
+$$\int_0^3 4x^2[\frac{y^2}{2}]_0^x dx - \int_0^3 4x.[\frac{y^3}{3}]_0^xdx$$
+or 
+
+$$2\int_0^3 x^4dx - \frac{4}{3}\int_0^3 x^4dx$$
+or 
+
+$$2[\frac{x^5}{5}]_0^3 - \frac{4}{3}[\frac{x^5}{5}]_0^3$$
+or 
+
+$$2.\frac{243}{5} - \frac{4}{3}.\frac{243}{5}$$
+
+
+or 
+
+$$\frac{243}{5}.[2 - \frac{4}{3}]$$
+
+
+or 
+
+$$\frac{243}{5} . \frac{2}{3} = \frac{81}{5}.2$$
+
+
+or 
+
+$$\frac{162}{5}$$
 
 ---
 # Change of variables (Cartesian to Polar)
