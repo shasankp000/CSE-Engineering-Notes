@@ -12,8 +12,8 @@ Happy learning!
 
 # Current notes in progress
 
-1. Integral Calculus
-
+1. ~~Integral Calculus~~ (Completed!)
+2. Software Engineering (5th semester)
 
 
 P.S if you like the notes, and have a github account, then please drop a star on https://github.com/shasankp000/CSE-Engineering-Notes!
