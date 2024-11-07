@@ -24,6 +24,8 @@ https://drive.google.com/file/d/1kHO3IkJMmRKpXaDoRwhMdnLMRjSF46jc/view?usp=shari
 
 Anyone with the link can access this pdf.
 
+A dedicated resources section is in [[Textbooks and YouTube Playlists]] (CTRL + left-click to open in new tab)
+
 ## Changelog
 
 - Fixed a lot of indentation bugs which were not rendering math equations clearly
