@@ -481,11 +481,17 @@ We solve the integral as it is.
 $$\int_{0}^{1} \int_{-2}^{3} yz^2[\frac{x^4}{4}]_0^2 dy\,dz$$
 or $$\int_{0}^{1} \int_{-2}^{3} \frac{yz^2.16}{4}dy\,dz$$
 
+
 or $$4\int_{0}^{1} z^2[\frac{y^2}{2}]_{-2}^{3} dz$$
+
 or $$4\int_{0}^{1} z^2 [\frac{9}{2} - 2]dz$$
+
 or $$4\int_{0}^{1} z^2 \frac{5}{2}dz$$
+
 or $$10[\frac{z^3}{3}]_0^1$$
+
 or $$10 .\frac{1}{3} = \frac{10}{3}$$
+
 
 ---
 ## Example 2
@@ -521,8 +527,7 @@ The cartesian co-ordinate system was introduced by **René Descartes** , a Frenc
 
 This is basically the system where we work with **two axes**, the **x** and **y** axes, with numerical points on them to plot various figures.
 
-
-![[Integral Calculus (work in progress) 2024-11-07 12.59.20.excalidraw]]
+![[Pasted image 20241107213201.png]]
 
 
 Yeah, this.
@@ -539,7 +544,8 @@ The polar co-ordinate system has variables like **r**, $\theta$  (pronounced as 
 
 Why the name polar?
 
-![[Integral Calculus (work in progress) 2024-11-07 13.18.43.excalidraw]]
+![[Pasted image 20241107213238.png]]
+
 
 So yeah most of the type of integrations you can expect on this system are either spheres, or cylinders. At least from Makaut.
 
@@ -642,8 +648,8 @@ c & d \\
 \end{vmatrix}
 $$
 is given by $$[ad] - [bc]$$
+![[Pasted image 20241107213304.png]]
 
-![[Integral Calculus (work in progress) 2024-11-07 13.40.34.excalidraw]]
 
 ---
 #### How to calculate the determinant of a 3x3 matrix?
@@ -669,7 +675,7 @@ $$
 $$
  which evaluates to :
 
-![[Integral Calculus (work in progress) 2024-11-07 13.48.49.excalidraw]]
+![[Pasted image 20241107213319.png]]
 
 ---
 ### Example 1. Jacobian Determinant
@@ -748,7 +754,8 @@ $$\frac{dy}{d\theta} = rcos\theta \, ...... \, (4)$$
 
 Thus, populating the Jacobian determinant :
 
-![[Integral Calculus (work in progress) 2024-11-07 14.23.17.excalidraw]]
+![[Pasted image 20241107213339.png]]
+
 
 We get $|J|$  = $r$.
 
@@ -764,7 +771,8 @@ or $$y^2 = a^2 - x^2$$, or $$x^2 + y^2 = a^2$$
 
 Which is the **equation of a circle**.
 
-![[Integral Calculus (work in progress) 2024-11-07 14.34.39.excalidraw]]
+![[Pasted image 20241107213355.png]]
+
 
 However, notice that we have $$y = \sqrt{a^2 - x^2}$$
 
@@ -776,7 +784,7 @@ Between these lines, the region which the equation covers, is the first quadrant
 
 So this is the region for the circle :
 
-![[Integral Calculus (work in progress) 2024-11-07 14.47.54.excalidraw]]
+![[Pasted image 20241107213408.png]]
 
 
 ![[WhatsApp Image 2024-11-07 at 14.59.29_a789690c.jpg]]
