@@ -32,6 +32,8 @@ https://www.youtube.com/playlist?list=PLF-vWhgiaXWM7Iri0t_AjBfv51tF28PEy (Full p
 17. [[#How to calculate the determinant of a 3x3 matrix?]]
 18. [[#Back to conversion of Cartesian to Polar co-ordinates]]
 19. [[#Green's Theorem (Statement only)]]
+20. [[#Gauss's Theorem (Statement only)]]
+21. [[#Stokes's Theorem (Statement only)]]
 
 **Note** : If the equations on the website seem a bit to clumped up/clogged, please go to the resources section and download the PDF. It has better indentation.
 
