@@ -20,6 +20,8 @@ tags:
 12. [[#Method 1 Using the inverse operator method.]]
 13. [[#Method 2 Using the method of variation of parameters.]]
 
+**Note** : If the equations on the website seem a bit to clumped up/clogged, please go to the resources section and download the PDF. It has better indentation.
+
 ---
 # Basic types of differential equations.
 

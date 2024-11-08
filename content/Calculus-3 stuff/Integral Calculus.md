@@ -33,6 +33,8 @@ https://www.youtube.com/playlist?list=PLF-vWhgiaXWM7Iri0t_AjBfv51tF28PEy (Full p
 18. [[#Back to conversion of Cartesian to Polar co-ordinates]]
 19. [[#Green's Theorem (Statement only)]]
 
+**Note** : If the equations on the website seem a bit to clumped up/clogged, please go to the resources section and download the PDF. It has better indentation.
+
 ---
 
 # Integral Calculus Recap

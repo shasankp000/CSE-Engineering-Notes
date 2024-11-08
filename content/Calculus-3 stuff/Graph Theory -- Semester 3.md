@@ -29,6 +29,8 @@ tags:
 20. [[#1. Kruskal's Algorithm]]
 21. [[#2. Prim's Algorithm]]
 
+**Note** : If the equations on the website seem a bit to clumped up/clogged, please go to the resources section and download the PDF. It has better indentation.
+
 ---
 # What is a Graph?
 
