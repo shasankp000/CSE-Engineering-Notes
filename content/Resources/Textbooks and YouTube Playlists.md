@@ -1,8 +1,9 @@
 ---
-title: Textbooks in PDF
+title: Textbooks in PDF and YouTube Playlists links
 tags:
   - Resource
   - PDF
+---
 ---
 # PDF Links
 
@@ -19,7 +20,13 @@ tags:
    Link : https://drive.google.com/file/d/1D9XjofU4_10GHrrpL3COB0aqYXATAkSh/view?usp=sharing
 
 ---
+# All Notes in PDF format link
 
+This link points to a google drive folder which contains subfolders of all the pdfs that I have made so far on the existing notes found on the website.
+
+https://drive.google.com/drive/folders/1XzTlivX49eT7r4dWmaJeREiMpYiBs4aE?usp=sharing
+
+---
 # YouTube Links 
 
 1. https://www.youtube.com/playlist?list=PLF-vWhgiaXWPZ7Ogw6zIZMg4aqUXEwrnJ (Matrices Semester 1)
@@ -38,6 +45,7 @@ tags:
 14. https://www.youtube.com/playlist?list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc (Compiler Design)
 15. https://www.youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p (Operating Systems)
 16. https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-nwb0HR5US5GFKFI (Artificial Intelligence)
+17. https://www.youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2 (Software Engineering)
 
 ---
 
