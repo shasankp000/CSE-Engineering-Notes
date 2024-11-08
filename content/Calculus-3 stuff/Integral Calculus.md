@@ -453,7 +453,7 @@ And thus now y will be dependent on a changing $x$ as it goes from $0$ to $2$. W
 
 Well, you ding-dong, since originally,  $x = 2y$, $x$ **is the double of any value of y**.
 
-So it naturally makes sense that when **y** depends on a changing **x**, the value of **x** will be double of whatever $y$'s value is. Originally $y$ ranged from 0 to 1, so now double that, the new range will be $0$ to $2$.
+So it naturally makes sense that when **y** depends on a changing **x**, the value of **x** will be double of whatever $y$'s value is. Originally $x$ ranged from 0 to 1, so now double that, the new range will be $0$ to $2$.
 
 And so the new integral will be :
 
