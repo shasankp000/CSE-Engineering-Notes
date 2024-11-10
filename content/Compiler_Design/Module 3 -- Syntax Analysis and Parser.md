@@ -523,6 +523,8 @@ flowchart LR;
 2. `First(ε) = ε`
 
 3. `Placing ε in any non-terminal variable will completely rule it out and move to the next non-terminal variable(if any)`.
+   
+4. `In case of a non-terminal on the RHS, we find the first of that non-terminal, i.e the first of any non-terminal variable will always contain a terminal variable`.
 
 ---
 Let's say we have a given grammar here:
