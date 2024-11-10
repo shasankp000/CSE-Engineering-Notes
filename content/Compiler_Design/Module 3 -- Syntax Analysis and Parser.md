@@ -815,8 +815,11 @@ So under the column of `(`, we will put 1 for the row of `S`.
 Similarly
 
 `2` : `a`. (Row S)
+
 `3`: `First(S)` = `{(, a)}` (Row L)
-`4` : `ε`  (Row L') . So we find `Follow(L')` = `Follow(L)` = `)`
+
+`4` : `ε`  (Row L') . So we find `Follow(L')` = `Follow(L)` = `)
+`
 `5`: `,` (Row L')
 
 
@@ -829,6 +832,7 @@ Now, we place the values in the table
 | L         | 3   |     | 3   |     |     |
 | L'        |     | 4   |     | 5   |     |
 
+---
 ## How to check whether the given grammar is LL(1) compatible or not, from the parse table?
 
 ==**If any cell/box of the table has more than one entry, then the grammar is NOT LL(1) compatible**==.
