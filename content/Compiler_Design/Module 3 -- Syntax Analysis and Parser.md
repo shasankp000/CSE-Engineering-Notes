@@ -14,22 +14,17 @@ tags:
 5. [[#2. First() and Follow() methods]]
 6. [[#Parser Types]], [[#Constructing the parse table and checking for LL(1) compatibility]]
 7. [[#Pre-requisites before heading into LR parsers types.]] (VERY VERY IMPORTANT)
-8. [[#Creating the Actions and Go-To Tables]] (LR PARSING Pre-requisite)
-9. [[#LR(0) Action Table]] 
-10. [[#LR(0) Go-To Table.]]
-11. [[#1. SLR Parser or SLR(1)]]
-12. [[#SLR(1) Action table]] 
-13. [[#Pre-requisites before heading into LALR parsing.]]
-14. [[#LALR parser]]
-15. [[#Operator Precedence Parsing]]
-16. [[#Creating the Operator Precedence parsing table.]]
-17. [[#Parsing a string from the Operator-Precedence Parsing Table]]
-18. [[#Parser Generator (YACC)]]
-19. [[#Error Recovery Strategies for Parsing Techniques]]
-20. [[#3. **Error Recovery in LL Parsing**]]
-21. [[#4. **Error Recovery in SLR Parsing**]]
-22. [[#5. **Error Recovery in LALR Parsing**]]
-23. [[#7. **Error Recovery Strategy Comparison (LL vs SLR vs LALR)**]]
+8. [[#Pre-requisites before heading into LALR parsing.]]
+9. [[#LALR parser]]
+10. [[#Operator Precedence Parsing]]
+11. [[#Creating the Operator Precedence parsing table.]]
+12. [[#Parsing a string from the Operator-Precedence Parsing Table]]
+13. [[#Parser Generator (YACC)]]
+14. [[#Error Recovery Strategies for Parsing Techniques]]
+15. [[#3. Error Recovery in LL Parsing]]
+16. [[#4. Error Recovery in SLR Parsing]]
+17. [[#5. Error Recovery in LALR Parsing]]
+18. [[#7. Error Recovery Strategy Comparison (LL vs SLR vs LALR)]]
 ---
 # Role of a Parser
 
@@ -514,42 +509,32 @@ flowchart LR;
 ## 2. First() and Follow() methods
 
 ---
-### 1. First() method
+## 1. First() method
 
-**Rules:**
+### Recapping the rules
 
 1. `First(terminal variable) = terminal variable`
-
-2. `First(ε) = ε`
-
+2. `First(ε) = ε` 
 3. `Placing ε in any non-terminal variable will completely rule it out and move to the next non-terminal variable(if any)`.
-   
 4. `In case of a non-terminal on the RHS, we find the first of that non-terminal, i.e the first of any non-terminal variable will always contain a terminal variable`.
 
 ---
-Let's say we have a given grammar here:
+#### Example 1
 
 ```mathematica
-S -> ABC | ghi | jkl 
-A -> a | b | c
-B -> b
-D -> d
+S -> A B c 
+A -> a | b A 
+B -> d B | ε
 ```
-So the method `First()` returns the `first terminal variable` defined in the production rule of the first `non-terminal variable`.
 
-So, `First(S)` will be the variable `A`. `First(A)` will be `a | b | c`.
+So the `first(S)` would be `A`.
+`first(A) = ab` 
+`first(B) = dε`
 
-`b | c are the first non-terminals from the other halfs`.
-
-In the second half, the `first` will be `g`.
-
-In the third half, the `first` will be `j`.
-
-So `First(S)` = `abcgj`
+So we can say that `first(S)` becomes `ab`.
 
 ---
-
-**Example 2:**
+#### Example 2
 
 ```mathematica
 S -> ABC
@@ -557,23 +542,24 @@ A -> a | b | ε
 B -> c | d | ε
 C -> e | f | ε
 ```
+So here we have `first(S) = A`
 
-Here `First(S)` will be `A`. 
+`first(A) = abε`
+`first(B) = cdε`
+`first(C) = efε`
 
-`First(A) = abε`
-Placing `ε` in A, it will be ruled out. 
-So, we proceed to B
+So we can also say that `first(S) = abε`
 
-`First(B) = cdε`
+Now as soon as `ε` is placed, `A` will get ruled out and the next non-terminal is considered, which is `B` in this case.
 
-Placing `ε` in B, it will be ruled out.
-So, we proceed to C
-`First(C) = efε`
+So `first(S) = abcdε`.
 
-So the final `First(S)` will be `abcdefε`
+Again, in the same way, `B` is ruled out and now `C` is considered.
+
+So `first(S) = abcdefε`. No more non-terminals left to consider so this is the `First()` set of `S`.
 
 ---
-**Example 3:**
+#### Example 3
 
 ```mathematica
 E -> TE'
@@ -583,20 +569,16 @@ T' -> ε | +FT'
 F -> id|(ε
 ```
 
-`First(E) will be T`
-`First(T) = F`
-`First(F) = id(`
+`first(E) = T`
+`first(T) = F`
+`first(F) = id(`
 
-$\therefore$ `First(E) = id(`
+Thus `first(E) = id(`
 
 ---
-### 2. Follow() method
+## 2. Follow() method
 
-Let there be a `non-terminal` variable `A`.
-
-$\therefore$ `Follow(A)` contains the set of all `terminal variables` in the `right` of `A`.
-
-**Rules:**
+### Recapping the rules
 
 1. `Follow(S) where S is the start symbol = {$}`
 2. `Follow(A) where A is a non-terminal symbol, goes to it's immediate right.`
@@ -604,78 +586,69 @@ $\therefore$ `Follow(A)` contains the set of all `terminal variables` in the `ri
 4. `In case of ε being present on the right of a non-terminal, it's Follow() will be the Follow(LHS), mostly the Follow(S) where S is the start symbol or {$} or any other non-terminal variable on the LHS.`
 5. `ε is never included in the Follow set.`
 6. `As previously mentioned, applying ε in a non-terminal symbol will rule it out and the next non-terminal symbol will be considered (if any).`
----
-**Example 1:**
+
+#### Example 1
 
 ```mathematica
-S -> ACD
-C -> a | b
-
+S -> A B c 
+	A -> a | b A 
+B -> d B | ε
 ```
 
-`Follow(S) = {$}`
-`Follow(A) = First(C)` 
-`First(C) = ab`
-
-$\therefore$ `Follow(A) = ab`.
-
-In case of `Follow(D)` we see that there is nothing on the right of `D`. We could say that `ε` is on the right of D
-
-`S -> ACDε`
-
-$\therefore$ `Follow(D) = $` 
-
----
-**Example 2:**
+we can re-write the grammar as 
 
 ```mathematica
-S -> aSbS | bSaS | ε
+S -> A B c ε
+A -> a ε | b A ε 
+B -> d B ε | ε
 ```
 
-which can be rewritten as
+So `follow(S)` will include `$`
 
-```mathematica
-S -> aSbSε | bSaSε | ε
-```
+And  `follow(A) = first(B)`
+`first(B) = dε`
 
-$\therefore$  `Follow(S) = {$, b, a}`
+Also from `A -> a ε | b A ε `, we see that `ε` maps back to it's start symbol, which is also `A`.
+
+So follow of it's start symbol will be `$`
+
+Therefore `follow(A) = {$, d}`
+
+`ε` was skipped as it is not included in follow sets.
+
+Therefore `follow(B) = c` and from `B -> d B ε | ε`,  there is `ε` on the RHS of B so it maps back to the start symbol, which is also `B`. Now follow of any start symbol is `$`.
+
+So `follow(B) = {$, c}`
 
 ---
-**Example 3:**
+#### Example 2
 
 ```mathematica
-S -> AaAb | BbBa
-A -> ε
-B -> ε
+S -> A C B
+A -> a A | ε
+B -> b B | ε
+C -> c C | d
 ```
-`Follow(A) = {a,b}`
-`Follow(B) = {b,a}`
 
----
-**Example 4:**
+This grammar can be re-written as :
 
 ```mathematica
-S -> ABC
-A -> DEF
-
-B -> ε
-C -> ε
-D -> ε
-E -> ε
-F -> ε
+S -> A C B ε
+A -> a A ε | ε
+B -> b B ε | ε
+C -> c C ε | d ε
 ```
 
-`Follow(A) = First(B) = ε`.
-Placing `ε` in `B` will rule it out.
+`follow(S) = {$}`
+`follow(A) = {$, first(C)} = {$, cd}`
 
-So `Follow(A) = First(C) = ε`, which once again, rules out `C`.
+![[Pasted image 20241110214345.png]]
 
-The grammar becomes `S -> Aε`.
-
-So `Follow(A) = Follow(S) = {$}`  ($\because$ `ε is never written in the Follow set.`)
+![[Pasted image 20241110214838.png]]
 
 
-
+`follow(B) = {$}`
+`follow(C) = {$, first(B)} = {$, b}`, `ε` not included
 
 ---
 # Parser Types
@@ -742,52 +715,66 @@ We need to construct the parsing table first to see if the given grammar is `LL(
 
 https://www.youtube.com/watch?v=WTxdKQmsfho&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=8 (Highly recommended to watch this video.)
 
-To construct the parsing table, we need to use the `first()` and `follow()` methods.
+The LL(1) parser belongs to the category of **Top-Down parsing**.
 
-**Example 1:**
+## LL(1) parsing table creation
 
-Given grammar
+1. Find `first()` and `follow()` of all variables
+2. Assign numbers to the productions
+3. Create the parsing table.
+4. Fill in the values based on the `first()` of each variable on RHS  of each production
+5. In case of `ε` on the RHS, we will find the `follow()` of the production's start symbol
+
+---
+### Example 1
+
+So let's say we have been given a grammar
 
 ```mathematica
 S -> (L) | a
 L -> SL'
 L' -> ε | ,SL'
 ```
-
-==Finding first of all the production rules==.
-
-`First(S)` = `(, a`
-`First(L)` = `First(S)` = `( , a`
-`First(L')` = `ε, ,`
-
-
-==Finding follow on the same==
-
-We can rewrite the grammar as 
+This grammar can be re-written as:
 
 ```mathematica
-S -> (L) | a
-L -> SL'ε
-L' -> ε | ,SL'
+S -> (L)ε | aε
+L -> SLε'
+L' -> ε | ,SL'ε
 ```
+---
+#### First sets
 
-`Follow(S)` = `$, First(L')`
-`Follow(L)` = `)`
-`Follow(L')` = `Follow(L)` = `)`
+`first(S) = {(, a}`
+`first(L) = {first(S)} = {(, a}`
+`first(L') = {ε, ,}`
 
-$\therefore$ `Follow(S) = {$, , , )}`
-
-==Then we number the productions:==
-
-`S -> (L)` = 1
-`S -> a` = 2
-`L -> SL` = 3
-`L' -> ε` = 4
-`L' -> ,SL'` = 5
+---
+#### Follow sets
 
 
-Now we create the parse table
-==`$` is always present as an extra terminal in the table==
+![[Pasted image 20241110223450.png]]
+
+
+![[Pasted image 20241110224239.png]]
+
+
+`follow(S) = {$, first(L')} = {$, )}`
+`follow(L) = {)}`
+`follow(L') = follow(L) = )
+
+---
+Now we assign numbers to the productions :
+
+`S -> (L)` = `1`
+`S -> a` = `2`
+`L -> SL'` = `3`
+`L' -> ε` = `4`
+`L' -> ,SL'` = `5`
+
+Now we create the parse table ==with each column header containing a terminal symbol ==.
+==$ is always present as an extra terminal in the table==
+We **CANNOT** use `ε` as a column header in the parse table.
 
 We need to fill the empty part of the table with the numbered productions
 
@@ -797,49 +784,61 @@ We need to fill the empty part of the table with the numbered productions
 | L         |     |     |     |     |     |
 | L'        |     |     |     |     |     |
 
-### How to find which `numbered production` goes in which box?
+So we take production 1
 
-**Rules:**
+`S -> (L)` and we find the `first()` of it's RHS, which is just `(`
 
-Take one production at a time, and perform `first()` on it's `RHS`.
-
-In case the `First()` yields an `ε`. Then we find the `Follow()` of it's `LHS`.
-
-We **CANNOT** use `ε` as a column header in the parse table.
-
----
-
-
-So for `1`, `First( (L) )` will be `(`.
-
-So under the column of `(`, we will put 1 for the row of `S`.
-
-Similarly
-
-`2` : `a`. (Row S)
-
-`3`: `First(S)` = `{(, a)}` (Row L)
-
-`4` : `ε`  (Row L') . So we find `Follow(L')` = `Follow(L)` = `)
-`
-`5`: `,` (Row L')
-
-
----
-Now, we place the values in the table
+So we fill `1` under the `(` symbol.
 
 | Variables | (   | )   | a   | ,   | $   |
 | --------- | --- | --- | --- | --- | --- |
-| S         | 1   |     | 2   |     |     |
-| L         | 3   |     | 3   |     |     |
-| L'        |     | 4   |     | 5   |     |
+| S         | `1` |     |     |     |     |
+| L         |     |     |     |     |     |
+| L'        |     |     |     |     |     |
 
----
-## How to check whether the given grammar is LL(1) compatible or not, from the parse table?
+As for production 2, `S -> a`, we just write `2` under `a` symbol in the table.
 
-==**If any cell/box of the table has more than one entry, then the grammar is NOT LL(1) compatible**==.
+| Variables | (   | )   | a   | ,   | $   |
+| --------- | --- | --- | --- | --- | --- |
+| S         | `1` |     | `2` |     |     |
+| L         |     |     |     |     |     |
+| L'        |     |     |     |     |     |
 
-In this instance, we see that no cell has more than one entry, so this grammar, 
+For production 3 `L -> SL'`, `first(L)` = `S`, so we find first of `S` which is `{(, a}`
+
+So we write `3` under the `(` symbol and the `a` symbol
+
+| Variables | (   | )   | a   | ,   | $   |
+| --------- | --- | --- | --- | --- | --- |
+| S         | `1` |     | `2` |     |     |
+| L         | `3` |     | `3` |     |     |
+| L'        |     |     |     |     |     |
+
+For production 4, `L' -> ε` , we see that we have `ε` on the RHS. So we find the `follow(L')` which is `{)}`
+
+So we write `4` under the `)` symbol.
+
+| Variables | (   | )   | a   | ,   | $   |
+| --------- | --- | --- | --- | --- | --- |
+| S         | `1` |     | `2` |     |     |
+| L         | `3` |     | `3` |     |     |
+| L'        |     | `4` |     |     |     |
+
+And lastly for production 5, `L' -> ,SL'`, the `first(L') = {,}`
+
+So we write `5` under the `,` symbol.
+
+| Variables | (   | )   | a   | ,   | $   |
+| --------- | --- | --- | --- | --- | --- |
+| S         | `1` |     | `2` |     |     |
+| L         | `3` |     | `3` |     |     |
+| L'        |     | `4` |     | `5` |     |
+
+Now **if any cell within the LL(1) parse table has more than one entry in it, then the given grammar is NOT LL(1) compatible**.
+
+Here we see that the populated cells have only one entry each.
+
+So, the given grammar, 
 
 ```mathematica
 S -> (L) | a
@@ -847,180 +846,79 @@ L -> SL'
 L' -> ε | ,SL'
 ```
 
-is `LL(1)` compatible.
-
-Which means that the LL(1) parser can work with this grammar.
+is LL(1) compatible.
 
 ---
-
-**Example 2:**
-
-Given grammar:
+### Example 2
 
 ```mathematica
 S -> aSbS | bSaS | ε
 ```
-
-which can be re-written as 
+So we can re-write this grammar as :
 
 ```mathematica
 S -> aSbSε | bSaSε | ε
 ```
 
-`First(S)` = `{a, b, ε}`
-`Follow(S)` = `{$, b, a}`
+We need to check whether this grammar is LL(1) compatible or not.
 
-Now we give numbers to the productions
+#### First sets
 
-`S -> aSbS` = 1
-`S -> bSaS` = 2
-`S -> ε`  = 3
+`first(S) = abε`
 
-==We can't use `ε` as a column in the parse table.==
+#### Follow sets
 
-Now we construct the parse table.
+![[Pasted image 20241111120457.png]]
 
+`follow(S) = {$, a, b}`
+
+Therefore the LL(1) parsing table will be:
 
 | Variables | a   | b   | $   |
 | --------- | --- | --- | --- |
 | S         |     |     |     |
 
-To find which production goes where, we execute `First()` on every production's `RHS`
+Now we number the productions :
 
-`1`: `a`
-`2`: `b`
-`3`: `ε` -> `Follow(S)` -> `{$, b, a}`
+`S -> aSbS`  = `1`.
+`S -> bSaS` = `2`.
+`S -> ε` = `3`.
 
-We fill the values in the table:
+Starting with production `1`, we find the `first(S)` which is `a`.
 
+So we write `1` under the column of `a` symbol.
 
 | Variables | a   | b   | $   |
 | --------- | --- | --- | --- |
-| S         | 1/3 | 2/3 | 3   |
+| S         | `1` |     |     |
 
-Seeing that cells under columns `a` and `b` for row `S`  have two entries, the grammar:
+For production `2`, `first(S) = b`.
+
+So we write `2` under the `b` symbol.
+
+| Variables | a   | b   | $   |
+| --------- | --- | --- | --- |
+| S         | `1` | `2` |     |
+
+For production `3`, we see that `first(S) = ε`. So it will result in a `follow(S)` which is `{$, a, b}`.
+So we will write `3` in all the cells of the table.
+
+Existing values will assume a fractional form as follows: 
+
+| Variables | a     | b     | $   |
+| --------- | ----- | ----- | --- |
+| S         | `1/3` | `2/3` | `3` |
+
+So here we see that two cells contain more than one value.
+
+So the grammar :
 
 ```mathematica
 S -> aSbS | bSaS | ε
 ```
 
-is  **NOT** `LL(1)` compatible.
+is NOT, LL(1) compatible.
 
----
-## How LL(1) parser truly works in depth
-
-https://www.youtube.com/watch?v=YvGW4Z_6POU&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=10
-
-An **LL(1) parser** is a type of top-down parser that reads input from left to right and constructs a leftmost derivation of the sentence using one lookahead symbol at a time. The "1" in LL(1) refers to this single symbol of lookahead.
-
-### Steps in LL(1) Parsing:
-
-1. **Input**: A string (sentence) to be parsed.
-2. **Output**: A parse tree or syntax error message.
-3. **Parsing Table**: Precomputed using the grammar's FIRST and FOLLOW sets.
-
-### Working of LL(1) Parser:
-
-The parser uses a **stack** to hold grammar symbols and an **input buffer** that contains the string to be parsed. It consults the **parse table** to decide the next action (whether to expand a non-terminal or match a terminal).
-
-#### Components:
-
-1. **Stack**: Initially contains the start symbol and `$` (end of input marker).
-2. **Input Buffer**: Contains the string to be parsed followed by `$`.
-3. **Parsing Table**: Guides which production to apply for each combination of non-terminal and input symbol.
-
-## Algorithm for LL(1) Parsing:
-
-1. **Initialize** the stack with the start symbol and `$`: `Stack = [StartSymbol, $]` Set input buffer to: `InputString + $`
-    
-2. **Repeat until stack is empty**:
-    
-    - Let `X` be the top of the stack.
-    - Let `a` be the current symbol in the input buffer (lookahead symbol).
-    
-    **If X is a terminal**:
-    
-    - If `X == a`, pop `X` from the stack and advance the input pointer.
-    - If `X != a`, then report an error (mismatch between expected and actual input).
-    
-    **If X is a non-terminal**:
-    
-    - Look up the parsing table entry `Table[X, a]`:
-        - If there is a production `X → α`, pop `X` from the stack and push `α` (right-hand side of the production) onto the stack in reverse order.
-        - If `Table[X, a]` is empty, report a syntax error.
-        
-3. **If the stack is empty and input is fully consumed**, the parsing is successful. Otherwise, there's an error.
-
----
-Let's understand this with an example:
-
-```mathematica
-S → A B
-A → a
-B → b
-```
-
-This is the given grammar.
-
-And let's say this is the input string: `ab`.
-
-**Components needed:**
-
-1. The parse table. First priority should always be the parse table.
-2. The input buffer, to store the string.
-3. The stack, where the production rules will be stored and matched to the input.
-
----
-### Constructing the parse table.
-
-Use `First()` and `Follow()` to construct and fill values.
-
-`First(S)` = `First(A)` = `a`.
-`First(A)` = `a`.
-`First(B)` = `b`.
-
-`Follow(S)` = `{$}`.
-`Follow(A)` = `First(B)` = `b`.
-`Follow(B)` = `Follow(S)` = `{$}`
-
-Now we number the productions: 
-
-`S -> AB` = `1`.
-`A -> a` = `2`.
-`B -> b` = `3`.
-
-We construct the table:
-
-| Variables | a   | b   | $   |
-| --------- | --- | --- | --- |
-| S         |     |     |     |
-| A         |     |     |     |
-| B         |     |     |     |
-
-Then we fill in values, by finding `First(RHS)` of each production.
-
-`1`. `First(AB)` = `First(A)` = `a`.
-`2`. `First(a)` = `a`.
-`3`. `First(b)` = `b`.
-
-We populate the table with these values:
-
-
-| Variables | a   | b   | $   |
-| --------- | --- | --- | --- |
-| S         | 1   |     |     |
-| A         | 2   |     |     |
-| B         |     | 3   |     |
-
-For better clarity:
-
-| Variables | a       | b      | $   |
-| --------- | ------- | ------ | --- |
-| S         | `S->AB` |        |     |
-| A         | `A->a`  |        |     |
-| B         |         | `B->b` |     |
-
-Parse table constructed.
 
 ---
 ## Working out the LL(1) parser
@@ -1205,25 +1103,26 @@ This took me 3 days to get completely right. So buckle up, this is gonna be a wi
 Here's a video for reference but it's **a lot in brief**.
 
 https://www.youtube.com/watch?v=J4ZME5KOB-s&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=20
-## Important Terminology.
 
-### 1. LR(0) Canonical Items and LR(0) Parsing table generation
+---
+## Checking if a grammar is SLR(1) compatible.
 
-Let there be a given grammar 
+**SLR(1) parsing belongs to the parsing type of Bottom-up parsing where the entire production is scanned first by the parser to the bottom then reduced back to it's start symbol at the top**.
+
+Let's say we have been given an example grammar:
 
 ```mathematica
 E -> T + E | T
 T -> id
 ```
 
-We number these productions as 1, 2 and 3
+1. We number the productions as we did previously.
 
-`E -> T + E` = 1
-`E -> T` = 2
-`T -> id` = 3
+`E -> T + E` = `1`.
+`E -> T` = `2`.
+`T -> id` = `3`.
 
-
-We start by augmenting the grammar, by adding a new start symbol `E'` with a new rule 
+2. We then, **augment** the grammar by adding a new production rule which points to the start symbol.
 
 `E' -> E`
 
@@ -1234,28 +1133,27 @@ E' -> E
 E -> T + E
 E -> T
 T -> id
-
 ```
-#### Generating the canonical items
 
-Now that we have the augmented grammar, we need to generate the **LR(0) items**. LR(0) items are productions with a dot (`.`) somewhere on the right-hand side of the production, ==representing how much of that production has been parsed so far==.
+3. Build the LR(0) canonical item sets.
+4. Build the LR(0) Action and Go-To tables
+5. Build the SLR(1) Action Table from the LR(0) Action Table
+6. If there are no conflicts (shift-reduce or reduce-reduce), then the grammar is SLR(1) compatible.
 
-For each production in the augmented grammar, we place the dot at all possible positions to create the LR(0) items.
+---
+## Recapping the concepts of LR(0) canonical items, shifting and reduction LR(0) parsing.
 
-#### General steps to generate LR(0) items:
+The parsing process happens with the help of **certain items** called canonical items. In this instance, these are called LR(0) canonical items **as SLR(1) parsing depends on LR(0) canonical items**.
 
-1. **Start with the augmented production.**  
-    For the augmented grammar, the first item is:
-    
-```mathematica
-E' -> .E
+So here the parser (atleast in theory let's assume we have a machine called a parser), will **scan** through all the symbols one at a time.
 
-```
-2. **Generate items for each production by placing the dot at different positions.**  
-	For each production, move the dot from the start of the right-hand side to the end, one position at a time.
+We visually represent this process by using a dot `.`
+
+So, there will be a **stage** when the dot is before a variable (meaning it's not scanned), and a stage after the variable, where it's scanned( which means that production is ready to be reduced.)
 
 
-#### LR(0) items for the augmented grammar:
+
+So we get these :
 
 - **Production:** `E' -> E`
     
@@ -1305,41 +1203,33 @@ E -> T.
 T -> .id
 T -> id.
 ```
+
+Now these items are called **LR(0) canonical items without closure**. 
+
+---
+### What is closure by the way?
+
+It's basically the expansion of non-terminal variables, revealing all possible productions like a traversal, and adding unexplored non-terminals to the right of the dot, to consider them as **parsed**.
+
+Like opening a folder to see their contents inside.
+
+It only works on **non-terminal variables**.
+
 ---
 
-Now we need to generate the **actual canonical collection** of items. We do that by finding closures of each item.
+So after applying closure, the items will be **grouped into sets**, called **canonical item sets**.
 
-### Key Concepts Recap:
+So here we have the first production:
 
-- **LR(0) Items** are grammar rules with a dot (`.`) at different positions.
-- **Closure** ensures we include all necessary items for parsing by looking ahead when the dot is in front of a non-terminal.
-- **States** are sets of LR(0) items that can exist at any point in parsing.
-- **Transitions** occur when the dot moves past a terminal or non-terminal to a new state.
+`E' -> .E`
 
-### 1. **What is the Closure of an Item?**
+![[Pasted image 20241111132622.png]]
 
-Closure is simply the expansion of all non-terminals, revealing all possible productions like a traversal, and adding unexplored non-terminals to the right of the dot, to consider them as **parsed**.
+So here to form a closure of `E'`, it needs to be expanded.
 
-Closure ==**only works on non-terminal symbols**==.
+![[Pasted image 20241111124028.png]]
 
-**Closure** ==ensures we include all necessary items for parsing by looking ahead when the dot is in front of a non-terminal==.
-
-#### Example:
-
-Let's start with `E' -> .E`. The dot is in front of the non-terminal `E`.
-
-To form the closure, we add all rules for `E`, but we place the dot at the beginning of each rule for `E`.
-
-- We already have `E' -> .E`.
-- `E -> .T + E` and `E -> .T` must be added because `T` is an expansion of `E`.
-
-Now we look at `E -> .T + E` and `E -> .T`. In both of these, the dot is in front of `T`, so we add rules for `T`:
-
-- `T -> .id`.
-
-This is the **closure** of the initial item `E' -> .E`.
-
-So item 0 ($I_0$) =
+So accommodating all expansions of `E'`, we get the first LR(0) canonical item set $I_0$ as :
 
 ```mathematica
 E' → .E
@@ -1347,52 +1237,47 @@ E → .T + E
 E → .T
 T → .id
 ```
+Now to open the folder of `E` or expand on `E`, the parser needs to **shift over** `E` first so that it's ready for reduction.
 
-Now what we do, is that we "**shift**" the dot to being parsing each of the rules within the item, searching for potential closures which can create new items.
-
-So `E'-> .E` (`initial`). Now we shift the dot to parse `E`.
-
-We get a new item from here, previously undiscovered. 
-
-`E' -> E.`
-
-Next we shift over `T` from `E → .T + E` and we get `E -> T. + E`.
-
-We don't need to further parse from this point **for this specific item** in this rule since the `.` is in front of a terminal, `+`.
-
-Similarly we get `E -> T.` from `E -> .T` .
-
-So far, we got two new states. 
-
-State $I_1$
+So we get a new LR(0) canonical item set $I_1$ as :
 
 ```mathematica
 E' -> E.
 ```
 
-And State $I_2$
+![[Pasted image 20241111132728.png]]
+
+
+Next we open the folder of `E` or expand on `E` (however you say it).
+
+![[Pasted image 20241111124710.png]]
+
+So we get to see the two productions which `E` leads to and the parser shifts over the first variable, `T` in both cases, meaning the variable `T` is ready for reduction.
+
+So we get a new LR(0) canonical item set $I_2$ as:
 
 ```mathematica
-E -> T. + E
-E -> T.
+E → T. + E
+E → T.
 ```
 
-Here's an interesting part now, even though we cannot expand further using closure for `E -> T. + E` since the dot is in front of a terminal.
+![[Pasted image 20241111132857.png]]
 
-**We can still shift the dot beyond the terminal**.
 
-So we shift the dot beyond the terminal and we get a new item, `E -> T +. E`
+Now we can't parse the next variable **as it's a terminal variable** and closure only works on **non-terminal variables**, but the parser can **still shift beyond the terminal to access any remaining non-terminals**.
 
-We can apply the closure here and expand the `E`.
+So the parser just shifts over the terminal symbol `+` to get a new production 
 
-After apply closure to `E` we are back at 
+`E -> T + .E`
+
+So, we get a new canonical item set $I_3$ as :
+
 ```mathematica
 E -> T +. E
 E → .T + E
 E → .T
 T → .id
 ```
-
 A question students might have at this point.
 
 **However when expanding the `E` at `E -> T +. E`, why did we go back to the `E` which was in I0, and use it's parts instead of using the other variations of `E` from I2 ?**
@@ -1415,154 +1300,107 @@ In other words:
 - **I2** represents progress we've made in parsing `E` (where the dot has moved), but it's not a definition of `E` itself.
 - When we expand `E`, we always go back to the base productions of `E` from the grammar, not to items like `E → T . + E` that are specific parsing steps.
 
-So, with this fact in mind, we get the final state $I_4$ as 
+
+**Why are not the remaining productions shifted over too?**
 
 ```mathematica
-E -> T +. E
 E → .T + E
 E → .T
 T → .id
 ```
+These?
 
-More items we can get
+Because :
+1. `T` has already been parsed over, so we don't need to shift the dots again over the remaining `T`.
+   
+   In:
+   
+   ```mathematica
+	E → T. + E
+	E → T.
+	```
+   `T` has already been **shifted over**.
+   
+   So we **don't expand T again**.
+   
+   And in :
+   
+   ```mathematica
+   E' -> E.
+	```
+   `E` has already been parsed completely.
+   
+   So even after shifting over to get :
+   
+   ```mathematica
+   E → T + E.
+	```
+   We **don't expand E again**. 
+   
+2. ==The way the shifting is done is dictated by the rules of the original grammar==. These "canonical item sets" we see are **in-between phases** of parsing, so we don't follow their "rules" to shift over again.
+
+![[Pasted image 20241111133010.png]]
+
+So from $I_3$, after shifting the dot over `E` we get a new LR(0) canonical item $I_4$ as :
 
 ```mathematica
-E -> T + E.
+E → T + E.
 ```
+![[Pasted image 20241111133103.png]]
 
-as state $I_5$
-
-and the final state
+And shifting the dot over terminal `id` we get the last LR(0) canonical item $I_5$ set as :
 
 ```mathematica
 T -> id.
 ```
 
-as state $I_6$
-
-
-Now from this point onwards **we don't need to start parsing all over again** since all possible **closures** have been already found.
-
-
-So, to recap:
-
-- **I₀:**
-```mathematica
-E' → .E
-E → .T + E
-E → .T
-T → .id
-```
-- **I₁:**
-
-```mathematica
-E' -> E.
-```
-
-- **I₂:**
-
-```mathematica
-E -> T. + E
-E -> T.
-```
-
-
-- **I₃:**
-
-```mathematica
-E → T + .E
-E → .T + E
-E → .T
-T → .id
-
-```
-
-- **I₄:** from ($I_3$), `E -> T + .E`
-
-```mathematica
-E -> T + E.
-```
-
-- $I_5$: (from $I_0$)
-
-```mathematica
-T -> id.
-```
+And thus finally all non-terminals have been expanded and are ready for reduction.
 
 ---
-## Creating the Actions and Go-To Tables
-
-Before proceeding in this, we need to understand a few more **terminologies**.
-
 ### What Exactly is **Reduction** in LR Parsing?
 
 **Reduction** in LR parsing means that the parser has matched a sequence of input symbols that corresponds to the **right-hand side (RHS)** of a production rule, and it now replaces this sequence with the **left-hand side (LHS)** of the production.
 
-Reduction is the ==reverse of derivation==:
+Reduction is the reverse of derivation:
 
 - In **derivation**, you expand non-terminals into terminals using production rules.
 - In **reduction**, you collapse terminals back into non-terminals using the production rules.
 
-It's like a `substitution method`, but only works if it's possible to substitute the entire `input/production` rule back to the **original numbered production**.
+It’s like a `substitution method`, but only works if it’s possible to substitute the entire `input/production` rule back to the **original numbered production**.
 
-Reduction **only works**, if the entire **production rule / terminal** has been parsed, and **end of input has been reached.** The parser then checks whether it's possible to reduce the **entire rule / terminal**, back to the **augmented start symbol**.
+Reduction **only works**, if the entire **production rule / terminal** has been parsed, and **end of input has been reached.** The parser then checks whether it’s possible to reduce the **entire rule / terminal**, back to the **augmented start symbol**.
 
 This is how **reduction** works in bottom-up parsing, where it gradually builds back up to the start symbol.
-
-### Example of a **Reduction**:
-
-Consider the grammar:
-
-```mathematica
-E → T + E
-E → T
-T → id
-
-```
-
-and it's numbered productions
-
-`E -> T + E` = 1
-`E -> T` = 2
-`T -> id` = 3
-
-
-Suppose the parser has just read the input sequence `id + id`. This can be broken down as follows:
-
-1. `id` matches `T → id`, so the parser **reduces** `id` to `T`.
-2. `T + id` matches the rule `E → T + E`, so the parser **reduces** `T + id` to `E`.
-
-The goal of LR parsing is to systematically "reduce" the input back to the **start symbol** of the grammar (like `E`), which means the input has been successfully parsed.
-
-So in case of let's say `T -> id.`, we could write `R3`, meaning reducing this non-terminal `id`, to our numbered production `3`.
 
 ---
 ### What exactly is Shifting in LR parsing?
 
 #### **Shifts (`S`)**:
 
-- **Shift** means to "read" a symbol from the input and move to a new state.
+- **Shift** means to “read” a symbol from the input and move to a new state.
 - `S3` means **Shift** the input symbol (i.e., read it) and then move to state `3`.
 
-The number after `S` refers to the **state** the parser should transition to after the shift. Here's how it works:
+The number after `S` refers to the **state** the parser should transition to after the shift. Here’s how it works:
 
-- The current state looks at the next input symbol (let’s say it's `+`).
-- If the table entry says `S3`, it means "Shift the input symbol `+`, consume it, and go to state `3`".
+- The current state looks at the next input symbol (let’s say it’s `+`).
+- If the table entry says `S3`, it means “Shift the input symbol `+`, consume it, and go to state `3`”.
 
 For example, if you’re in **state 0** and the next input symbol is `id`, the Action table might say `S5`. This means the parser will shift (consume `id`) and move to **state 5**.
 
-
 ---
+## Creating the LR(0) Action and Go-To Tables
 
-So, with our `LR(0) canonical items`:
+Recapping our LR(0) canonical items
 
 - **I₀:**
+
 ```mathematica
 E' → .E
 E → .T + E
 E → .T
 T → .id
 ```
+
 - **I₁:**
 
 ```mathematica
@@ -1576,7 +1414,6 @@ E -> T. + E
 E -> T.
 ```
 
-
 - **I₃:**
 
 ```mathematica
@@ -1584,16 +1421,15 @@ E → T + .E
 E → .T + E
 E → .T
 T → .id
-
 ```
 
-- **I₄:** from ($I_3$), `E -> T + .E`
+- **I₄:** from (I3​), `E -> T + .E`
 
 ```mathematica
 E -> T + E.
 ```
 
-- $I_5$: (from $I_0$)
+- I5​: (from I0​)
 
 ```mathematica
 T -> id.
@@ -1603,464 +1439,244 @@ And our **numbered productions**
 
 We number these productions as 1, 2 and 3
 
-`E -> T + E` = 1
-`E -> T` = 2
+`E -> T + E` = 1 
+`E -> T` = 2 
 `T -> id` = 3
 
-
-
 ---
-## LR(0) Action Table
+### Creating the LR(0) Action Table.
 
-We first construct the **Action Table** with it's inputs and states (canonical items)
+![[Pasted image 20241111144153.png]]
 
-| States | `id` | `+` | `$` |
-| ------ | ---- | --- | --- |
-| $I_0$  |      |     |     |
-| $I_1$  |      |     |     |
-| $I_2$  |      |     |     |
-| $I_3$  |      |     |     |
-| $I_4$  |      |     |     |
-| $I_5$  |      |     |     |
+All the state transitions are depicted in this picture.
 
-Examining the first item, for terminal `id`, we see that, `T → .id` exists.
+**The action table denotes transitions over terminal symbols and the reductions**
 
-So to parse this over completely, the dot would **shift to** $I_5$, where the parsing of `id` is complete.
+We create the action table as follows :
 
-So we write `S5` to represent "State 5". 
-
+The column headers are all the terminal symbols because that's where the shifting takes place.
 
 | States | `id` | `+` | `$` |
 | ------ | ---- | --- | --- |
-| $I_0$  | `S5` |     |     |
-| $I_1$  |      |     |     |
-| $I_2$  |      |     |     |
-| $I_3$  |      |     |     |
-| $I_4$  |      |     |     |
-| $I_5$  |      |     |     |
+| $I_0$​ |      |     |     |
+| $I_1$​ |      |     |     |
+| $I_2$​ |      |     |     |
+| $I_3$​ |      |     |     |
+| $I_4$​ |      |     |     |
+| $I_5$​ |      |     |     |
+
+For terminal `id` we see that $I_0$ goes to $I_5$ from the image.
+
+So $I_0$ will shift over `id` to $I_5$
+
+So we write `S5` to represent “Shift to State 5”.
+
+| States | `id` | `+` | `$` |
+| ------ | ---- | --- | --- |
+| $I_0$​ | `S5` |     |     |
+| $I_1$​ |      |     |     |
+| $I_2$​ |      |     |     |
+| $I_3$​ |      |     |     |
+| $I_4$​ |      |     |     |
+| $I_5$​ |      |     |     |
 
 The augmented grammar has `E'` as the new start symbol, and the goal of the parser is to reduce everything down to `E' → E`.
 
-In $I_1$ we see that `E' -> E.`, the input has been reduced to the start symbol `E'`, and the dot at the end means that the entire derivation of the grammar has been successfully parsed.
+In $I_1$​ we see that `E' -> E.`, the input has been reduced to the start symbol `E'`, and the dot at the end means that the entire derivation of the grammar has been successfully parsed.
 
-So $I_1$ is the **accept** state.
+So $I_1$​ is the **accept** state.
 
+| States | `id` | `+` | `$`        |
+| ------ | ---- | --- | ---------- |
+| $I_0$​ | `S5` |     |            |
+| $I_1$​ |      |     | **accept** |
+| $I_2$​ |      |     |            |
+| $I_3$​ |      |     |            |
+| $I_4$​ |      |     |            |
+| $I_5$​ |      |     |            |
 
-| States | `id` | `+` | `$`    |
-| ------ | ---- | --- | ------ |
-| $I_0$  | `S5` |     |        |
-| $I_1$  |      |     | accept |
-| $I_2$  |      |     |        |
-| $I_3$  |      |     |        |
-| $I_4$  |      |     |        |
-| $I_5$  |      |     |        |
+The reason the **accept** word is written under `$` symbol is because there is no shift/reduction happening here.
 
-In $I_2$ we see that for terminal `+`, `E -> T. + E`, exists. To parse this over completely, we would shift over  to `E → T + .E`, from $I_3$, where parsing of `+` is complete.
+For $I_2$ we see that it shifts over to $I_3$ for `+` terminal.
 
-So we would write `S3` to represent **State 3**.
+So we write `S3` denoting "Shift to State 3"
 
-The parser sees that `E -> T.` is present in $I_2$ which can be completely reduced back to **numbered production 2**.
+The parser sees that `E -> T.` is present in $I_2$​ which can be completely reduced back to **numbered production 2**.
 
+So we write `R2`, to represent **Reduction to rule 2**, in all the columns of that row.
 
-So we write `R2`, to represent **Reduction to rule 2**, in all the columns of that row
+| States | `id` | `+`     | `$`        |
+| ------ | ---- | ------- | ---------- |
+| $I_0$​ | `S5` |         |            |
+| $I_1$​ |      |         | **accept** |
+| $I_2$​ | `R2` | `S3/R2` | `R2`       |
+| $I_3$​ |      |         |            |
+| $I_4$​ |      |         |            |
+| $I_5$​ |      |         |            |
 
-| States | `id` | `+`  | `$`    |
-| ------ | ---- | ---- | ------ |
-| $I_0$  | `S5` |      |        |
-| $I_1$  |      |      | accept |
-| $I_2$  | `R2` | `S3` | `R2`   |
-| $I_3$  |      |      |        |
-| $I_4$  |      |      |        |
-| $I_5$  |      |      |        |
+Now dealing with $I_3$ , we see that it shifts over `id` to $I_5$.
 
-From $I_3$, we see that for terminal `id`, `T -> .id`, can be shifted over to `T -> id.` in $I_5$. So we write `S5`, to represent **shifting over to state 5**.
+So we write `S5` to represent “Shift to State 5”.
 
-| States | `id` | `+`       | `$`    |
-| ------ | ---- | --------- | ------ |
-| $I_0$  | `S5` |           |        |
-| $I_1$  |      |           | accept |
-| $I_2$  |      | `S3`/`R2` | `R2`   |
-| $I_3$  | `S5` |           |        |
-| $I_4$  |      |           |        |
-| $I_5$  |      |           |        |
+| States | `id` | `+`     | `$`        |
+| ------ | ---- | ------- | ---------- |
+| $I_0$​ | `S5` |         |            |
+| $I_1$​ |      |         | **accept** |
+| $I_2$​ | `R2` | `S3/R2` | `R2`       |
+| $I_3$​ | `S5` |         |            |
+| $I_4$​ |      |         |            |
+| $I_5$​ |      |         |            |
 
+Now for $I_4$, `E -> T + E.` can be completely reduced back to production `1`. So we write `R1` in the entire row, denoting `Reduce to rule 1`.
 
-We **didn't reduce $I_3$** to `E'` since right now we are in the middle of processing `E -> T + .E` in $I_3$. 
+| States | `id` | `+`     | `$`        |
+| ------ | ---- | ------- | ---------- |
+| $I_0$​ | `S5` |         |            |
+| $I_1$​ |      |         | **accept** |
+| $I_2$​ | `R2` | `S3/R2` | `R2`       |
+| $I_3$​ | `S5` |         |            |
+| $I_4$​ | `R1` | `R1`    | `R1`       |
+| $I_5$​ |      |         |            |
 
-**Why**, do you ask?
+And for $I_5$, `T -> id.`, can be completely reduced back to production `3`. So we write `R3` in the entire row, denoting `Reduce to rule 3`.
 
-- We know that `T → id`, so after shifting `id`, we will be in **state I₅**, where `T → id .` (dot at the end of the production).
-    
-    - This is a complete rule, so we can reduce `id` back to `T` using the rule **`T → id`**.
-- But then, can we reduce `T` further?
-    
-    - We have a rule **`E → T`**, so once `T` is parsed, we can **reduce** `T` back to `E`.
-- Finally, can we reduce `E` to the **augmented start symbol** `E'`?
-    
-    - Yes, but only when we've parsed the entire input and have reached the end symbol `$`. The final reduction happens when the entire input string conforms to the augmented start rule `E' → E`.
-
-That's **"why"**.
-
-To complete parsing `E -> T + .E`, we focus on $I_4$, where the rule is  `E -> T + E`. and also since the parser reached the `END OF INPUT`.
-
-Now, **we can reduce**, this entire thing back to `E'`.
-
-So we write `R1`, representing, **reduction to rule 1**, in all the columns of that row.
-
-
-| States | `id` | `+`       | `$`    |
-| ------ | ---- | --------- | ------ |
-| $I_0$  | `S5` |           |        |
-| $I_1$  |      |           | accept |
-| $I_2$  | `R2` | `S3`/`R2` | `R2`   |
-| $I_3$  | `S5` |           |        |
-| $I_4$  | `R1` | `R1`      | `R1`   |
-| $I_5$  |      |           |        |
-
-Finally in $I_5$, `T -> id.` the parser sees that `id` has been completely parsed, and can be reduced back up to `E'` since `E` and `T` themselves have been completely parsed too.
-
-So we write `R3` under `$`, indicating **reduction to rule 3**, in all the  columns of that table.
-
-**Final Action Table**:
-
-| States | `id` | `+`       | `$`    |
-| ------ | ---- | --------- | ------ |
-| $I_0$  | `S5` |           |        |
-| $I_1$  |      |           | accept |
-| $I_2$  | `R2` | `S3`/`R2` | `R2`   |
-| $I_3$  | `S5` |           |        |
-| $I_4$  | `R1` | `R1`      | `R1`   |
-| $I_5$  | `R3` | `R3`      | `R3`   |
+| States | `id` | `+`     | `$`        |
+| ------ | ---- | ------- | ---------- |
+| $I_0$​ | `S5` |         |            |
+| $I_1$​ |      |         | **accept** |
+| $I_2$​ | `R2` | `S3/R2` | `R2`       |
+| $I_3$​ | `S5` |         |            |
+| $I_4$​ | `R1` | `R1`    | `R1`       |
+| $I_5$​ | `R3` | `R3`    | `R3`       |
 
 This is the **LR(0) Action Table**, ==which is necessary to understand before creating== the **SLR(0) Action Table**.
 
 ---
-## LR(0) Go-To Table.
+### Creating the LR(0) Go-To table
 
-### Understanding the Go-To Table
+Referencing the image again :
 
-The **Go-To table** is used when the parser is shifting over non-terminal symbols (like `E`, `T`, etc.) and needs to know which state to move to next.
-
-- **Rows** represent the **states** of the LR(0) automaton (like I₀, I₁, etc.).
-- **Columns** represent **non-terminal symbols** (like `E` and `T` in this case).
-
-Whenever the parser shifts over a non-terminal after completing the parsing of a rule, it will refer to the Go-To table to figure out which state to move to next.
+![[Pasted image 20241111144153.png]]
 
 
-This is exactly the same as the **Action Table**, except that it works only for the `Go-To` Table.
+The Go-To table denotes **shifts over all non-terminal variables**.
 
-### Step-by-Step Creation of the Go-To Table
+The non-terminal shifts here are only for 
 
-1. **Identify the non-terminals** that will appear in the columns. In your case, these are:
-    
-    - `E`
-    - `T`
-2. **Go-To entries** are filled by looking at the transitions between states for non-terminal symbols during parsing.
----
-### Recap of all our LR(0) Canonical Items
+$I_0$ to $I_1$ for `E`  --> `S1`
+$I_0$ to $I_2$ for `T` --> `S2`
+$I_3$ to $I_4$ for `E` --> `S4`
+$I_3$ to $I_2$ for `T` --> `S2`
 
-- **I₀:**
-```mathematica
-E' → .E
-E → .T + E
-E → .T
-T → .id
-```
-- **I₁:**
-
-```mathematica
-E' -> E.
-```
-
-- **I₂:**
-
-```mathematica
-E -> T. + E
-E -> T.
-```
-
-
-- **I₃:**
-
-```mathematica
-E → T + .E
-E → .T + E
-E → .T
-T → .id
-
-```
-
-- **I₄:** from ($I_3$), `E -> T + .E`
-
-```mathematica
-E -> T + E.
-```
-
-- $I_5$: (from $I_0$)
-
-```mathematica
-T -> id.
-```
-----
 So this is our initial **Go-To** table.
 
-| State | E   | T   |
-| ----- | --- | --- |
-| $I_0$ |     |     |
-| $I_1$ |     |     |
-| $I_2$ |     |     |
-| $I_3$ |     |     |
-| $I_4$ |     |     |
-| $I_5$ |     |     |
+| State  | E   | T   |
+| ------ | --- | --- |
+| $I_0$​ |     |     |
+| $I_1​$ |     |     |
+| $I_2$​ |     |     |
+| $I_3$​ |     |     |
+| $I_4$​ |     |     |
+| $I_5$​ |     |     |
 
-From $I_0$ we see that 
+And after filling in all the transitions, we get :
 
-```mathematica
-E' → .E
-E → .T
-```
+| State  | E    | T    |
+| ------ | ---- | ---- |
+| $I_0$​ | `S1` | `S2` |
+| $I_1​$ |      |      |
+| $I_2$​ |      |      |
+| $I_3$​ | `S4` | `S2` |
+| $I_4$​ |      |      |
+| $I_5$​ |      |      |
 
-To shift over `E` and `T`, we can go to :
-
-- **I₁:**
-
-```mathematica
-E' -> E.
-```
-
-- **I₂:**
-
-```mathematica
-E -> T. + E
-E -> T.
-```
-
-Respectively.
-
-So we write
-
-| State | E     | T     |
-| ----- | ----- | ----- |
-| $I_0$ | $I_1$ | $I_2$ |
-| $I_1$ |       |       |
-| $I_2$ |       |       |
-| $I_3$ |       |       |
-| $I_4$ |       |       |
-| $I_5$ |       |       |
-
-
-In $I_1$ , we have the accepting state, so no transitions will occur here.
-
-No entries for $I_1$.
-
-For $I_2$ 
-
-```mathematica
-E -> T. + E
-E -> T.
-```
-
-The dot can't be shifted further as there is a terminal `+` and `T` has already been parsed.
-
-So no entries for $I_2$.
-
-
-For $I_3$. when we encounter `E` in `E → T + .E`, we can shift over to $I_4$ to get `E -> T + E.`.
-
-So we write $I_4$ under `E`.
-
-Similarly for `T`, we shift back to $I_2$ 
-
-So we write $I_2$ for `T`.
-
-| State | E     | T     |
-| ----- | ----- | ----- |
-| $I_0$ | $I_1$ | $I_2$ |
-| $I_1$ |       |       |
-| $I_2$ |       |       |
-| $I_3$ | $I_4$ | $I_2$ |
-| $I_4$ |       |       |
-| $I_5$ |       |       |
-
-
-For $I_4$ and $I_5$, we have :
-
-- **I₄:** from ($I_3$), `E -> T + .E`
-
-```mathematica
-E -> T + E.
-```
-
-- $I_5$: (from $I_0$)
-
-```mathematica
-T -> id.
-```
-
-Here no more **non-terminals** can be processed/ shifted over, so no entries for $I_4$ and $I_5$.
-
-So our final **Go-to** table :
-
-
-| State | E     | T     |
-| ----- | ----- | ----- |
-| $I_0$ | $I_1$ | $I_2$ |
-| $I_1$ |       |       |
-| $I_2$ |       |       |
-| $I_3$ | $I_4$ | $I_2$ |
-| $I_4$ |       |       |
-| $I_5$ |       |       |
-
----
-## Putting it all together
-
-We write the **Action Table** and the **Go-To Table** side by side, (finally)
-
-| States | `id` | `+`       | `$`    | E     | T     |
-| ------ | ---- | --------- | ------ | ----- | ----- |
-| $I_0$  | `S5` |           |        | $I_1$ | $I_2$ |
-| $I_1$  |      |           | accept |       |       |
-| $I_2$  | `R2` | `S3`/`R2` | `R2`   |       |       |
-| $I_3$  | `S5` |           |        | $I_4$ | $I_2$ |
-| $I_4$  | `R1` | `R1`      | `R1`   |       |       |
-| $I_5$  | `R3` | `R3`      | `R3`   |       |       |
+Here is our final LR(0) Go-to Table.
 
 ---
 
-## Types of LR Parsers
+The actual LR(0) **parsing table** is the combination of both of these tables.
 
-### 1. SLR Parser or SLR(1)
-
-**SLR parsers** are the simplest form of LR parsers and rely on **LR(0) items** for parsing decisions. SLR 
-parsers are less powerful but simpler to implement than other LR parsers.
-
-#### Steps for SLR parsing.
-
-Follow the entirety of [[#Pre-requisites before heading into LR parsers types.]]
-
-Create the **LR(0) Canonical Items**, **Action Table** and **Go-To Table**.
-
-Now to make the **SLR Action Table**, there is a major difference.
+|States|`id`|`+`|`$`|E|T|
+|---|---|---|---|---|---|
+|I0​|`S5`|||I1​|I2​|
+|I1​|||accept|||
+|I2​|`R2`|`S3`/`R2`|`R2`|||
+|I3​|`S5`|||I4​|I2​|
+|I4​|`R1`|`R1`|`R1`|||
+|I5​|`R3`|`R3`|`R3`|||
 
 ---
+## Creating the SLR(1) parsing table.
 
-## SLR(1) Action table
+The SLR(1) Go-To table is the same as the LR(0) Go-To table, however there is a significant difference between the Action Tables of the two.
 
-https://www.youtube.com/watch?v=Z1Hu9TIef9k&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=12
+As we can see in the LR(0) parsing table, one cell has both a shift and a reduction at the same time.
 
-We write the canonical items as they are
+**This is called a shift-reduce conflict, which  SLR(1) and LR(0) DO NOT allow**.
 
-| States | `id` | `+` | `$` |
-| ------ | ---- | --- | --- |
-| $I_0$  |      |     |     |
-| $I_1$  |      |     |     |
-| $I_2$  |      |     |     |
-| $I_3$  |      |     |     |
-| $I_4$  |      |     |     |
-| $I_5$  |      |     |     |
+So to make the action table for SLR(1) we need to see if the removal of the shift-reduce conflict and the reduce-reduce conflict is possible or not. If yes, then the given grammar will be compatible with an SLR(1) parser.
 
-We write the shifting values as they were
+So, we start with the current LR(0) Action Table
 
+| States | `id` | `+`     | `$`        |
+| ------ | ---- | ------- | ---------- |
+| $I_0$​ | `S5` |         |            |
+| $I_1$​ |      |         | **accept** |
+| $I_2$​ | `R2` | `S3/R2` | `R2`       |
+| $I_3$​ | `S5` |         |            |
+| $I_4$​ | `R1` | `R1`    | `R1`       |
+| $I_5$​ | `R3` | `R3`    | `R3`       |
 
-| States | `id` | `+`  | `$`    |
-| ------ | ---- | ---- | ------ |
-| $I_0$  | `S5` |      |        |
-| $I_1$  |      |      | accept |
-| $I_2$  |      | `S3` |        |
-| $I_3$  | `S5` |      |        |
-| $I_4$  |      |      |        |
-| $I_5$  |      |      |        |
+$I_2$ has a reduction to rule 2, and a shift reduce conflict as well.
 
-Now for the reduction part, here's a ==catch==.
-
-In **SLR Action Table**, no table entry should have **more than one shifting/reducing** for a given entry at the time.
-
-Which was the case in our **LR(0) action table**.
-
-So we need to find out which cell needs to be filled with the correct reduction value.
-
----
-For that, we take a look at our original **LR(0) action table**.
-
-| States | `id` | `+`       | `$`    |
-| ------ | ---- | --------- | ------ |
-| $I_0$  | `S5` |           |        |
-| $I_1$  |      |           | accept |
-| $I_2$  | `R2` | `S3`/`R2` | `R2`   |
-| $I_3$  | `S5` |           |        |
-| $I_4$  | `R1` | `R1`      | `R1`   |
-| $I_5$  | `R3` | `R3`      | `R3`   |
-
----
-
-For $I_2$ we see that it gets **reduced to production 2**
-
-or `E -> T`.
-
-So in this case, we need to find the `Follow()` of the `LHS`, that is, `Follow(E)`.
-
-Remembering our `Follow()`, rules, the `Follow()` of a start symbol itself is just `$`.
-
-We got `E` in another production, `E -> T + E` which can be re-written as `E -> T + Eε`, we see `ε` on the `RHS` of a `non-terminal`, we loop back to `Follow(LHS)` which again is just, `$`.
-
-So we can write `R2` under `$`.
-
-| States | `id` | `+`  | `$`    |
-| ------ | ---- | ---- | ------ |
-| $I_0$  | `S5` |      |        |
-| $I_1$  |      |      | accept |
-| $I_2$  |      | `S3` | `R2`   |
-| $I_3$  | `S5` |      |        |
-| $I_4$  |      |      |        |
-| $I_5$  |      |      |        |
-
-Now for $I_4$, the production in question was `1` or `E -> T + E`.
-
-So we need to find the `Follow()` of the `LHS` , that is, `Follow(E)`, which is just `$`.
-
-So we write `R1` under `$`
+So we need to find the follow of the LHS of this rule here.
+![[Pasted image 20241111145839.png]]
 
 
-| States | `id` | `+`  | `$`    |
-| ------ | ---- | ---- | ------ |
-| $I_0$  | `S5` |      |        |
-| $I_1$  |      |      | accept |
-| $I_2$  |      | `S3` | `R2`   |
-| $I_3$  | `S5` |      |        |
-| $I_4$  |      |      | `R1`   |
-| $I_5$  |      |      |        |
+So we write `R2` under $\$$ symbol
 
-Lastly, we see for for $I_5$ that the production in question was `3` or `T -> id`.
+| States | `id` | `+`  | `$`        |
+| ------ | ---- | ---- | ---------- |
+| $I_0$​ | `S5` |      |            |
+| $I_1$​ |      |      | **accept** |
+| $I_2$​ |      | `S3` | `R2`       |
+| $I_3$​ | `S5` |      |            |
+| $I_4$​ | `R1` | `R1` | `R1`       |
+| $I_5$​ | `R3` | `R3` | `R3`       |
 
-So we need to find the `Follow()` of the `LHS` , that is, `Follow(T)`, which is just `$, +`.
+For $I_4$ :
 
-Since from `T -> id`, we get `$`
+![[Pasted image 20241111145924.png]]
 
-and from `E -> T + E`, the terminal `+` is on the `RHS` of `T`.
+So we write `R1` under $\$$ symbol
 
-So we write `R3` both under `+` and `$`
+| States | `id` | `+`  | `$`        |
+| ------ | ---- | ---- | ---------- |
+| $I_0$​ | `S5` |      |            |
+| $I_1$​ |      |      | **accept** |
+| $I_2$​ |      | `S3` | `R2`       |
+| $I_3$​ | `S5` |      |            |
+| $I_4$​ |      |      | `R1`       |
+| $I_5$​ | `R3` | `R3` | `R3`       |
 
-| States | `id` | `+`  | `$`    |
-| ------ | ---- | ---- | ------ |
-| $I_0$  | `S5` |      |        |
-| $I_1$  |      |      | accept |
-| $I_2$  |      | `S3` | `R2`   |
-| $I_3$  | `S5` |      |        |
-| $I_4$  |      |      | `R1`   |
-| $I_5$  |      | `R3` | `R3`   |
+And for $I_5$ :
 
-And this is our final **SLR(1) Action Table**.
+![[Pasted image 20241111150508.png]]
 
-So the final merged tables for **SLR(1)** would be:
+Therefore we will place `R3` under both `+` and $\$$ symbols
 
-| States | `id` | `+`  | `$`    | E     | T     |
-| ------ | ---- | ---- | ------ | ----- | ----- |
-| $I_0$  | `S5` |      |        | $I_1$ | $I_2$ |
-| $I_1$  |      |      | accept |       |       |
-| $I_2$  |      | `S3` | `R2`   |       |       |
-| $I_3$  | `S5` |      |        | $I_4$ | $I_2$ |
-| $I_4$  |      |      | `R1`   |       |       |
-| $I_5$  |      | `R3` | `R3`   |       |       |
+| States | `id` | `+`  | `$`        |
+| ------ | ---- | ---- | ---------- |
+| $I_0$​ | `S5` |      |            |
+| $I_1$​ |      |      | **accept** |
+| $I_2$​ |      | `S3` | `R2`       |
+| $I_3$​ | `S5` |      |            |
+| $I_4$​ |      |      | `R1`       |
+| $I_5$​ |      | `R3` | `R3`       |
+
+Now we see that **there are no-more shift-reduce conflicts**, so this grammar is **SLR(1) compatible**, but **LR(0) incompatible**.
+
+This means that **SLR(1) may accept extra grammars which are not LR(0) compatible**.
 
 ---
 ### Steps to Check SLR Compatibility:
@@ -2080,6 +1696,7 @@ So the final merged tables for **SLR(1)** would be:
     - If any conflicts are found in the Action table, the grammar is **not SLR compatible**.
     - If there are no conflicts, the grammar is **SLR compatible**.
 
+---
 ### Example Walkthrough:
 
 In our **LR(0) Action Table:**
@@ -2111,6 +1728,12 @@ The process is similar to LR(0) canonical items but with a key difference.
 
 You need to track a **lookahead symbol** (which is part of LR(1) parsing). This lookahead helps the parser decide whether to reduce based on the next input symbol.
 
+1. Construct LR(1) canonical items
+2. Construct LR(1) Action and Go-To table
+3. See if merging of states is possible or not, without any conflicts.
+4. If possible, then the grammar is LALR(1) compatible, else it is not LALR(1) compatible.
+
+---
 Let's proceed with an example grammar:
 
 ```mathematica
@@ -2121,8 +1744,14 @@ B -> c
 ```
 We proceed similarly, first augmenting the grammar and numbering the original productions.
 
----
-### Step 1. Augment the grammar and number it's original productions
+So let's say we have an example grammar here: 
+
+```mathematica
+S -> aAd | bBd | aBe | bAe
+A -> c
+B -> c
+```
+We proceed similarly, first augmenting the grammar and numbering the original productions.
 
 ```mathematica
 S' -> S
@@ -2131,19 +1760,18 @@ A -> c
 B -> c
 ```
 
-`S->aAd` = 1
-`S-> bBd` = 2
+`S->aAd` = 1 
+`S-> bBd` = 2 
 `S -> aBe` = 3
-`S -> bAe` = 4
+`S -> bAe` = 4 
 `A -> c` = 5
 `B -> c` = 6
 
 ---
-### Step 2. Construct the first un-closured LR(1) item.
-
-Now to find the un-closured LR(1) item.
+## Step 2. Construct the first unclosured LR(1) item
 
 $I_0$:
+
 ```mathematica
 S' -> .S    , [$]
 S  -> .aAd  , [$]
@@ -2153,280 +1781,255 @@ S  -> .bAe  , [$]
 A -> .c, [$]
 B -> .c, [$]
 ```
-where the . indicates that it hasn't parsed anything yet, and each production of S is followed by the lookahead symbol `$`.
 
----
-### Step 3: Perform Go-To Operations for Terminals
+where the dot indicates that it hasn’t parsed anything yet, and each production of S is followed by the lookahead symbol `$`.
 
-We now perform **Go-To** operations for terminal symbols (`a` and `b`) in **I₀**.
-
-For `a` :
-
-We see that productions `S -> .aAd, [$]` and `S -> .aBe, [$]` have terminal `a` in them.
-
-So on parsing these productions would produce `Go-To` transitions on `a`.
-
-So we can get a new LR(1) canonical item $I_1$:
+We get a new canonical item $I_1$ as
 
 ```mathematica
-S -> a.Ad, [$]
-S -> a.Be, [$]
+S' -> S.    , [$]
 ```
 
-However, now since the dot is before a non-terminal, we need to find it's **closure**, or expand it.
+which is the accepting state as the original start symbol has been parsed.
 
-We know that:
+---
+## Step 3. Construct Go-To operations on terminal symbols first.
+
+For `a` ,
+
+We can get a new canonical item $I_2$
+
+```mathematica
+S  -> a.Ad  , [$]
+S  -> a.Be  , [$]
+```
+
+Now we see that the dot is in front of non-terminals `A` and `B`, so they need to expanded further.
 
 ```mathematica
 A -> .c, [$]
 B -> .c, [$]
 ```
-However we can't just leave the lookahead for `c` as `$` anymore since when are reduced to/substituted to `A` and `B` respectively, `d` and `e` are positioned after `A` and `B` respectively.
-
-So `d` and `e` become the new lookahead symbols for each, respectively.
-
-So we get, 
+However in this instance the lookahead for `c` won't be `$`, since there are terminals `d` and `e` after the expansion of the non-terminals `A` and `B`. So we the new lookahead symbols will be `d` and `e` respectively
 
 ```mathematica
-A -> .c , [d]
-B -> .c , [e]
-```
-So the final $I_1$ becomes :
-
-```mathematica
-S -> a.Ad  , [$]
-S -> a.Be  , [$]
-A -> .c    , [d]
-B -> .c    , [e]
+A -> .c, [d]
+B -> .c, [e]
 ```
 
-Now, for terminal `b`:
-
-We see that productions `S -> .bBd, [$]` and `S -> .bAe, [$]` have terminal `b` in them.
-
-So on parsing these productions would produce `Go-To` transitions on `b`.
-
-So we can get a new LR(1) canonical item $I_2$:
-
+So the final $I_2$ becomes :
 ```mathematica
-S -> b.Bd, [$]
-S -> b.Ae, [$]
+S  -> a.Ad  , [$]
+S  -> a.Be  , [$]
+A -> .c, [d]
+B -> .c, [e]
 ```
-Following the rules, we get :
+
+In a similar way, we can find the next canonical item $I_3$ for terminal `b`.
 
 ```mathematica
-A -> .c , [d]
-B -> .c , [e]
-```
-Since the lookahead symbols after `B` and `A` are `d` and `e` respectively.
-
-So the final $I_2$ becomes
-
-```mathematica
-S -> b.Bd, [$]
-S -> b.Ae, [$]
-A -> .c , [e]
-B -> .c , [d]
+S  -> b.Bd  , [$]
+S  -> b.Ae  , [$]
+A -> .c, [e]
+B -> .c, [d]
 ```
 ---
-### Step 4: Perform Go-To for Non-terminals
+## Step 4. Perform Go-To operations on non-terminals.
 
-Now we find the `Go-To` transitions for the non terminal symbols `A` and `B` when the parser shifts the dot over them.
+Right now, the parser is at a stage where it needs to shift and parse over the non-terminal symbols before parsing the remaining terminal symbols.
 
-For `A`:
+So from items $I_1$ and $I_2$, we get:
 
-We see that, from $I_1$ : `S -> a.Ad  , [$]`, we can shift the dot over to get `S -> aA.d  , [$]`
-From $I_2$ : `S -> b.Ae, [$]`, we can shift the dot over to get  `S -> bA.e, [$]`
+$I_4$​:
 
-For `B`:
-
-We see that from $I_1$: `S -> a.Be  , [$]`, we can shift the dot over to get `S -> aB.e  , [$]`
-And, from $I_2$: `S -> b.Bd, [$]`, we can shift the dot over to get `S -> bB.d, [$]`
-
-So the new LR(1) canonical items are:
-
-$I_3$:
 ```mathematica
 S -> aA.d  , [$]
 ```
-$I_4$:
+
+$I_5$:
+
 ```mathematica
 S -> aB.e  , [$]
 ```
-$I_5$:
+
+$I_6$:
+
 ```mathematica
 S -> bA.e, [$]
 ```
-$I_6$:
+
+$I_7$​:
+
 ```mathematica
 S -> bB.d, [$]
 ```
-
 ---
-### Step 4: Performing Go-To on remaining terminals.
+## Step 5. Perform Go-To operations on remaining terminal symbols
 
-From $I_0$:
-
-```mathematica
-S' -> .S    , [$]
-S  -> .aAd  , [$]
-S  -> .bBd  , [$]
-S  -> .aBe  , [$]
-S  -> .bAe  , [$]
-A -> .c, [$]
-B -> .c, [$]
-```
+Now that the non-terminal symbols have been parsed, we can parse the remaining terminal symbols
 
 There are still a few remaining terminals, `c`, `d` and `e`.
 
-For `c`:
+For `d` and `e`
 
-We see that from $I_0$: `A -> .c, [$]` and `B -> .c, [$]` can have the dot shifted over to get
+And from states $I_4$, and $I_5$,  we get:
 
-`A -> c. , [$]` and `B ->c. , [$]` .
+`S  -> aAd.  ,[$]`  -> $I_8$
+`S  -> aBe.  , [$]` -> $I_9$
 
-So we get a new LR(1) canonical item:
+And from states $I_6$ and $I_7$, we get: 
 
-$I_7$ :
+`S  -> bBd.  , [$]` -> $I_{10}$
+`S  -> bAe.  , [$]` -> $I_{11}$
 
+
+And for `c`:
+
+We see that from $I_2$: `A -> .c, [d]` and `B -> .c, [e]` can have the dot shifted over to get
+
+ $I_{12}$:
 ```mathematica
-A -> c. , [$]
-B -> c. , [$]
+A -> c. , [d]
+B ->c. , [e]
 ```
 
-Next, from $I_1$:
+And from $I_3$ : `A -> .c, [e]`  and `B -> .c, [d]` can have the dot shifted over to get
 
-We see that:
-
+$I_{13}$:
 ```mathematica
-A -> .c    , [d]
-B -> .c    , [e]
+A -> c. , [e]  
+B ->c. , [d]
 ```
 
-Here the dot can be shifted over to get
+So, the final recollection of all **LR(1)** canonical items
 
-```mathematica
-A -> c.    , [d]
-B -> c.    , [e]
-```
+![[Pasted image 20241112131200.png]]
 
-as a new LR(1) canonical item, $I_8$.
-
-Thus, $I_8$:
-
-```mathematica
-A -> c.    , [d]
-B -> c.    , [e]
-```
-Lastly, from $I_2$:
-
-We see that:
-
-```mathematica
-A -> .c , [e]
-B -> .c , [d]
-```
-
-Here the dot can be shifted over to get:
-
-```mathematica
-A -> c. , [e]
-B -> c. , [d]
-```
-as a new LR(1) canonical item, $I_9$.
-
-Thus $I_9$:
-
-```mathematica
-A -> c. , [e]
-B -> c. , [d]
-```
----
-### Final recollection of all the LR(1) canonical items:
-
-
-$I_0$ :
-
-```mathematica
-S' -> .S    , [$]
-S  -> .aAd  , [$]
-S  -> .bBd  , [$]
-S  -> .aBe  , [$]
-S  -> .bAe  , [$]
-A -> .c, [$]
-B -> .c, [$]
-```
-
-$I_1$ :
-
-```mathematica
-S -> a.Ad  , [$]
-S -> a.Be  , [$]
-A -> .c    , [d]
-B -> .c    , [e]
-```
-
-$I_2$ :
-
-```mathematica
-S -> b.Bd, [$]
-S -> b.Ae, [$]
-A -> .c , [d, $]
-B -> .c , [e, $]
-```
-
-$I_3$ :
-
-```mathematica
-S -> aA.d  , [$]
-```
-
-$I_4$ :
-
-```mathematica
-S -> aB.e  , [$]
-```
-
-$I_5$ :
-
-```mathematica
-S -> bA.e, [$]
-```
-
-$I_6$ :
-
-```mathematica
-S -> bB.d, [$]
-```
-$I_7$ :
-
-```mathematica
-A -> c. , [$]
-B -> c. , [$]
-```
-$I_8$:
-
-```mathematica
-A -> c.    , [d, $]
-B -> c.    , [e, $]
-```
-$I_9$:
-
-```mathematica
-A -> c. , [e, $]
-B -> c. , [d, $]
-```
-
-So that is how we find the LR(1) canonical items.
 
 ---
-### Making the LR(1) Action Table
+## Step 6. Building the LR(1) and Go-To tables
 
 The **Action table** deals with shifts, reduces, and accepts. We look at the items with:
 
 - Shift actions: When there is a dot before a terminal symbol.
 - Reduce actions: When a production is completed (dot at the end of a rule).
 - Accept action: When we have `S' -> S. , [$]` in some item set.
+
+
+We construct our empty **LR(1)** action table
+
+| States   | a   | b   | c   | d   | e   | $   |
+| -------- | --- | --- | --- | --- | --- | --- |
+| $I_0$    |     |     |     |     |     |     |
+| $I_1$    |     |     |     |     |     |     |
+| $I_2$    |     |     |     |     |     |     |
+| $I_3$    |     |     |     |     |     |     |
+| $I_4$    |     |     |     |     |     |     |
+| $I_5$    |     |     |     |     |     |     |
+| $I_6$    |     |     |     |     |     |     |
+| $I_7$    |     |     |     |     |     |     |
+| $I_8$    |     |     |     |     |     |     |
+| $I_9$    |     |     |     |     |     |     |
+| $I_{10}$ |     |     |     |     |     |     |
+| $I_{11}$ |     |     |     |     |     |     |
+| $I_{12}$ |     |     |     |     |     |     |
+| $I_{13}$ |     |     |     |     |     |     |
+
+Referencing our image again,
+
+![[Pasted image 20241112131156.png]]
+
+We see that for terminal `a`, $I_0$ goes to state $I_2$ 
+For terminal `b`, $I_0$ goes to state $I_3$
+
+And $I_1$ is the accepting state here.
+
+Therefore we denote those shifts with `S2` and `S3`
+
+| States   | a    | b    | c   | d   | e   | $          |
+| -------- | ---- | ---- | --- | --- | --- | ---------- |
+| $I_0$    | `S2` | `S3` |     |     |     |            |
+| $I_1$    |      |      |     |     |     | **accept** |
+| $I_2$    |      |      |     |     |     |            |
+| $I_3$    |      |      |     |     |     |            |
+| $I_4$    |      |      |     |     |     |            |
+| $I_5$    |      |      |     |     |     |            |
+| $I_6$    |      |      |     |     |     |            |
+| $I_7$    |      |      |     |     |     |            |
+| $I_8$    |      |      |     |     |     |            |
+| $I_9$    |      |      |     |     |     |            |
+| $I_{10}$ |      |      |     |     |     |            |
+| $I_{11}$ |      |      |     |     |     |            |
+| $I_{12}$ |      |      |     |     |     |            |
+| $I_{13}$ |      |      |     |     |     |            |
+
+For terminal `c`, $I_2$ goes to $I_{12}$ and $I_3$ goes to $I_{13}$
+
+So, we denote those shifts using `S12` and `S13`
+
+| States   | a    | b    | c     | d   | e   | $          |
+| -------- | ---- | ---- | ----- | --- | --- | ---------- |
+| $I_0$    | `S2` | `S3` |       |     |     |            |
+| $I_1$    |      |      |       |     |     | **accept** |
+| $I_2$    |      |      | `S12` |     |     |            |
+| $I_3$    |      |      | `S13` |     |     |            |
+| $I_4$    |      |      |       |     |     |            |
+| $I_5$    |      |      |       |     |     |            |
+| $I_6$    |      |      |       |     |     |            |
+| $I_7$    |      |      |       |     |     |            |
+| $I_8$    |      |      |       |     |     |            |
+| $I_9$    |      |      |       |     |     |            |
+| $I_{10}$ |      |      |       |     |     |            |
+| $I_{11}$ |      |      |       |     |     |            |
+| $I_{12}$ |      |      |       |     |     |            |
+| $I_{13}$ |      |      |       |     |     |            |
+
+For terminal `d`, $I_4$ and $I_5$ go to $I_8$ and $I_9$ each.
+
+So we denote the shifts using `S8` and `S9`.
+
+| States   | a    | b    | c     | d    | e   | $          |
+| -------- | ---- | ---- | ----- | ---- | --- | ---------- |
+| $I_0$    | `S2` | `S3` |       |      |     |            |
+| $I_1$    |      |      |       |      |     | **accept** |
+| $I_2$    |      |      | `S12` |      |     |            |
+| $I_3$    |      |      | `S13` |      |     |            |
+| $I_4$    |      |      |       | `S8` |     |            |
+| $I_5$    |      |      |       | `S9` |     |            |
+| $I_6$    |      |      |       |      |     |            |
+| $I_7$    |      |      |       |      |     |            |
+| $I_8$    |      |      |       |      |     |            |
+| $I_9$    |      |      |       |      |     |            |
+| $I_{10}$ |      |      |       |      |     |            |
+| $I_{11}$ |      |      |       |      |     |            |
+| $I_{12}$ |      |      |       |      |     |            |
+| $I_{13}$ |      |      |       |      |     |            |
+
+For terminal `e`, $I_6$ and  $I_7$ go to $I_{10}$ and $I_{11}$ each.
+
+So we denote those shifts using `S10` and `S11`.
+
+| States   | a    | b    | c     | d    | e     | $          |
+| -------- | ---- | ---- | ----- | ---- | ----- | ---------- |
+| $I_0$    | `S2` | `S3` |       |      |       |            |
+| $I_1$    |      |      |       |      |       | **accept** |
+| $I_2$    |      |      | `S12` |      |       |            |
+| $I_3$    |      |      | `S13` |      |       |            |
+| $I_4$    |      |      |       | `S8` |       |            |
+| $I_5$    |      |      |       | `S9` |       |            |
+| $I_6$    |      |      |       |      | `S10` |            |
+| $I_7$    |      |      |       |      | `S11` |            |
+| $I_8$    |      |      |       |      |       |            |
+| $I_9$    |      |      |       |      |       |            |
+| $I_{10}$ |      |      |       |      |       |            |
+| $I_{11}$ |      |      |       |      |       |            |
+| $I_{12}$ |      |      |       |      |       |            |
+| $I_{13}$ |      |      |       |      |       |            |
+
+![[Pasted image 20241112131156.png]]
+
+
+Now from the image, we see that, states $I_8$ to $I_{13}$ are all reducible states.
 
 Recapping our original numbered productions:
 
@@ -2437,680 +2040,130 @@ Recapping our original numbered productions:
 `A -> c` = 5
 `B -> c` = 6
 
-We construct our empty **LR(1)** action table
 
-| States | a   | b   | c   | d   | e   |
-| ------ | --- | --- | --- | --- | --- |
-| $I_0$  |     |     |     |     |     |
-| $I_1$  |     |     |     |     |     |
-| $I_2$  |     |     |     |     |     |
-| $I_3$  |     |     |     |     |     |
-| $I_4$  |     |     |     |     |     |
-| $I_5$  |     |     |     |     |     |
-| $I_6$  |     |     |     |     |     |
-| $I_7$  |     |     |     |     |     |
-| $I_8$  |     |     |     |     |     |
-| $I_9$  |     |     |     |     |     |
+So the reduction goes like this,
 
-So we see in item $I_0$ 
+$I_8$  has `S  -> aAd.  ,[$]` which can be reduced back to rule `1`
+$I_9$ has `S  -> aBe.  , [$]`, which can be reduced back to rule `3`
+$I_{10}$ has `S  -> bBd.  , [$]`, which can be reduced back to rule `2`
+$I_{11}$ has `S  -> bAe.  , [$]`, which can be reduced back to rule `4`
+
+$I_{12}$ has :
 ```mathematica
-S  -> .aAd  , [$]
-S  -> .aBe  , [$]
-S  -> .bBd  , [$]
-S  -> .bAe  , [$]
-A -> .c, [$]
-B -> .c, [$]
+A -> c., [d]
+B -> c., [e]
 ```
+which reduce to rules `5` and `6` 
 
-We see that on getting input `a`, the parser shifts to $I_1$, on input `b`, it shifts to $I_2$, and on `c`, the parser shifts to $I_7$ .
-
-So we can denote these shifts as `S1`, `S2` and `S7` respectively.
-
-Similarly in $I_1$, the parser can shift over `c` to go to $I_7$. So we can write that shift as `S7`.
-
-Same for $I_2$,. the parser can shift over `c` to go to $I_7$. So we can write that shift as `S7`.
-
-In $I_3$, we see that `S -> aA.d  , [$]`, the `lookahead symbol`, is `$`, which signifies the end of input. So the parser doesn't need to shift over the remaining terminal `d` and can just reduce this to our first numbered production `1`.
-
-So we can write this as `R1`.
-
-So we fill in our values so far :
-
-| States | a    | b    | c    | d    | e   | $    |
-| ------ | ---- | ---- | ---- | ---- | --- | ---- |
-| $I_0$  | `S1` | `S2` | `S7` |      |     |      |
-| $I_1$  |      |      | `S7` |      |     |      |
-| $I_2$  |      |      | `S7` |      |     |      |
-| $I_3$  |      |      |      | `R1` |     | `R1` |
-| $I_4$  |      |      |      |      |     |      |
-| $I_5$  |      |      |      |      |     |      |
-| $I_6$  |      |      |      |      |     |      |
-| $I_7$  |      |      |      |      |     |      |
-| $I_8$  |      |      |      |      |     |      |
-| $I_9$  |      |      |      |      |     |      |
-
-From $I_4$, `S -> aB.e  , [$]`, this can be reduced to our numbered production `3`.
-From $I_5$ ,  `S -> bA.e, [$]` , this can be reduced to our numbered production `4`.
-From $I_6$, `S -> bB.d, [$]`, this can be reduced to our numbered production `2`.
-
-From $I_7$ , 
-```mathematica
-A -> c. , [$]
-B -> c. , [$]
-```
-
-This can be reduced to both numbered productions `5` and `6`.
-
-So we fill in the values :
-
-
-| States | a    | b    | c         | d    | e    | $         |
-| ------ | ---- | ---- | --------- | ---- | ---- | --------- |
-| $I_0$  | `S1` | `S2` | `S7`      |      |      |           |
-| $I_1$  |      |      | `S7`      |      |      |           |
-| $I_2$  |      |      | `S7`      |      |      |           |
-| $I_3$  |      |      |           | `R1` |      | `R1`      |
-| $I_4$  |      |      |           |      | `R3` | `R3`      |
-| $I_5$  |      |      |           |      | `R4` | `R4`      |
-| $I_6$  |      |      |           | `R2` |      | `R2`      |
-| $I_7$  |      |      | `R5`/`R6` |      |      | `R5`/`R6` |
-| $I_8$  |      |      |           |      |      |           |
-| $I_9$  |      |      |           |      |      |           |
-
-For $I_8$ and $I_9$ we see that:
+and $I_{13}$ has: 
 
 ```mathematica
-A -> c.    , [d]
-B -> c.    , [e]
+A -> c., [e]
+B -> c., [d]
 ```
+which, again reduce to rule `5` and `6`.
+
+So the resulting Action Table accordingly will be:
+
+| States   | a    | b    | c     | d    | e     | $          |
+| -------- | ---- | ---- | ----- | ---- | ----- | ---------- |
+| $I_0$    | `S2` | `S3` |       |      |       |            |
+| $I_1$    |      |      |       |      |       | **accept** |
+| $I_2$    |      |      | `S12` |      |       |            |
+| $I_3$    |      |      | `S13` |      |       |            |
+| $I_4$    |      |      |       | `S8` |       |            |
+| $I_5$    |      |      |       | `S9` |       |            |
+| $I_6$    |      |      |       |      | `S10` |            |
+| $I_7$    |      |      |       |      | `S11` |            |
+| $I_8$    |      |      |       |      |       | `R1`       |
+| $I_9$    |      |      |       |      |       | `R3`       |
+| $I_{10}$ |      |      |       |      |       | `R2`       |
+| $I_{11}$ |      |      |       |      |       | `R4`       |
+| $I_{12}$ |      |      |       | `R5` | `R6`  |            |
+| $I_{13}$ |      |      |       | `R6` | `R5`  |            |
+
+---
+### Constructing the LR(1) Go-To table
+
+As usual, the Go-To table will focus on transitions over non-terminal symbols
+
+We have non-terminals **A** and **B**.
+
+
+![[Pasted image 20241112131156.png]]
+
+Referencing our image again, we see that :
+
+$I_0$ goes to $I_1$ for non-terminal `S`.
+
+$I_2$ goes to $I_4$ for non-terminal `A`.
+$I_2$ goes to $I_5$ for non-terminal `B`.
+
+$I_3$ goes to $I_6$ for non-terminal `B`.
+$I_3$ goes to $I_7$ for non-terminal `A`.
+
+So the final LR(1) parsing table will be :
+
+| States   | a    | b    | c     | d    | e     | $          | S    | A    | B    |
+| -------- | ---- | ---- | ----- | ---- | ----- | ---------- | ---- | ---- | ---- |
+| $I_0$    | `S2` | `S3` |       |      |       |            | `S1` |      |      |
+| $I_1$    |      |      |       |      |       | **accept** |      |      |      |
+| $I_2$    |      |      | `S12` |      |       |            |      | `S4` | `S5` |
+| $I_3$    |      |      | `S13` |      |       |            |      | `S7` | `S6` |
+| $I_4$    |      |      |       | `S8` |       |            |      |      |      |
+| $I_5$    |      |      |       | `S9` |       |            |      |      |      |
+| $I_6$    |      |      |       |      | `S10` |            |      |      |      |
+| $I_7$    |      |      |       |      | `S11` |            |      |      |      |
+| $I_8$    |      |      |       |      |       | `R1`       |      |      |      |
+| $I_9$    |      |      |       |      |       | `R3`       |      |      |      |
+| $I_{10}$ |      |      |       |      |       | `R2`       |      |      |      |
+| $I_{11}$ |      |      |       |      |       | `R4`       |      |      |      |
+| $I_{12}$ |      |      |       | `R5` | `R6`  |            |      |      |      |
+| $I_{13}$ |      |      |       | `R6` | `R5`  |            |      |      |      |
+
+---
+## Step 7. Checking if merging of states is possible or not.
+
+**LALR parser works by merging similar states into a single state, thus reducing the number of shifts.**
+
+Here we see that we have two similar states under different lookaheads `d` and `e`
+
+![[Pasted image 20241112140052.png]]
 
 and 
 
-```mathematica
-A -> c. , [e]
-B -> c. , [d]
-```
-these can be reduced back to productions `5` and `6` respectively on account of lookahead symbols `d` and `e`.
+![[Pasted image 20241112140107.png]]
 
-Thus our final LR(1) action table.
-
-| States | a    | b    | c         | d    | e    | $         |
-| ------ | ---- | ---- | --------- | ---- | ---- | --------- |
-| $I_0$  | `S1` | `S2` | `S7`      |      |      |           |
-| $I_1$  |      |      | `S7`      |      |      |           |
-| $I_2$  |      |      | `S7`      |      |      |           |
-| $I_3$  |      |      |           | `R1` |      | `R1`      |
-| $I_4$  |      |      |           |      | `R3` | `R3`      |
-| $I_5$  |      |      |           |      | `R4` | `R4`      |
-| $I_6$  |      |      |           | `R2` |      | `R2`      |
-| $I_7$  |      |      | `R5`/`R6` |      |      | `R5`/`R6` |
-| $I_8$  |      |      |           | `R5` | `R6` |           |
-| $I_9$  |      |      |           | `R6` | `R5` |           |
+Both can be merged into a single state, **however this will lead to a reduce-reduce conflict which LALR(1) parser DOES NOT allow**.
 
 ---
-### Making the LR(1) Go-To table
+### How does the reduce-reduce conflict arise?
 
-We will work with the non-terminals  `A`, `B`
+Well, since these two states had initially separate reductions under the different lookaheads
 
-Recapping our LR(1) canonical items:
+| $I_{12}$ |      |      |       | `R5` | `R6`  |
+| -------- | ---- | ---- | ----- | ---- | ----- |
+| $I_{13}$ |      |      |       | `R6` | `R5`  |
 
-$I_0$ :
+On being merged :
 
-```mathematica
-S' -> .S    , [$]
-S  -> .aAd  , [$]
-S  -> .bBd  , [$]
-S  -> .aBe  , [$]
-S  -> .bAe  , [$]
-A -> .c, [$]
-B -> .c, [$]
-```
+![[Pasted image 20241112142949.png]]
 
-$I_1$ :
+The reductions will be in a single cell now, which will cause a reduce-reduce conflict.
 
-```mathematica
-S -> a.Ad  , [$]
-S -> a.Be  , [$]
-A -> .c    , [d, $]
-B -> .c    , [e, $]
-```
+Thus this grammar is **NOT LALR(1) compatible**.
 
-$I_2$ :
+However, for an example grammar which is indeed compatible, check example 2 from this video :
 
-```mathematica
-S -> b.Bd, [$]
-S -> b.Ae, [$]
-A -> .c , [d, $]
-B -> .c , [e, $]
-```
+https://www.youtube.com/watch?v=GOlsYofJjyQ&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=15
 
-$I_3$ :
-
-```mathematica
-S -> aA.d  , [$]
-```
-
-$I_4$ :
-
-```mathematica
-S -> aB.e  , [$]
-```
-
-$I_5$ :
-
-```mathematica
-S -> bA.e, [$]
-```
-
-$I_6$ :
-
-```mathematica
-S -> bB.d, [$]
-```
-$I_7$ :
-
-```mathematica
-A -> c. , [$]
-B -> c. , [$]
-```
-$I_8$:
-
-```mathematica
-A -> c.    , [d, $]
-B -> c.    , [e, $]
-```
-$I_9$:
-
-```mathematica
-A -> c. , [e, $]
-B -> c. , [d, $]
-```
-
-We make our empty **Go-To** table first.
-
-
-| States | A   | B   |
-| ------ | --- | --- |
-| $I_0$  |     |     |
-| $I_1$  |     |     |
-| $I_2$  |     |     |
-| $I_3$  |     |     |
-| $I_4$  |     |     |
-| $I_5$  |     |     |
-| $I_6$  |     |     |
-| $I_7$  |     |     |
-| $I_8$  |     |     |
-| $I_9$  |     |     |
-
-
-From $I_0$, we see that `A` and `B` cannot be parsed yet as there are terminal symbols `a` and `b` sitting in front of them which need to be parsed first.
-
-For $I_1$, 
-```mathematica
-S -> a.Ad  , [$]
-S -> a.Be  , [$]
-```
-
-can be shifted over to go to:
-
-$I_3$ : `S -> aA.d  , [$]` 
-and $I_4$ : `S -> aB.e  , [$]`
-
-So we fill in the values : 
-
-| States | A     | B     |
-| ------ | ----- | ----- |
-| $I_0$  |       |       |
-| $I_1$  | $I_3$ | $I_4$ |
-| $I_2$  |       |       |
-| $I_3$  |       |       |
-| $I_4$  |       |       |
-| $I_5$  |       |       |
-| $I_6$  |       |       |
-| $I_7$  |       |       |
-| $I_8$  |       |       |
-| $I_9$  |       |       |
-
-For $I_2$, we see that :
-
-```mathematica
-S -> b.Bd, [$]
-S -> b.Ae, [$]
-```
-can be shifted over to go to 
-
-$I_5$ : `S -> bA.e, [$]`
-$I_6$ : `S -> bB.d, [$]`
-
-So we fill in the appropriate values :
-
-| States | A     | B     |
-| ------ | ----- | ----- |
-| $I_0$  |       |       |
-| $I_1$  | $I_3$ | $I_4$ |
-| $I_2$  | $I_5$ | $I_6$ |
-| $I_3$  |       |       |
-| $I_4$  |       |       |
-| $I_5$  |       |       |
-| $I_6$  |       |       |
-| $I_7$  |       |       |
-| $I_8$  |       |       |
-| $I_9$  |       |       |
-
-$I_6$ onwards no non-terminals can be parsed as there are all terminal symbols.
-
-So our final LR(1) Go-To table becomes:
-
-| States | A     | B     |
-| ------ | ----- | ----- |
-| $I_0$  |       |       |
-| $I_1$  | $I_3$ | $I_4$ |
-| $I_2$  | $I_5$ | $I_6$ |
-| $I_3$  |       |       |
-| $I_4$  |       |       |
-| $I_5$  |       |       |
-| $I_6$  |       |       |
-| $I_7$  |       |       |
-| $I_8$  |       |       |
-| $I_9$  |       |       |
-
----
-## Putting it all together for the LR(1) parser
-
-| States | a    | b    | c         | d    | e    | $         | A     | B     |
-| ------ | ---- | ---- | --------- | ---- | ---- | --------- | ----- | ----- |
-| $I_0$  | `S1` | `S2` | `S7`      |      |      |           |       |       |
-| $I_1$  |      |      | `S7`      |      |      |           | $I_3$ | $I_4$ |
-| $I_2$  |      |      | `S7`      |      |      |           | $I_5$ | $I_6$ |
-| $I_3$  |      |      |           | `R1` |      | `R1`      |       |       |
-| $I_4$  |      |      |           |      | `R3` | `R3`      |       |       |
-| $I_5$  |      |      |           |      | `R4` | `R4`      |       |       |
-| $I_6$  |      |      |           | `R2` |      | `R2`      |       |       |
-| $I_7$  |      |      | `R5`/`R6` |      |      | `R5`/`R6` |       |       |
-| $I_8$  |      |      |           | `R5` | `R6` |           |       |       |
-| $I_9$  |      |      |           | `R6` | `R5` |           |       |       |
 
 ---
 # LALR parser
 
-Constructing the **LALR** action table would be slightly different from the LR(1).
+However, for an example grammar which is indeed compatible, check example 2 from this video :
 
-We can't work on the previous example as there is a reduce-reduce conflict in state $I_7$ so the LALR parser can't merge the states.
-
-Let's work with a different grammar.
-
-```mathematica
-E → E + T | T 
-T → T * F | F 
-F → ( E ) | id
-```
-Where:
-
-- E represents an Expression
-- T represents a Term
-- F represents a Factor
-- id represents an identifier or number
-
-This grammar can handle expressions like:
-
-- id + id
-- id * id
-- (id + id) * id
-- id * (id + id)
-
-So let's begin by first augmenting the grammar and numbering the respective productions.
-
-```mathematica
-E' -> .E          , [$]
-E → .E + T        , [$]
-E -> .T           , [$]
-T → .T * F        , [$]
-T -> .F           , [$]
-F → .( E )        , [$]
-F -> .id          , [$]
-```
-
-This is our canonical item $I_0$ with the augmented grammar.
-
-And the numbered productions :
-
-`E -> E + T` = 1
-`E -> T` = 2
-`T -> T * F` = 3
-`T -> F` = 4
-`F -> ( E )` = 5
-`F -> id` = 6
-
-So we perform Go-to operations for Non-terminals first
-
----
-### Go-To operations on Non-terminals
-
-So starting with $I_0$ we get : 
-
-```mathematica
-E -> E. + T    , [$]
-E -> .T        , [$]
-```
-State $I_1$
-
-From $I_1$ we can get by expanding `E`, a new state $I_2$
-
-```mathematica
-E -> T.    , [+, $]
-```
-Since in `E -> E + T` There is a terminal `+` after `E`, so the lookahead becomes `+` along with `$`
-
-And then when we shift over to `T`
-
-```mathematica
-E -> E + .T , [$]
-```
-
-We get a state $I_3$.
-
-From $I_2$  we can also get a state $I_4$
-
-```mathematica
-E -> E + T. , [$]
-```
-
-Again from $I_2$ we can get a new state $I_5$
-
-```mathematica
-T -> T. * F , [$]
-```
-Here, expanding `T`, we get a new state $I_6$
-
-```mathematica
-T -> .F , [*, $]  
-```
-Continuing we shift over the dot to get state $I_7$
-
-```mathematica
-T -> F. , [*]
-```
-
-Since in `T -> T * F`, there is a terminal `*` after `T` so the lookahead becomes `*`.
-
-Coming back to $I_5$, we shift over `*` to get a new state $I_8$
-
-```mathematica
-T -> T * .F , [$]
-```
-We shift the dot over to get a new state $I_9$ :
-
-```mathematica
-T -> T * F. , [$]
-```
-
-From expanding `F` we get a new state $I_{10}$.
-
-```mathematica
-F -> (.E) , [$]
-```
-Continuing, we get a new state $I_{11}$
-
-```mathematica
-F -> (E.) , [$]
-```
-
-We don't need to expand `E` all over again as it has already been done. 
-
-Continuing we get a new state $I_{12}$ 
-
-```mathematica
-F -> (E). , [$]
-```
-
----
-### Go-To operations on terminals
-
-There are remaining terminals : `+, *, ( , )`.
-
-We need to perform Go-To operations on them.
-
-From state $I_1$, we have :
-
-```mathematica
-E -> E. + T    , [$]
-```
-
-By shifting over the dot, `+` gets parsed and we have our state $I_3$ as mentioned before
- 
-```mathematica
-E -> E + .T , [$]
-```
-Similarly we already have states :
-
-$I_8$
-
-```mathematica
-T -> T * .F , [$]
-```
-
-which parses `*`.
-
-$I_{10}$
-
-```mathematica
-F -> (.E) , [$]
-```
-
-which parses `(`
-
-$I_{12}$ 
-
-```mathematica
-F -> (E). , [$]
-```
-which parses `)`.
-
-As for the terminal `id`, coming to state $I_7$
-
-```mathematica
-T -> .F , [*]  
-```
-
-When we expand `F`, 
-
-We have `F -> .id, [$]`.
-
-So we shift over the dot to parse `id` and get a new state $I_{13}$.
-
-```mathematica
-F -> id. , [$]
-```
----
-### Final Recap of all the LR(1) Canonical Items
-
-$I_0$
-
-```mathematica
-E' -> .E          , [$]
-E → .E + T        , [$]
-E -> .T           , [$]
-T → .T * F        , [$]
-T -> .F           , [$]
-F → .( E )        , [$]
-F -> .id          , [$]
-```
-
-$I_1$
-
-```mathematica
-E -> E. + T    , [$]
-E -> .T        , [$]
-```
-$I_2$
-
-```mathematica
-E -> T.    , [+, $]
-```
-$I_3$
-
-```mathematica
-E -> E + .T , [$]
-```
-$I_4$
-
-```mathematica
-E -> E + T. , [$]
-```
-$I_5$
-
-```mathematica
-T -> T. * F , [$]
-```
- $I_6$
-
-```mathematica
-T -> .F , [*, $]  
-```
-$I_7$
-
-```mathematica
-T -> F. , [*, $]
-```
-$I_8$
-
-```mathematica
-T -> T * .F , [$]
-```
- $I_9$ :
-
-```mathematica
-T -> T * F. , [$]
-```
-$I_{10}$
-
-```mathematica
-F -> ( .E ) , [$]
-```
-$I_{11}$
-
-```mathematica
-F -> ( E. ) , [$]
-```
-$I_{12}$ 
-
-```mathematica
-F -> ( E ). , [$]
-```
-$I_{13}$.
-
-```mathematica
-F -> id. , [$]
-```
-and our numbered productions
-
-`E -> E + T` = 1
-`E -> T` = 2
-`T -> T * F` = 3
-`T -> F` = 4
-`F -> ( E )` = 5
-`F -> id` = 6
-
----
-
-### Building the LR(1) Action and Go-To tables first
-
-Skipping the explanation this time, here are the Action and Go-To tables
-
-Initial Action Table:
-
-| States   | `+` | `*` | `(` | `)` | `$` |
-| -------- | --- | --- | --- | --- | --- |
-| $I_0$    |     |     |     |     |     |
-| $I_1$    |     |     |     |     |     |
-| $I_2$    |     |     |     |     |     |
-| $I_3$    |     |     |     |     |     |
-| $I_4$    |     |     |     |     |     |
-| $I_5$    |     |     |     |     |     |
-| $I_6$    |     |     |     |     |     |
-| $I_7$    |     |     |     |     |     |
-| $I_8$    |     |     |     |     |     |
-| $I_9$    |     |     |     |     |     |
-| $I_{10}$ |     |     |     |     |     |
-| $I_{11}$ |     |     |     |     |     |
-| $I_{12}$ |     |     |     |     |     |
-| $I_{13}$ |     |     |     |     |     |
-
-**Final LR(1)** Action Table
-
-| States   | `+`  | `*`  | `(`   | `)`   | `id`  | `$`    |
-| -------- | ---- | ---- | ----- | ----- | ----- | ------ |
-| $I_0$    |      |      | `S10` |       | `S13` |        |
-| $I_1$    | `S3` |      |       |       |       | accept |
-| $I_2$    | `R2` |      |       |       |       | `R2`   |
-| $I_3$    |      |      |       |       |       |        |
-| $I_4$    |      |      |       |       |       | `R1`   |
-| $I_5$    |      | `S8` |       |       |       | `S8`   |
-| $I_6$    |      |      |       |       |       |        |
-| $I_7$    |      | `R4` |       |       |       | `R4`   |
-| $I_8$    |      |      |       |       |       |        |
-| $I_9$    |      |      |       |       |       | `R3`   |
-| $I_{10}$ |      |      |       |       |       |        |
-| $I_{11}$ |      |      |       | `S12` |       |        |
-| $I_{12}$ |      |      |       |       |       | `R5`   |
-| $I_{13}$ |      |      |       |       |       | `R6`   |
-
-Initial Go-To Table
-
-| States   | E        | T     | F     |
-| -------- | -------- | ----- | ----- |
-| $I_0$    | $I_1$    | $I_2$ | $I_7$ |
-| $I_1$    |          | $I_2$ |       |
-| $I_2$    |          |       |       |
-| $I_3$    |          | $I_4$ |       |
-| $I_4$    |          |       |       |
-| $I_5$    |          |       |       |
-| $I_6$    |          |       | $I_7$ |
-| $I_7$    |          |       |       |
-| $I_8$    |          |       | $I_9$ |
-| $I_9$    |          |       |       |
-| $I_{10}$ | $I_{11}$ |       |       |
-| $I_{11}$ |          |       |       |
-| $I_{12}$ |          |       |       |
-| $I_{13}$ |          |       |       |
-
-Final table
-
-| States   | `+`  | `*`  | `(`   | `)`   | `id`  | `$`    | E        | T     | F     |
-| -------- | ---- | ---- | ----- | ----- | ----- | ------ | -------- | ----- | ----- |
-| $I_0$    |      |      | `S10` |       | `S13` |        | $I_1$    | $I_2$ | $I_7$ |
-| $I_1$    | `S3` |      |       |       |       | accept |          | $I_2$ |       |
-| $I_2$    | `R2` |      |       |       |       | `R2`   |          |       |       |
-| $I_3$    |      |      |       |       |       |        |          | $I_4$ |       |
-| $I_4$    |      |      |       |       |       | `R1`   |          |       |       |
-| $I_5$    |      | `S8` |       |       |       |        |          |       |       |
-| $I_6$    |      |      |       |       |       |        |          |       | $I_7$ |
-| $I_7$    |      | `R4` |       |       |       | `R4`   |          |       |       |
-| $I_8$    |      |      |       |       |       |        |          |       | $I_9$ |
-| $I_9$    |      |      |       |       |       | `R3`   |          |       |       |
-| $I_{10}$ |      |      |       |       |       |        | $I_{11}$ |       |       |
-| $I_{11}$ |      |      |       | `S12` |       |        |          |       |       |
-| $I_{12}$ |      |      |       |       |       | `R5`   |          |       |       |
-| $I_{13}$ |      |      |       |       |       | `R6`   |          |       |       |
-
-Since there are no conflicts in this table, this grammar should be accepted by the LALR parser.
-
-In this case there are no states with identical "cores" that can be merged together, so the LALR parsing table will be the exact same as the current one.
-
-This is actually quite common with small, well-designed grammars. The LALR optimization is more useful with larger grammars where multiple states might have the same core items but different lookaheads.
-
-1. Why our current states can't be merged:
-
-- Each state has a unique configuration of items and dot positions
-- For example, let's compare some seemingly similar states:
-    - I₂ (E -> T.) and I₇ (T -> F.)
-        - These look similar as both have dots at the end
-        - But they're reducing different productions (E -> T vs T -> F)
-        - Different non-terminals on the left side (E vs T)
-    - I₃ (E -> E + .T) and I₈ (T -> T * .F)
-        - Both have dots before a non-terminal
-        - But different operators (+/*) and different non-terminals (T/F)
-        - Different left-side non-terminals (E vs T)
+https://www.youtube.com/watch?v=GOlsYofJjyQ&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=15
 
 ---
 # Operator Precedence Parsing
@@ -3623,7 +2676,7 @@ Here are common error recovery methods used across different parsers:
 
 ---
 
-### 3. **Error Recovery in LL Parsing**:
+### 3. Error Recovery in LL Parsing:
 
 **LL parsers** are **top-down** parsers that handle errors during recursive descent parsing. Here’s how they approach error recovery:
 
@@ -3644,7 +2697,7 @@ T -> id
 If the parser expects a `+` but encounters an invalid token, it might skip input tokens until it finds a semicolon or closing parenthesis (a synchronizing token) to continue parsing.
 
 ---
-### 4. **Error Recovery in SLR Parsing**:
+### 4. Error Recovery in SLR Parsing:
 
 **SLR (Simple LR)** parsers are **bottom-up** parsers. They handle errors when the parser reaches a state where no valid action (shift or reduce) is available.
 
@@ -3660,7 +2713,7 @@ If the parser expects a `+` but encounters an invalid token, it might skip input
 
 ---
 
-### 5. **Error Recovery in LALR Parsing**:
+### 5. Error Recovery in LALR Parsing:
 
 **LALR (Look-Ahead LR)** parsers also follow a **bottom-up** approach, but they are more powerful than SLR parsers because they consider lookahead tokens when building parsing tables. Error recovery in LALR parsers is similar to that in SLR parsers.
 
@@ -3676,7 +2729,7 @@ If the parser expects a `+` but encounters an invalid token, it might skip input
 
 ---
 
-### 6. **YACC Error Recovery**:
+### 6. YACC Error Recovery:
 
 Since we discussed **YACC** earlier, it's important to note how **YACC** provides error recovery mechanisms. In YACC, error recovery can be explicitly handled by adding **error tokens** to the grammar.
 
@@ -3716,7 +2769,7 @@ void yyerror(const char *s) {
 In this example, if a syntax error occurs while parsing an `expr`, the parser discards tokens until it finds a semicolon, recovers, and continues parsing.
 
 ---
-### 7. **Error Recovery Strategy Comparison (LL vs SLR vs LALR)**:
+### 7. Error Recovery Strategy Comparison (LL vs SLR vs LALR):
 
 - **LL Parsers**: Handle errors top-down using recursive descent. Panic mode is the most common, and synchronizing tokens help the parser recover.
 - **SLR Parsers**: Handle errors bottom-up using state transitions. Panic mode is commonly used, but SLR can be extended with error productions for better control.
