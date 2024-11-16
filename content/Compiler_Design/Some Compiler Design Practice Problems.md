@@ -2,18 +2,38 @@
 title: Compiler Design Practice Problems -- Numericals Only
 tags:
   - Semester-5
+  - Work-In-Progress
 ---
 ---
 # Index
 
-1. [[#1. `First()` and `Follow()` methods recap]]
+1. [[#1. First() and Follow() methods recap]]
 2. [[#LL(1) compatibility checking]]
-3. [[#LL(1) parsing table creation]]
-4. [[#Checking if a grammar is SLR(1) compatible.]]
-5. [[#Checking whether a grammar is LALR(1) compatible or not]]
+3. [[#Checking if a grammar is SLR(1) compatible.]]
+4. [[#Checking whether a grammar is LALR(1) compatible or not]]
 
 ---
-# 1. `First()` and `Follow()` methods recap
+# FLAT Recap: Regular Grammar and Regular Expressions
+
+1. [[#1. DFA and NFA]]
+2. [[#2. NFA to DFA conversion]]
+
+
+---
+# FLAT Recap : Context Free Grammar
+
+## Index
+
+1. [[#Context Free Language]]
+2. [[#Derivation Tree]]
+3. [[#Reduction/Simplification of Context-Free Grammar]]
+4. [[#1. Reduction of CFG]]
+5. [[#2. Removal of Unit Production]]
+6. [[#3. Removal of Null Productions]]
+7. [[#4. Removal of Left Recursions]]
+
+---
+# 1. First() and Follow() methods recap
 
 ## 1. First() method
 
@@ -1344,3 +1364,545 @@ However, for an example grammar which is indeed compatible, check example 2 from
 https://www.youtube.com/watch?v=GOlsYofJjyQ&list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc&index=15
 
 ---
+# Operator Precedence Parsing
+
+https://www.youtube.com/watch?v=4vJB41xVZ0E
+
+Well, operator precedence parsing, works differently than the other parsers. It works a specific type of grammar called "Operator precedence grammar", which **should not have** :
+
+- **Epsilon (ε) productions**.
+- **Two consecutive non-terminals on the right-hand side** of any production.
+
+---
+## **Define Operator Precedence Rules**
+
+We establish precedence between the terminal operators based on their natural precedence and associativity rules:
+
+- **Multiplication (`*`)** has higher precedence than **addition (`+`)**.
+- **Parentheses (`(` and `)`)** have the highest precedence, and `()` must be treated as grouping.
+- **Identifiers (`id`)** represent operands.
+
+| **Operator** | **Associativity**               | **Precedence** |
+| ------------ | ------------------------------- | -------------- |
+| `(` `)`      | Highest precedence              | 1              |
+| `*`          | Left-to-right                   | 2              |
+| `+`          | Left-to-right                   | 3              |
+| `id`         | Lower than operators precedence | 4              |
+| `$`          | Lowest precedence among all     | 5              |
+
+In this table:
+
+- Parentheses have the highest precedence and override all other operators.
+- Multiplication (`*`) has a higher precedence than addition (`+`), so multiplication is performed before addition.
+- Both `*` and `+` are **left-associative**, meaning expressions are evaluated from left to right when these operators appear in sequence.
+- Identifiers (operands) have  precedence lower than operators.
+- The `$` symbol has the lowest precedence.
+
+---
+## Creating the Operator Precedence parsing table.
+
+This is our empty operator precedence parsing table.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       |     |     |      |     |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
+
+We fill in values with either `>` or `<`.
+
+And we remember these rules.
+
+Since the operators are **left-associative**, this means that the in any sequence of operators, the leftmost one is parsed first. **This means that in the case of the same operators, the leftmost one will get the higher priority. And in case of different operators, the precedence will give them value**.
+
+==In case of operands next to each other, their relations are not parsed==.
+
+![[Pasted image 20241010021324.png]]
+
+However `operand-operator` relations are parsed and the **operand is parsed before the operator is parsed**.
+
+`$` is always parsed last no matter what the order.
+
+`$ - $` marks the accept state.
+
+Following this logic, from these rules, we set up the operators precedence parsing table.
+
+Initially we see that we have the `+` operator against the `+` operator. Since it is left associative, the `+` operator will get the higher priority, and we will put `>` next to it.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   |     |      |     |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
+
+Next up, the `*` operator is up against the `+` operator. Since `*` operator has a higher priority, we will put `>` next to it.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   |     |      |     |
+| `*`       | >   |     |      |     |
+| `id`      | <   |     |      |     |
+| `$`       |     |     |      |     |
+
+Next up we had `id`, which is an operand. Operands has lower priority than operators, so we will put a `<` next to it.
+
+And then we have the `$` symbol, which has the lowest priority. So we will put a `<` next to it.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   |     |      |     |
+| `*`       | >   |     |      |     |
+| `id`      | <   |     |      |     |
+| `$`       | <   |     |      |     |
+
+For the next column, we will follow the rules as before and get this column :
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   |      |     |
+| `*`       | >   | >   |      |     |
+| `id`      | <   | <   |      |     |
+| `$`       | <   | <   |      |     |
+
+For the operand `id`, we will follow the same rules as before.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | >    |     |
+| `*`       | >   | >   | >    |     |
+| `id`      | <   | <   |      |     |
+| `$`       | <   | <   |      |     |
+
+However as we have seen before : **operand-operand rules are not parsed**. So we leave the field blank for `id` against `id`.
+
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | >    |     |
+| `*`       | >   | >   | >    |     |
+| `id`      | <   | <   | __   |     |
+| `$`       | <   | <   |      |     |
+
+And lastly `$` has the lowest precedence so we put a `<` in it's field.
+
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | >    |     |
+| `*`       | >   | >   | >    |     |
+| `id`      | <   | <   | __   |     |
+| `$`       | <   | <   | <    |     |
+
+And for the column of `$` we follow the same rules as before to get :
+
+| Terminals | `+` | `*` | `id` | `$`    |
+| --------- | --- | --- | ---- | ------ |
+| `+`       | >   | <   | <    | >      |
+| `*`       | >   | >   | <    | >      |
+| `id`      | >   | >   | __   | >      |
+| `$`       | <   | <   | <    | accept |
+
+And when `$` is against `$`, **it is the accepting state**.
+
+---
+## Parsing a string from the Operator-Precedence Parsing Table
+
+Here are our numbered productions from the grammar
+
+
+`T -> T + T` = 1
+`T -> T * T` = 2
+`T -> id` = 3
+
+
+Now, let's parse a string from this table : `id + id * id`.
+
+For this, we make this table, much more convenient than having separate stack and input buffer tables.
+
+And we start with the `$` symbol in the stack and the given string in the input section along with `$` at it's end
+
+| Stack | Relation | Input            | Comment |
+| ----- | -------- | ---------------- | ------- |
+| `$`   |          | `id + id * id $` |         |
+|       |          |                  |         |
+
+We parse the string by **comparing** the current symbol in the stack with the current character in the string (reading from left to right).
+
+So right now we have `$` in the stack which needs to be compared to `id`.
+
+Looking at our parse table, we see that `$ < id`  so we **shift** over id to the the stack and remove the current character from the input buffer. We write **shift id** in the comment section
+
+General rule :
+
+If **Stack < input**, we **shift the current symbol in the input.**.
+If **Stack > input**, we **reduce the top of the stack.**.
+
+| Stack  | Relation | Input            | Comment    |
+| ------ | -------- | ---------------- | ---------- |
+| `$`    | <        | `id + id * id $` | Shift `id` |
+| `$ id` |          | `+ id * id $`    |            |
+
+Now we compare `id` from the stack to `+` from the input.
+
+We see that `id > +`,  so we **reduce id** to our numbered production 3
+
+In this case, we replace `id` by the **reduced production's start symbol**.
+
+**No change takes place to the input buffer during reduction**.
+
+| Stack  | Relation | Input            | Comment            |
+| ------ | -------- | ---------------- | ------------------ |
+| `$`    | <        | `id + id * id $` | Shift `id`         |
+| `$ id` | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`  |          | `+ id * id $`    |                    |
+
+We **don't compare non-terminals to terminals**, so we **compare the terminal** before `T` , `$` to `+`
+
+We see that `$ < +`, so we shift `+`.
+
+| Stack   | Relation | Input            | Comment            |
+| ------- | -------- | ---------------- | ------------------ |
+| `$`     | <        | `id + id * id $` | Shift `id`         |
+| `$ id`  | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`   | <        | `+ id * id $`    | Shift `+`          |
+| `$ T +` |          | `id * id $`      |                    |
+
+We now compare `+` to `id`.
+
+We see that `+ < id`, so we shift `id`
+
+| Stack      | Relation | Input            | Comment            |
+| ---------- | -------- | ---------------- | ------------------ |
+| `$`        | <        | `id + id * id $` | Shift `id`         |
+| `$ id`     | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`      | <        | `+ id * id $`    | Shift `+`          |
+| `$ T +`    | <        | `id * id $`      | Shift `id`         |
+| `$ T + id` |          | `* id $`         |                    |
+
+We now compare `id` to `*`.
+
+We see that `id > *`, so we reduce `id` to production `3`.
+
+| Stack      | Relation | Input            | Comment            |
+| ---------- | -------- | ---------------- | ------------------ |
+| `$`        | <        | `id + id * id $` | Shift `id`         |
+| `$ id`     | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`      | <        | `+ id * id $`    | Shift `+`          |
+| `$ T +`    | <        | `id * id $`      | Shift `id`         |
+| `$ T + id` | >        | `* id $`         | Reduce `id` to `3` |
+| `$ T + T`  |          | `* id $`         |                    |
+
+We now compare `+` to `*`.
+
+We see that `+ < *`, so we shift `*`.
+
+| Stack       | Relation | Input            | Comment            |
+| ----------- | -------- | ---------------- | ------------------ |
+| `$`         | <        | `id + id * id $` | Shift `id`         |
+| `$ id`      | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`       | <        | `+ id * id $`    | Shift `+`          |
+| `$ T +`     | <        | `id * id $`      | Shift `id`         |
+| `$ T + id`  | >        | `* id $`         | Reduce `id` to `3` |
+| `$ T + T`   | <        | `* id $`         | Shift `+`          |
+| `$ T + T *` |          | `id $`           |                    |
+
+We now compare `*` to `id`.
+
+We see that `* < id`, so we shift `id`.
+
+| Stack          | Relation | Input            | Comment            |
+| -------------- | -------- | ---------------- | ------------------ |
+| `$`            | <        | `id + id * id $` | Shift `id`         |
+| `$ id`         | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`          | <        | `+ id * id $`    | Shift `+`          |
+| `$ T +`        | <        | `id * id $`      | Shift `id`         |
+| `$ T + id`     | >        | `* id $`         | Reduce `id` to `3` |
+| `$ T + T`      | <        | `* id $`         | Shift `+`          |
+| `$ T + T *`    | <        | `id $`           | Shift `id`         |
+| `$ T + T * id` |          | `$`              |                    |
+
+We now compare `id` to `$`.
+
+We see that `id > $`, so we reduce `id` to production `3`.
+
+| Stack          | Relation | Input            | Comment            |
+| -------------- | -------- | ---------------- | ------------------ |
+| `$`            | <        | `id + id * id $` | Shift `id`         |
+| `$ id`         | >        | `+ id * id $`    | Reduce `id` to `3` |
+| `$ T`          | <        | `+ id * id $`    | Shift `+`          |
+| `$ T +`        | <        | `id * id $`      | Shift `id`         |
+| `$ T + id`     | >        | `* id $`         | Reduce `id` to `3` |
+| `$ T + T`      | <        | `* id $`         | Shift `+`          |
+| `$ T + T *`    | <        | `id $`           | Shift `id`         |
+| `$ T + T * id` | >        | `$`              | Reduce `id` to `3` |
+| `$ T + T * T`  |          | `$`              |                    |
+
+We now compare `*` to `$`.
+
+We see that `* > $`. We can't just reduce `*` itself, so we reduce the non-terminals associated with it.
+
+We reduce `T * T` to our numbered production `2`.
+
+| Stack          | Relation | Input            | Comment               |
+| -------------- | -------- | ---------------- | --------------------- |
+| `$`            | <        | `id + id * id $` | Shift `id`            |
+| `$ id`         | >        | `+ id * id $`    | Reduce `id` to `3`    |
+| `$ T`          | <        | `+ id * id $`    | Shift `+`             |
+| `$ T +`        | <        | `id * id $`      | Shift `id`            |
+| `$ T + id`     | >        | `* id $`         | Reduce `id` to `3`    |
+| `$ T + T`      | <        | `* id $`         | Shift `+`             |
+| `$ T + T *`    | <        | `id $`           | Shift `id`            |
+| `$ T + T * id` | >        | `$`              | Reduce `id` to `3`    |
+| `$ T + T * T`  | >        | `$`              | Reduce `T * T` to `2` |
+| `$ T + T`      |          | `$`              |                       |
+
+We now compare `+` to `$`
+
+We see that `+ > $`, so we reduce `T + T` to production `1`.
+
+| Stack          | Relation | Input            | Comment               |
+| -------------- | -------- | ---------------- | --------------------- |
+| `$`            | <        | `id + id * id $` | Shift `id`            |
+| `$ id`         | >        | `+ id * id $`    | Reduce `id` to `3`    |
+| `$ T`          | <        | `+ id * id $`    | Shift `+`             |
+| `$ T +`        | <        | `id * id $`      | Shift `id`            |
+| `$ T + id`     | >        | `* id $`         | Reduce `id` to `3`    |
+| `$ T + T`      | <        | `* id $`         | Shift `+`             |
+| `$ T + T *`    | <        | `id $`           | Shift `id`            |
+| `$ T + T * id` | >        | `$`              | Reduce `id` to `3`    |
+| `$ T + T * T`  | >        | `$`              | Reduce `T * T` to `2` |
+| `$ T + T`      | >        | `$`              | Reduce `T + T` to `1` |
+| `$ T`          |          | `$`              |                       |
+
+Finally we compare `$` to `$`.
+
+We see that this is the accepting state, which means the string has been successfully parsed.
+
+So finally :
+
+| Stack          | Relation | Input            | Comment               |
+| -------------- | -------- | ---------------- | --------------------- |
+| `$`            | <        | `id + id * id $` | Shift `id`            |
+| `$ id`         | >        | `+ id * id $`    | Reduce `id` to `3`    |
+| `$ T`          | <        | `+ id * id $`    | Shift `+`             |
+| `$ T +`        | <        | `id * id $`      | Shift `id`            |
+| `$ T + id`     | >        | `* id $`         | Reduce `id` to `3`    |
+| `$ T + T`      | <        | `* id $`         | Shift `+`             |
+| `$ T + T *`    | <        | `id $`           | Shift `id`            |
+| `$ T + T * id` | >        | `$`              | Reduce `id` to `3`    |
+| `$ T + T * T`  | >        | `$`              | Reduce `T * T` to `2` |
+| `$ T + T`      | >        | `$`              | Reduce `T + T` to `1` |
+| `$ T`          | =        | `$`              | Accept                |
+The string `id + id * id` has been parsed successfully.
+
+---
+# Flat recap : Regular Grammar and Regular Expressions
+
+## 1. DFA and NFA
+
+DFA and NFA both fall under the category of **Finite State Machines, known in short as FSA**.
+
+### 1. Deterministic Finite Automata (DFA)
+
+**DFA is also known as deterministic finite automata.**
+
+"**Everything is pre-determined**." (Like my fate lol).
+
+"Limited memory and **fixed number of next states**".
+
+For example :
+
+![[Pasted image 20241115135747.png]]
+
+---
+### 2. Non-deterministic Finite Automata (NFA)
+
+"Parallelism, Randomness"
+
+"**multiple next states, could be chosen at random**".
+
+
+A simple difference between an NFA and a DFA
+
+#### Example 
+
+Construct a finite automata for this language :
+
+$$\ L \ = \ \{Set \ of \ all \ strings \ that \ start \ with \ zero \} $$
+##### DFA implementation
+
+![[Pasted image 20241115140629.png]]
+
+##### NFA implementation
+
+![[Pasted image 20241115141050.png]]
+
+
+---
+## 2. NFA to DFA conversion
+
+https://www.youtube.com/watch?v=--CSVsFIDng&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=15&pp=iAQB
+
+
+Converting a DFA to NFA is easy, just remove the dead state and keep the unwanted inputs looped in other states, or don't.
+
+However the conversion of a NFA to DFA is tedious process.
+
+As
+
+![[Pasted image 20241115143027.png]]
+
+
+Let's understand this with an example :
+
+---
+### Example 1.
+
+![[Pasted image 20241115143225.png]]
+
+Here we have the given NFA already.
+
+So to convert it to a DFA, we need to construct the **state transition table of the NFA, then construct the equivalent table for the DFA**.
+
+
+![[Pasted image 20241115145150.png]]
+
+---
+### Example 2 (Very important)
+
+https://www.youtube.com/watch?v=pnyXgIXpKnc&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=16
+
+![[Pasted image 20241115145349.png]]
+
+So here we have the NFA already constructed.
+
+![[Pasted image 20241115151845.png]]
+
+Thus, the resultant DFA will be :
+
+![[Pasted image 20241115211622.png]]
+
+
+---
+## 3. Minimization of DFA
+
+https://www.youtube.com/watch?v=hOzc4BUIXRk&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=20
+
+![[Pasted image 20241115214339.png]]
+
+---
+# Flat recap : Context Free Grammar
+
+## Context Free Language
+
+![[Pasted image 20240617085935.png]]
+
+The main difference between CFL and a Regular language is that of the production rule.
+In RL the production rule is not an iteration, that is, it cannot contain an empty symbol.
+
+However in a CFL the production rule is a closure, that is it can contain an empty symbol.
+
+## Example
+
+![[Pasted image 20240617090110.png]]
+
+![[Pasted image 20240617113550.png]]
+
+![[Pasted image 20240617114234.png]]
+
+![[Pasted image 20240617114254.png]]
+
+![[Pasted image 20240617115954.png]]
+
+
+https://www.youtube.com/watch?v=htoFbcwES28&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=72
+
+---
+## Derivation Tree
+
+https://www.youtube.com/watch?v=u4-rpIlV9NI&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=73
+
+![[Pasted image 20240617120038.png]]
+
+![[Pasted image 20240617120210.png]]
+
+---
+
+## Ambiguous Grammar
+
+![[Pasted image 20240617120709.png]]
+
+Here instead of drawing a tree, the variables were used on the left and right side respectively.
+
+---
+## Reduction/Simplification of Context-Free Grammar
+
+### 1. Reduction of CFG
+
+https://www.youtube.com/watch?v=EF09zxzpVbk&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=78
+
+![[Pasted image 20241115101645.png]]
+
+![[Pasted image 20241115101814.png]]
+
+---
+Let's work this out using an example:
+
+![[Pasted image 20241115101852.png]]
+
+![[Pasted image 20241115105026.png]]
+
+---
+### 2. Removal of Unit Production
+
+https://www.youtube.com/watch?v=B2o75KpzfU4&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=76
+
+![[Pasted image 20241115105226.png]]
+
+Let's understand this using an example.
+
+![[Pasted image 20241115111537.png]]
+
+
+![[Pasted image 20241115121554.png]]
+
+---
+### 3. Removal of Null Productions
+
+https://www.youtube.com/watch?v=mlXYQ8ug2v4&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=77
+
+![[Pasted image 20241115122018.png]]
+
+![[Pasted image 20241115122026.png]]
+
+
+![[Pasted image 20241115125318.png]]
+
+---
+## 4. Removal of Left Recursions
+
+**This happens during the conversion of Chomsky Normal Form to Greibach Normal Form**.
+
+We don't have the conversions in this semester anymore.
+
+But there was one question regarding the **removal of left recursion** from a grammar in last year's (2023) paper.
+
+So I will cover this part.
+
+Still here's the link for the video where the original production was given in case someone wants to view it
+
+https://www.youtube.com/watch?v=ZCbJan6CGNM&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=80&pp=iAQB
+
+![[Pasted image 20241115125708.png]]
+
+So this is how a left recursion looks.
+
+**When the start symbol on the LHS keeps repeating endlessly on the RHS, it's called a left recursion**.
+
+![[Pasted image 20241115132624.png]]
+
+---
+
+
