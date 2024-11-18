@@ -349,7 +349,7 @@ The structure-preserving transformation on basic blocks includes:
 ---
 ### 1. Dead Code Elimination: 
 
-===Dead code is defined as that part of the code that never executes during the program execution. So, for optimization, such code or dead code is eliminated===. The code which is never executed during the program (Dead code) takes time so, for optimization and speed, it is eliminated from the code. Eliminating the dead code increases the speed of the program as the compiler does not have to translate the dead code.
+==Dead code is defined as that part of the code that never executes during the program execution. So, for optimization, such code or dead code is eliminated==. The code which is never executed during the program (Dead code) takes time so, for optimization and speed, it is eliminated from the code. Eliminating the dead code increases the speed of the program as the compiler does not have to translate the dead code.
 
 Let's understand this with an example :
 
