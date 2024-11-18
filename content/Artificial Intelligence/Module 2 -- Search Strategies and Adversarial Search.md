@@ -753,13 +753,8 @@ So in simple terms, ==once we have the **h(n)** and **g(n)** values, we add them
     - **Neighbors**: The set of states that can be reached directly from the current state by applying valid actions or moves.
     - **Transitions**: The rules or actions that move the algorithm from one state to another.
 
-```chart
-type: line
-labels: [Current State, Shoulder, Local Max, Valley, Flat Local Max, Flat Local Max, Global Max, Decline]
-series:  
-	- title: Sample State Space representation    
-	  data: [3, 3, 5, 1, 4, 4, 6, 2]
-```
+
+![[Pasted image 20241118092726.png]]
 
 
 **Terminologies associated with state space:**
@@ -1026,13 +1021,7 @@ $P=e^{-\Delta\ E / T}$
     - Low $T$: ==The algorithm behaves more like a greedy hill-climbing search==, primarily accepting improvements or only very slight deteriorations. The search focuses on fine-tuning the current best solution.
 
 
-```chart
-type: line    
-labels: [1,2,3,4,5,6,7,8,9,10]    
-series:       
-	 - title: Temperature          
-	   data: [100, 95, 90.25, 85.74, 81.45, 77.38, 73.51, 69.83, 66.34, 63.02]
-```
+![[Pasted image 20241118092751.png]]
 
     `Example layout of how the temperature drops over time for 10 iterations`
 ### Explanation:
@@ -1112,16 +1101,7 @@ Final traversal sequence : `6, 5, 2, 3, 10`
 
 Total incremental cost = `27 + 1 = 28`
 
-
-```chart
-type: line    
-labels: [6, 5, 2, 3, 10]    
-series:        
-	- title: Temperature          
-	- data: [100, 80, 64, 51.2, 40.96]
-	- title: Incremental Cost
-	- data: [0, 8, 18, 27, 28]
-```
+![[Pasted image 20241118092813.png]]
 
 `Graph showing the temperature drop and incremental cost as we move towards goal`
 
@@ -1286,13 +1266,7 @@ Local search is a heuristic method that can be used for solving CSPs by starting
 
 Let's visualize this in a chart to understand better:
 
-```chart
-type: bar
-labels: [Q1, Q2, Q3, Q4]
-series:  
-	- title: Row Positions    
-	  data: [1, 3, 4, 2]
-```
+![[Pasted image 20241118092837.png]]
 
 `Initial State`
 
@@ -1301,13 +1275,8 @@ This bar chart represents the initial positions of the queens (Q1 to Q4) on a 4x
 
 **Conflict Count Evaluation**
 
-```chart
-type: line
-labels: [Q1, Q2, Q3, Q4]
-series:  
-	- title: Conflicts    
-	  data: [0, 2, 1, 2]
-```
+![[Pasted image 20241118092902.png]]
+
 This line chart represents the number of conflicts each queen has in the initial state. For instance, Queen 2 has 2 conflicts with other queens (possibly sharing a diagonal or row).
 
 ### Analyzing Conflicts:
@@ -1342,48 +1311,30 @@ This line chart represents the number of conflicts each queen has in the initial
 4. **Q4** has a diagonal conflict with Q1 and Q2.
 
 **State Transition (First Step)**
-```chart
-type: bar
-labels: [Q1, Q2, Q3, Q4]
-series:  
-	- title: Row Positions    
-	- data: [1, 1, 4, 2]
-```
+
+![[Pasted image 20241118092923.png]]
+
 This bar chart shows the updated positions after moving Q2 to row 1, which reduces conflicts. We use the `min-conflicts` heuristic to choose the move.
 
 
 **Updated Conflict Count**
-```chart
-type: line
-labels: [Q1, Q2, Q3, Q4]
-series: 
-	- title: Conflicts   
-	- data: [1, 1, 1, 0]
-```
+
+![[Pasted image 20241118092943.png]]
+
 This line chart represents the updated conflicts after the first move. There are still some conflicts, so we need to continue the search.
 
 
 **Final State (No Conflicts)**
-```chart
-type: bar
-labels: [Q1, Q2, Q3, Q4]
-series:  
-	- title: Row Positions    
-	- data: [2, 4, 1, 3]
-```
+
+![[Pasted image 20241118093015.png]]
 
 This bar chart represents the final state where all queens are placed in a configuration that avoids conflicts. Each queen is placed in a different row and column, and no two queens are in the same diagonal.
 
 
 **Final Conflict Count**
 
-```chart
-type: line
-labels: [Q1, Q2, Q3, Q4]
-series:  
-	- title: Conflicts    
-	- data: [0, 0, 0, 0]
-```
+![[Pasted image 20241118093036.png]]
+
 This line chart represents the final conflict count after all queens are placed correctly. There are no conflicts left.
 
 
@@ -1600,24 +1551,7 @@ Since both's respective goals are to *maximize/minimize the score* to the most, 
 
 In a deeper tree, this process continues, and Minimax will recursively backtrack the values from leaves to the root, ensuring that both players are playing optimally. The final value chosen by Max will be the best possible outcome given optimal play by both players.
 
-
-
-```chart
-type: line
-labels: [0, 1, 2]
-series:    
-	- title: Max's Choice (Branch 1)      
-	  data: [0, 1, 1]  
-	
-	- title: Min's Choice (Branch 1)      
-	  data: [0, 1, 0]  
-	
-	- title: Max's Choice (Branch 2)      
-	  data: [0, 0, 0]          
-	  
-	- title: Min's Choice (Branch 3)      
-	  data: [0, -1, -1]
-```
+![[Pasted image 20241118093105.png]]
 
 This chart illustrates how the Minimax values change as the algorithm recursively explores different paths in the decision tree, helping to visualize the decision-making process of the algorithm.
 

@@ -469,14 +469,7 @@ Consider three tasks:
 
 A real-time scheduling algorithm, such as Earliest Deadline First (EDF), would prioritize these processes based on their deadlines.  
 
-```chart
-type: line
-labels: [T2, T1, T3]
-series:
-	- title: EDF Scheduling Timeline
-	  data:  [1, 2, 3]
-```
-
+![[Pasted image 20241118092626.png]]
 
 **Result:** All three processes are completed before their respective deadlines.
 
