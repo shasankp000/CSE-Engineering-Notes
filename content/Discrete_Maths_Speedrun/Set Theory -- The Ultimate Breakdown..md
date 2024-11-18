@@ -41,7 +41,7 @@ $$ \phi $$
 
 (read as phi.)
 
-## For example : { x : x belongs to N, 2<x<3 } = $$ \phi $$
+ For example : { x : x belongs to N, 2<x<3 } = $$ \phi $$
 
 ---
 
@@ -52,16 +52,14 @@ $$ \phi $$
 
 This can be expressed as : 
 
-$$
-A \subseteq B
-$$
-## Let A = {1, 3}, B = {1, 2, 3}, C = {1, 3, 2}
+$$A \subseteq B$$
+ Let A = {1, 3}, B = {1, 2, 3}, C = {1, 3, 2}
 
 It is also possible while 
-$$
-A \subseteq B
-$$,  
-$$ A \neq B $$
+
+$$A\subseteq B$$
+,  
+$$A\neq B$$
 Then, A is ==a proper subset== of B
 
 
@@ -69,20 +67,20 @@ Then, A is ==a proper subset== of B
 
 1. Every set is a subset of itself.
 2.  The empty set is a subset of every set.
-3.  The total number of possible subsets in a given set of $$ n $$ symbols is :
+3.  The total number of possible subsets in a given set of $$n$$ symbols is :
    $$ 2^n $$
 ---
 # Power Set.
 
-## Consider the set $$ A = \{a, b\} $$
+ Consider the set $$ A = \{a, b\} $$
 The subsets of A are :
 
-$$ \phi, \{a\}, \{b\}, \{a,b\}$$
+$$\phi, \{a\}, \{b\}, \{a,b\}$$
 This family of all the subsets of A is called the ==Power Set== of A, which is denoted by P(A).
 
 Thus, 
 
-## $$ P(A) = \{\phi, \{a\}, \{b\}, \{a,b\}\} $$
+ $$ P(A) = \{\phi, \{a\}, \{b\}, \{a,b\}\} $$
 ---
 
 # Cardinality of a Set.
@@ -92,7 +90,7 @@ Thus,
 ## Example :
 
 Cardinality of an empty set  
-$$ \phi $$ is 0.
+$$\phi$$ is 0.
 
 and for a set A,  $$ \{1, 2, 3, 4, 5\}  $$ is 5.
 
@@ -116,27 +114,27 @@ In other words, ==the power set P(*A*)  of any set  *A* has a cardinality that i
 
 ## The objects ==need not be distinct==.
 
-## For example : 
+ For example : 
 
-## $$ \{a, a\} $$ is a well-defined ordered pair.
+ $$ \{a, a\} $$ is a well-defined ordered pair.
 
 ---
 
 # Cartesian Product of sets.
 
-## If A & B are two non-empty sets, the Cartesian Product (or cross product/ direct product)  will be :
+ If A & B are two non-empty sets, the Cartesian Product (or cross product/ direct product)  will be :
 
-## $$ A X B = \{(a, b): a \in A,b \in B \}   $$
+ $$ A X B = \{(a, b): a \in A,b \in B \}   $$
 
-## If $$ A = \phi $$ or  $$ B = \phi $$ we define $$ AXB = \phi $$
+ If $$ A = \phi $$ or  $$ B = \phi $$ we define $$ AXB = \phi $$
 ## Note:
 
 If A and B are finite sets then : 
 
-## $$ n(AXB) = n(A).n(B)$$
+ $$ n(AXB) = n(A).n(B)$$
 If either A or B are infinite sets then :
 
-## $$ AXB $$
+ $$ AXB $$
  is an infinite set.
 
 
@@ -150,10 +148,10 @@ $$ b \in B $$
 
 Then :
 
-## $$ AXB = \{a,b\} X \{a, c, d\} = \{ (a,b), (a,c), (a,d), (b,a), (b,c), (b,d) \}$$
+ $$ AXB = \{a,b\} X \{a, c, d\} = \{ (a,b), (a,c), (a,d), (b,a), (b,c), (b,d) \}$$
 and , 
 
-## $$ B X A = \{a, c, d\} X \{a, b\} = \{(a,a), (a,b), (c,a), (c,b), (d,a), (d,b)\} $$
+ $$ B X A = \{a, c, d\} X \{a, b\} = \{(a,a), (a,b), (c,a), (c,b), (d,a), (d,b)\} $$
 ## An example on Cartesian Products :
 
 ![[set1.jpg]]
@@ -162,22 +160,22 @@ and ,
 
 ## For any 3 sets A, B and C (From distributive property.)
 
-## 1. $$ A X (B \cup C) = (AXB) \cup (AXC)$$
-## 2. $$ A X (B \cap C) = (AXB) \cap (AXC)$$
-## 3. $$ A X (B - C) = (AXB) - (AXC)$$
-## For any 4 sets A, B, C and D:
+ 1. $$ A X (B \cup C) = (AXB) \cup (AXC)$$
+ 2. $$ A X (B \cap C) = (AXB) \cap (AXC)$$
+ 3. $$ A X (B - C) = (AXB) - (AXC)$$
+ For any 4 sets A, B, C and D:
 
-## 4. $$ (A X B) \cap (C X D) = (A \cap C) X (B \cap D)$$
+ 4. $$ (A X B) \cap (C X D) = (A \cap C) X (B \cap D)$$
 ---
 # Complement of a set.
 
 ## Let U be the universal set and let 
 
-## $$ A \subseteq U $$ 
+ $$ A \subseteq U $$ 
 
 Then the complement of A, denoted by A', ==is the set of elements that belong to U but not to A.==
 
-## $$ A' = \{x: x \in U, x \notin A \}$$
+ $$ A' = \{x: x \in U, x \notin A \}$$
 ## Relative Complement
 
 The relative complement of A w.r.t to B is basically, ==only the elements in A and nothing from B==.
@@ -234,16 +232,16 @@ For example :
 
 ## A = {-2, 0 , 1, 2} ; B = {1, 2, 3, 4}
 
-## $$ A \sim B = \{-2,0\} $$ (The elements ==only in A==, not B)
+ $$ A \sim B = \{-2,0\} $$ (The elements ==only in A==, not B)
 
 and
 
-## $$ B \sim A = \{3, 4 \} $$
+ $$ B \sim A = \{3, 4 \} $$
 ## (The elements ==only in B==, not A)
 
 ## Thus, 
 
-## $$ A \Delta B = (A \sim B) \cup (B \sim A)  = \{-2, 0, 3, 4 \}$$
+ $$ A \Delta B = (A \sim B) \cup (B \sim A)  = \{-2, 0, 3, 4 \}$$
 ----
 # Countable and Uncountable Sets
 
@@ -251,7 +249,7 @@ and
 
 A set is **countable** if its elements can be put into one-to-one correspondence with the set of natural numbers
 
-## $$ N = \{1, 2, 3, .....\} $$
+$$ N = \{1, 2, 3, .....\} $$
 
 
 This means there exists a bijection (a one-to-one and onto function) between the set and N. Countable sets can be either finite or infinite.
@@ -284,51 +282,51 @@ A set is **uncountable** if it cannot be put into one-to-one correspondence with
 
 ## 1. ==Identity Laws== :
 
-## $$ A \cup \phi = A $$,
+ $$ A \cup \phi = A $$,
 
-## $$ A \cap \phi = \phi $$
+ $$ A \cap \phi = \phi $$
 ## 2. ==Domination Laws== :
 
-## $$ A \cup U = U $$ , 
+ $$ A \cup U = U $$ , 
 
-## $$ A \cap A = A $$
+$$ A \cap A = A $$
 ## 3. ==Complement Laws ==:
 
-## $$ A \cup A' = U $$
+ $$ A \cup A' = U $$
 , 
 
-## $$ A \cap A' = \phi $$
+ $$ A \cap A' = \phi $$
 
 ## 4. ==Involution Law== : 
 
-## $$ (A')' = A $$
+ $$ (A')' = A $$
 
 ## 5. Commutative Law: 
 
-## $$ A \cup B = B \cup A $$
+ $$ A \cup B = B \cup A $$
 and
-## $$ A \cap B = B \cap A $$ 
+ $$ A \cap B = B \cap A $$ 
 
 
 ## 6. Distributive Law: 
 
-## $$ A \cup ( B \cap C) = (A \cup B) \cap (A \cup C) $$
+ $$ A \cup ( B \cap C) = (A \cup B) \cap (A \cup C) $$
 and 
 
-## $$ A \cap (B \cup C) = (A \cap B) \cup (A \cap C) $$
+ $$ A \cap (B \cup C) = (A \cap B) \cup (A \cap C) $$
 ## 7. ==De Morgan's Laws== :
 
-## $$ (A \cup B)' = A' \cap B' $$
+ $$ (A \cup B)' = A' \cap B' $$
 and 
 
-## $$ (A \cap B)' = A' \cup B' $$
+$$ (A \cap B)' = A' \cup B' $$
 
 ## 8. Absorption Laws: 
 
-## $$ A \cup (A \cap B) = A $$
+$$ A \cup (A \cap B) = A $$
 and 
 
-## $$ A \cap (A \cup B) = A $$
+ $$ A \cap (A \cup B) = A $$
 
 ---
 
@@ -370,7 +368,7 @@ For example :
 
 then 
 
-## $$ R = \{(1,1), (2,2), (3,3), (4,4) \} $$
+ $$ R = \{(1,1), (2,2), (3,3), (4,4) \} $$
 ## , R is reflexive.
 
 
@@ -382,15 +380,15 @@ A relation R defined on a set A is said to be symmetric, if bRa holds whenever a
 
 $$ b \in A $$ R is symmetric on A if 
 
-## $$ (a,b) \in R => (b,a) \in R $$
+$$ (a,b) \in R => (b,a) \in R $$
 
 ==In simple terms==, for any two elements, 
 
-## $$ (a,b) \in R $$,
+ $$ (a,b) \in R $$,
 
 if their ==mirror reflection==, 
 
-## $$ (b,a) \in R $$
+ $$ (b,a) \in R $$
 then R is symmetric.
 
 ## Example : A = {1,2,3} ; R = { (2,2), (2,3), (3,2)}
@@ -409,24 +407,24 @@ Well, considering the definition of Symmetric relation, a relation is anti-symme
 
 A relation R on a set A is said to be anti-symmetric if 
 
-## $$ \forall (a,b) \in A $$, if
-## $$ (a,b) \in R $$ and 
+ $$ \forall (a,b) \in A $$, if
+ $$ (a,b) \in R $$ and 
 
-## $$ a \neq b $$
+ $$ a \neq b $$
 then :
 
-## $$ (b,a) \notin R $$
+$$ (b,a) \notin R $$
 ---
 
 ## Transitive Relation
 
 A relation R on a set A is said to be transitive if any two elements:
 
-## $$ (a,b) \in R $$, 
+ $$ (a,b) \in R $$, 
 ## $$ (b,c) \in R $$
 then ,
 
-## $$ (a,c) \in R $$
+ $$ (a,c) \in R $$
 Example: 
 
 ## A = {1, 2, 3};    R = { (1,1), (2,2), (2,3), (3,2), (3,3)}
@@ -451,19 +449,19 @@ A relation R on a set A is said to be an equivalence relation if R is reflexive,
 ## Inverse of a relation
 
 Let R be a relation from A to B. Then the inverse of R, denoted by 
-## $$ R^{-1} $$
+ $$ R^{-1} $$
 is the relation from R to A, defined by:
 
-## $$ R^{-1} = \{(b, r): (a,b) \in R \} $$
+$$ R^{-1} = \{(b, r): (a,b) \in R \} $$
 Basically the positions of all the elements in R is inverted in the inverse relation.
 
 Example :
 
-## A = {2,3,4},  B = {3, 4, 5, 6, 7},  R = { (2,4), (2,6), (3,3), (3,6), (4,4)}
+ A = {2,3,4},  B = {3, 4, 5, 6, 7},  R = { (2,4), (2,6), (3,3), (3,6), (4,4)}
 
 Thus
 
-## $$ R^{-1} = \{ (4,2), (6,2), (3,3), (6,3), (4,4) \}$$
+ $$ R^{-1} = \{ (4,2), (6,2), (3,3), (6,3), (4,4) \}$$
 ---
 
 # Functions
@@ -478,10 +476,10 @@ $$ b \in B $$
 
 such that
 
-## $$ f(a) = b $$
+ $$ f(a) = b $$
 or 
 
-## $$ (a,b) \in f $$
+$$ (a,b) \in f $$
 
 Functions are also called ==mappings== or ==transformations==.
 
@@ -526,7 +524,7 @@ As well as co-domain since the values go endlessly as they lie in N.
 
 Thus in this case 
 
-## $$ range(F) \subseteq co-domain(F) $$
+ $$ range(F) \subseteq co-domain(F) $$
 ![[set4.jpg]]
 
 ---
@@ -537,10 +535,10 @@ Thus in this case
 Two real valued functions with the same domain can be added or multiplied or both :
 
 ## Addition
-## $$ (f_{1} + f_{2})x = f_{1}(x) + f_{2}(x) $$
+ $$ (f_{1} + f_{2})x = f_{1}(x) + f_{2}(x) $$
 ## Multiplication
 
-## $$ (f_{1} . f_{2})x = f_{1}(x) . f_{2}(x) $$
+ $$ (f_{1} . f_{2})x = f_{1}(x) . f_{2}(x) $$
 
 ![[set5.jpg]]
 
@@ -576,10 +574,10 @@ A function won't be onto if it is of the following type :
 
 Consider the function :
 
-## $$k: \{1, 2, 3\} \rightarrow \{a, b, c, d\} $$
+ $$k: \{1, 2, 3\} \rightarrow \{a, b, c, d\} $$
 defined by :
 
-## $$ k(1) = a, k(2) = b, k(3) = c $$
+ $$ k(1) = a, k(2) = b, k(3) = c $$
 
 
 This function is not onto because the element *d* in the codomain {*a*,*b*,*c*,*d*} is not mapped by any element of the domain.
@@ -605,11 +603,11 @@ Let there be a function *f* and another function *g*.
 
 The composition of f and g is given by :
 
-## $$f.g(x) = f(g(x)) $$
+$$f.g(x) = f(g(x)) $$
 
 The composition of the function *f.g* is not composite, i.e
 
-## $$ f.g \neq g.f $$
+$$ f.g \neq g.f $$
 where f and g are functions.
 
 The composition *g.f* is called the left composition g with f.
@@ -628,22 +626,22 @@ Let there be a ==one-to-one== correspondence from set *A*  to set *B*
 
 Let there be a function *f* which assigns to an element :
 
-## $$ b \in B $$, 
+$$ b \in B $$, 
 
 the unique element
-## $$ a \in A  $$
+ $$ a \in A  $$
 such that :
 
-## $$ f(a) = b $$
+ $$ f(a) = b $$
   
 The inverse function :
 
-## $$ f^{-1} $$ is given as 
+ $$ f^{-1} $$ is given as 
 
-## $$ f^{-1}(b) = a $$
+ $$ f^{-1}(b) = a $$
 whenever, 
 
-## $$ f(a) = b $$
+ $$ f(a) = b $$
 This means that the domain and co-domains swap when the function is inversed.
 
 
@@ -653,9 +651,9 @@ However if the function is not a one-to-one correspondence then the inverse cann
 
 Here , 
 
-## $$ I_{B} $$ and 
+ $$ I_{B} $$ and 
 
-## $$ I_{A} $$
+$$ I_{A} $$
 
 are the identity functions. (Info on this not needed.)
 
