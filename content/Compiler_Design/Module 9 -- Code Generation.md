@@ -1,8 +1,7 @@
 ---
 title: Intermediate Code Generation -- Compiler Design
 tags:
-  - Semester-3
-  - C
+  - Semester-5
 ---
 ---
 # Index 
