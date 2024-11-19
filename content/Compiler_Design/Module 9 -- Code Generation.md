@@ -1,5 +1,5 @@
 ---
-title: Intermediate Code Generation -- Compiler Design
+title: Code Generation -- Compiler Design
 tags:
   - Semester-5
 ---
