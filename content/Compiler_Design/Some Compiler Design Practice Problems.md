@@ -9,16 +9,16 @@ tags:
 
 1. [[#1. First() and Follow() methods recap]]
 2. [[#LL(1) compatibility checking]]
-3. [[#Checking if a grammar is SLR(1) compatible.]]
-4. [[#Checking whether a grammar is LALR(1) compatible or not]]
+3. [[#LL(1) parsing table creation]]
+4. [[#Checking if a grammar is SLR(1) compatible.]]
+5. [[#Checking whether a grammar is LALR(1) compatible or not]]
 
 ---
 # FLAT Recap: Regular Grammar and Regular Expressions
 
 1. [[#1. DFA and NFA]]
 2. [[#2. NFA to DFA conversion]]
-
-
+3. [[#3. Minimization of DFA]]
 ---
 # FLAT Recap : Context Free Grammar
 
@@ -1788,9 +1788,89 @@ Thus, the resultant DFA will be :
 ---
 ## 3. Minimization of DFA
 
-https://www.youtube.com/watch?v=hOzc4BUIXRk&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=20
+https://swaminathanj.github.io/fsm/dfaminimization.html
 
 ![[Pasted image 20241115214339.png]]
+
+So here we will use Hopcroft's algorithm to minimize a DFA.
+
+Hopcroft's algorithm is based on Myhill-Nerode equivalence relation that splits the states into a group of equivalent classes. A set of states belong to the same class provided they exhibit the same behavior.
+
+**Step 1**: **To start with, we partition the states into two classes**.
+
+- Partition 1 groups all states that are final.
+- Partition 2 groups all states that a non-final.
+
+In other words, we hypothesize that all the final states may possibly exhibit same behavior and all non-final states may exhibit same behavior.
+
+**Step 2**: **Next, we check if all the states in the same partition exhibit the same behavior**.
+
+**Definition**: Two states are said to be exhibiting the same behavior if and only if for each input, both the states makes transitions to the same partition (not necessarily the same state).
+
+If it is not so, the partition needs to be broken down further and the states are reassigned to different partitions according to their behavior.
+
+**Step 3**: **Re-compute the transitions with respect to the modified partition set**.
+
+Steps 2 and 3 are repeated until
+
+- Either the states in each partition exhibit consistent behavior or
+- The partitions have exactly one state and cannot be broken further
+
+---
+### Example 1
+
+https://www.youtube.com/watch?v=0XaGAkY09Wc&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=21
+
+So let's work with this example DFA that we have :
+
+![[Pasted image 20241119114207.png]]
+
+So first of all we will construct the state transition table :
+
+![[Pasted image 20241119115349.png]]
+
+
+So we have two sets, one having all the non-final states, and the other containing the final states.
+
+
+So we see for input `0`, 
+
+`A` and `B` share the same next state, but not for input `1`. `A` goes to `C` and `B` goes to `D`.
+
+For input `0`,
+
+`C` and `D` share the same next state, but not for input `1`. `C` loops to itself while `D` goes to `E`.
+
+So we see that both `A` and `C` share the same next states for both the inputs.
+
+So `A` and `C` **can be grouped together**.
+
+So we can get new sets :
+
+![[Pasted image 20241119120130.png]]
+
+States `B` and `D` are separated as well since they don't share the same next states for both the inputs.
+
+And `E` stays separated as it is a final state.
+
+Now, to construct the newly minimized DFA, we need to construct the new state transition table.
+
+![[Pasted image 20241119120430.png]]
+
+where `AC` is the new merged state and all independent transitions going to `C` previously, now go to `AC`.
+
+So the new DFA will be :
+
+![[Pasted image 20241119120527.png]]
+
+
+Here are three more example videos on the same topic :
+
+https://www.youtube.com/watch?v=ex9sPLq5CRg&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=22&pp=iAQB
+
+https://www.youtube.com/watch?v=DV8cZp-2VmM&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=23&pp=iAQB (Minimizing a DFA with multiple final states)
+
+https://www.youtube.com/watch?v=kYMqDgB2GbU&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=24&pp=iAQB ((Minimizing a DFA with unreachable states))
 
 ---
 # Flat recap : Context Free Grammar
