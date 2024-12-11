@@ -141,7 +141,7 @@ Operating systems provide various services to both the users and the system itse
 
 ### A bit in depth about the structure of an OS.
 
-![[Pasted image 20240802143539.png]]
+![[Pasted image 20241123201644.png]]
 
 
 | Category                       | Description                                                                                                                                                                                                                                                                                                                                                                |

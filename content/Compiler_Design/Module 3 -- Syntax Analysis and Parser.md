@@ -153,6 +153,7 @@ In RL the production rule is not an iteration, that is, it cannot contain an emp
 
 However in a CFL the production rule is a closure, that is it can contain an empty symbol.
 
+---
 ## Example
 
 ![[Pasted image 20240617090110.png]]
@@ -164,7 +165,6 @@ However in a CFL the production rule is a closure, that is it can contain an emp
 ![[Pasted image 20240617114254.png]]
 
 ![[Pasted image 20240617115954.png]]
-
 
 
 https://www.youtube.com/watch?v=htoFbcwES28&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=72
@@ -185,6 +185,73 @@ https://www.youtube.com/watch?v=u4-rpIlV9NI&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKO
 ![[Pasted image 20240617120709.png]]
 
 Here instead of drawing a tree, the variables were used on the left and right side respectively.
+
+---
+## Reduction/Simplification of Context-Free Grammar
+
+### 1. Reduction of CFG
+
+https://www.youtube.com/watch?v=EF09zxzpVbk&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=78
+
+![[Pasted image 20241115101645.png]]
+
+![[Pasted image 20241115101814.png]]
+
+---
+Let's work this out using an example:
+
+![[Pasted image 20241115101852.png]]
+
+![[Pasted image 20241115105026.png]]
+
+---
+### Removal of Unit Production
+
+https://www.youtube.com/watch?v=B2o75KpzfU4&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=76
+
+![[Pasted image 20241115105226.png]]
+
+Let's understand this using an example.
+
+![[Pasted image 20241115111537.png]]
+
+
+![[Pasted image 20241115121554.png]]
+
+---
+### Removal of Null Productions
+
+https://www.youtube.com/watch?v=mlXYQ8ug2v4&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=77
+
+![[Pasted image 20241115122018.png]]
+
+![[Pasted image 20241115122026.png]]
+
+
+![[Pasted image 20241115125318.png]]
+
+---
+## Removal of Left Recursions
+
+**This happens during the conversion of Chomsky Normal Form to Greibach Normal Form**.
+
+We don't have the conversions in this semester anymore.
+
+But there was one question regarding the **removal of left recursion** from a grammar in last year's (2023) paper.
+
+So I will cover this part.
+
+Still here's the link for the video where the original production was given in case someone wants to view it
+
+https://www.youtube.com/watch?v=ZCbJan6CGNM&list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev&index=80&pp=iAQB
+
+![[Pasted image 20241115125708.png]]
+
+So this is how a left recursion looks.
+
+**When the start symbol on the LHS keeps repeating endlessly on the RHS, it's called a left recursion**.
+
+![[Pasted image 20241115132624.png]]
 
 ---
 # Pre-requisites before moving to parsing
@@ -2168,7 +2235,9 @@ https://www.youtube.com/watch?v=GOlsYofJjyQ&list=PLxCzCOWd7aiEKtKSIHYusizkESC42d
 ---
 # Operator Precedence Parsing
 
-It is a type of shift-reduce parser that works by establishing a relation between adjacent operators in the input to guide parsing actions. This method is well-suited for languages where the grammar is operator-based, such as arithmetic expressions.
+https://www.youtube.com/watch?v=7K2U4Otqhpk
+
+==It is a type of shift-reduce parser== that works by establishing a relation between adjacent operators in the input to guide parsing actions. This method is well-suited for languages where the grammar is operator-based, such as arithmetic expressions.
 
 ### Key Concepts of Operator Precedence Parsing:
 
@@ -2217,13 +2286,16 @@ We establish precedence between the terminal operators based on their natural pr
 - **Parentheses (`(` and `)`)** have the highest precedence, and `()` must be treated as grouping.
 - **Identifiers (`id`)** represent operands.
 
-| **Operator** | **Associativity**               | **Precedence** |
-| ------------ | ------------------------------- | -------------- |
-| `(` `)`      | Highest precedence              | 1              |
-| `*`          | Left-to-right                   | 2              |
-| `+`          | Left-to-right                   | 3              |
-| `id`         | Lower than operators precedence | 4              |
-| `$`          | Lowest precedence among all     | 5              |
+| **Operator** | **Associativity**                | **Precedence** |
+| ------------ | -------------------------------- | -------------- |
+| `id`         | Higher than operators precedence | 1              |
+| `(` `)`      | Highest precedence               | 2              |
+| `*`          | Left-to-right                    | 3              |
+| `+`          | Left-to-right                    | 4              |
+| `$`          | Lowest precedence among all      | 5              |
+
+![[Pasted image 20241211125612.png]]
+
 
 In this table:
 
@@ -2236,8 +2308,11 @@ In this table:
 ---
 ## Creating the Operator Precedence parsing table.
 
-This is our empty operator precedence parsing table.
+So let's say we have this grammar :
 
+![[Pasted image 20241211125658.png]]
+
+This is our empty operator precedence parsing table.
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
@@ -2250,7 +2325,7 @@ We fill in values with either `>` or `<`.
 
 And we remember these rules.
 
-Since the operators are **left-associative**, this means that the in any sequence of operators, the leftmost one is parsed first.
+Since the operators are **left-associative**, this means that the in any sequence of operators, the leftmost one is parsed first. **This means that in the case of the same operators, the leftmost one will get the higher priority. And in case of different operators, the precedence will give them value**.
 
 ==In case of operands next to each other, their relations are not parsed==.
 
@@ -2264,12 +2339,83 @@ However `operand-operator` relations are parsed and the **operand is parsed befo
 
 Following this logic, from these rules, we set up the operators precedence parsing table.
 
+Initially we see that we have the `+` operator against the `+` operator. Since it is left associative, the `+` operator will get the higher priority, and we will put `>` next to it.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   |     |      |     |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
+
+Next up, the `*` operator is up against the `+` operator. Since `*` operator has a higher priority, we will put `>` next to it.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | <    | >   |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
+
+Next up we had `id`, which is an operand. Operands has lower priority than operators, so we will put a `<` next to it.
+
+And then we have the `$` symbol, which has the lowest priority. So we will put a `<` next to it.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | <    | >   |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
+
+For the next column, we will follow the rules as before and get this column :
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
+
+For the operand `id`, we will follow the same rules as before.
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      | <   | <   |      |     |
+| `$`       |     |     |      |     |
+
+However as we have seen before : **operand-operand rules are not parsed**. So we leave the field blank for `id` against `id`.
+
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      | <   | <   | __   | <   |
+| `$`       |     |     |      |     |
+
+And lastly `$` has the lowest precedence so we put a `<` in it's field.
+
+
+| Terminals | `+` | `*` | `id` | `$` |
+| --------- | --- | --- | ---- | --- |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      | <   | <   | __   | <   |
+| `$`       |     |     |      |     |
+
+And for the column of `$` we follow the same rules as before to get :
+
 | Terminals | `+` | `*` | `id` | `$`    |
 | --------- | --- | --- | ---- | ------ |
 | `+`       | >   | <   | <    | >      |
 | `*`       | >   | >   | <    | >      |
 | `id`      | >   | >   | __   | >      |
 | `$`       | <   | <   | <    | accept |
+
+And when `$` is against `$`, **it is the accepting state**.
 
 ---
 ## Parsing a string from the Operator-Precedence Parsing Table
@@ -2287,6 +2433,10 @@ Now, let's parse a string from this table : `id + id * id`.
 For this, we make this table, much more convenient than having separate stack and input buffer tables.
 
 And we start with the `$` symbol in the stack and the given string in the input section along with `$` at it's end
+
+We follow the main rule here : 
+
+![[Pasted image 20241211130539.png]]
 
 | Stack | Relation | Input            | Comment |
 | ----- | -------- | ---------------- | ------- |
