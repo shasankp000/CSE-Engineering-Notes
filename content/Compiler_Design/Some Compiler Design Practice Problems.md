@@ -3,6 +3,7 @@ title: Compiler Design Practice Problems -- Numericals Only
 tags:
   - Semester-5
   - Work-In-Progress
+  - Semester-4
 ---
 ---
 # Index

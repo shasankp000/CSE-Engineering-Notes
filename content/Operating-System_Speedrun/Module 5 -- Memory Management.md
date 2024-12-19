@@ -2,6 +2,7 @@
 title: Memory Management -- Operating Systems
 tags:
   - Semester-5
+  - Semester-4
 ---
 
 ---

@@ -2,6 +2,7 @@
 title: Predicate logic and Probabilistic reasoning -- Artificial Intelligence
 tags:
   - Semester-5
+  - Semester-4
 ---
 
 ---

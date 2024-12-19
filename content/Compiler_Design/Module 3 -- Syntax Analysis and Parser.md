@@ -2,6 +2,7 @@
 title: Syntax Analysis and Parsing -- Compiler Design
 tags:
   - Semester-5
+  - Semester-4
 ---
 
 ---

@@ -2,6 +2,7 @@
 title: Generics and Collections in OOPS -- Object Oriented Programming - Java
 tags:
   - Semester-5
+  - Java
 ---
 
 ---

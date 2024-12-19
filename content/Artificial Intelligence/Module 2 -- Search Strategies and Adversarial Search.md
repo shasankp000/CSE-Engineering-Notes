@@ -2,6 +2,7 @@
 title: Search Strategies and Adversarial Search -- Artificial Intelligence
 tags:
   - Semester-5
+  - Semester-4
 ---
 
 ---
