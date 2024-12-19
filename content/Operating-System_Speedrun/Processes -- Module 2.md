@@ -304,13 +304,8 @@ Execution Order: P1 -> P2 (preempts P1) -> P3(preempts P2) -> P2 -> P1
 - P3 arrives next with a burst time of 1 and preempts P2.
 - P2 then continues, followed by P1.
 
-```chart
-type: line
-labels: [P1, P2, P3, P2, P1]
-series:
-	- title: SRTF scheduling
-	- data: [0, 1, 2, 3, 4]
-```
+![[Pasted image 20241219112921.png]]
+
 		 `A chart showing how the processes are scheduled according to SRTF`
 #### Pros:
 
