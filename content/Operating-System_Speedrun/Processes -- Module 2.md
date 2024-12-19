@@ -344,13 +344,8 @@ Consider these processes:
 with a given time quantum of `4ms`.
 
 
-```chart
-type: line
-labels: [P1, P2, P3, P4, P1, P4, P1, P4, P1, P4, P1, P1, P1]
-series:
-	- title: Round Robin Scheduling
-	- data: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48]
-```
+![[Pasted image 20241219113854.png]]
+
 		`How the processes would be scheduled and executed according to RR`
 
 
