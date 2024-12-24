@@ -177,7 +177,7 @@ In the graph above, the sequence:
 v1 -> v2 -> v3 -> v4 -> v5 -> v6 -> v7 -> v1
 ```
 
-is applicable as a cycle since **no edges or vertices are repeated** and the **traversal ends at the starting vertex of the graph**.
+is applicable as a cycle since **no intermediate edges or vertices except the starting vertex are repeated** and the **traversal ends at the starting vertex of the graph**.
 
 ---
 
@@ -250,7 +250,7 @@ Two graphs are called ==edge disjoint== if they have ==no edge in common== .
 
 ## 1. ==Handshaking Theorem/ The first theorem of graph theory==.
 
-This theorem states that the "sum of the degree of the vertices of a graph is equal to the number of edges in a graph G".
+This theorem states that the "sum of the degree of the vertices of a graph is equal to **twice** the number of edges in a graph G".
 
 ![[Pasted image 20240610113207.png]]
 
