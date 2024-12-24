@@ -359,7 +359,7 @@ For $v_5$, it's connected to $v_4$ and $v_1$. So we fill 1 under their places.
 So this is our final adjacency matrix.
 
 ---
-## Example 2: Self loops in Adjacency Matrix
+## Example 2: Self loops and Parallel Edges in Adjacency Matrix
 
 Let's say that this diagram was now modified to look like this :
 
