@@ -451,7 +451,7 @@ Therefore we fill `1` under their places for the respective vertices, and the re
 | $v_1$  | 1     | 0     | 0     | 0     | 0     | 1     |
 | $v_2$  | 1     | 1     | 1     | 0     | 0     | 0     |
 | $v_3$  | 0     | 1     | 0     | 1     | 0     | 0     |
-| $v_4$  | 0     | 0     | 1     | 0     | 1     | 0     |
+| $v_4$  | 0     | 0     | 1     | 1     | 1     | 0     |
 | $v_5$  | 0     | 0     | 0     | 0     | 1     | 1     |
 
 And this is our resultant incidence matrix.
@@ -469,7 +469,7 @@ So ==self loops in incidence matrix are counted as 2==.
 | $v_1$  | 1     | 0     | 0     | 0     | 0     | 1     | 0     |
 | $v_2$  | 1     | 1     | 1     | 0     | 0     | 0     | 0     |
 | $v_3$  | 0     | 1     | 0     | 1     | 0     | 0     | 2     |
-| $v_4$  | 0     | 0     | 1     | 0     | 1     | 0     | 0     |
+| $v_4$  | 0     | 0     | 1     | 1     | 1     | 0     | 0     |
 | $v_5$  | 0     | 0     | 0     | 0     | 1     | 1     | 0     |
 
 And this would be the resultant incidence matrix.
