@@ -320,11 +320,11 @@ So we integrate with respect to $y$ first.
 $$\therefore \int_{0}^{2}x[\frac{y^3}{3}]_{1}^{3}dx$$
 
 or $$\int_{0}^{2}x. [\frac{3^3}{3} - \frac{1^3}{3}]dx$$
-or, $$\int_{0}^{2}\frac{2x}{3}. dx$$
-or $$\frac{2}{3}.\int_{0}^{2}xdx$$
-or, $$\frac{2}{3}.[\frac{x^2}{2}]_{0}^{2}$$
-or $$\frac{2}{3}.\frac{4}{2}$$
-Thus finally, $$\int_{0}^{2}\int_{1}^{3}{xy^2}dydx = \boxed{\frac{4}{3}}$$
+or, $$\int_{0}^{2}\frac{26x}{3}. dx$$
+or $$\frac{26}{3}.\int_{0}^{2}xdx$$
+or, $$\frac{26}{3}.[\frac{x^2}{2}]_{0}^{2}$$
+or $$\frac{26}{3}.\frac{4}{2}$$
+Thus finally, $$\int_{0}^{2}\int_{1}^{3}{xy^2}dydx = \boxed{\frac{52}{3}}$$
 
 ---
 ## Example 2
