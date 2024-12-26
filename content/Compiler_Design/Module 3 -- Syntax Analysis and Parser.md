@@ -2394,7 +2394,7 @@ However as we have seen before : **operand-operand rules are not parsed**. So we
 | --------- | --- | --- | ---- | --- |
 | `+`       | >   | <   | <    | >   |
 | `*`       | >   | >   | <    | >   |
-| `id`      | <   | <   | __   | <   |
+| `id`      | >   | >   | __   | >   |
 | `$`       |     |     |      |     |
 
 And lastly `$` has the lowest precedence so we put a `<` in it's field.
@@ -2404,7 +2404,7 @@ And lastly `$` has the lowest precedence so we put a `<` in it's field.
 | --------- | --- | --- | ---- | --- |
 | `+`       | >   | <   | <    | >   |
 | `*`       | >   | >   | <    | >   |
-| `id`      | <   | <   | __   | <   |
+| `id`      | >   | >   | __   | >   |
 | `$`       |     |     |      |     |
 
 And for the column of `$` we follow the same rules as before to get :
