@@ -13,6 +13,7 @@ tags:
 3. [[#LL(1) parsing table creation]]
 4. [[#Checking if a grammar is SLR(1) compatible.]]
 5. [[#Checking whether a grammar is LALR(1) compatible or not]]
+6. [[#Operator Precedence Parsing]]
 
 ---
 # FLAT Recap: Regular Grammar and Regular Expressions
@@ -1367,7 +1368,7 @@ https://www.youtube.com/watch?v=GOlsYofJjyQ&list=PLxCzCOWd7aiEKtKSIHYusizkESC42d
 ---
 # Operator Precedence Parsing
 
-https://www.youtube.com/watch?v=4vJB41xVZ0E
+https://www.youtube.com/watch?v=7K2U4Otqhpk
 
 Well, operator precedence parsing, works differently than the other parsers. It works a specific type of grammar called "Operator precedence grammar", which **should not have** :
 
@@ -1383,13 +1384,16 @@ We establish precedence between the terminal operators based on their natural pr
 - **Parentheses (`(` and `)`)** have the highest precedence, and `()` must be treated as grouping.
 - **Identifiers (`id`)** represent operands.
 
-| **Operator** | **Associativity**               | **Precedence** |
-| ------------ | ------------------------------- | -------------- |
-| `(` `)`      | Highest precedence              | 1              |
-| `*`          | Left-to-right                   | 2              |
-| `+`          | Left-to-right                   | 3              |
-| `id`         | Lower than operators precedence | 4              |
-| `$`          | Lowest precedence among all     | 5              |
+| **Operator** | **Associativity**                | **Precedence** |
+| ------------ | -------------------------------- | -------------- |
+| `id`         | Higher than operators precedence | 1              |
+| `(` `)`      | Highest precedence               | 2              |
+| `*`          | Left-to-right                    | 3              |
+| `+`          | Left-to-right                    | 4              |
+| `$`          | Lowest precedence among all      | 5              |
+
+![[Pasted image 20241211125612.png]]
+
 
 In this table:
 
@@ -1402,6 +1406,11 @@ In this table:
 ---
 ## Creating the Operator Precedence parsing table.
 
+So let's say we have this grammar :
+
+![[Pasted image 20241211125658.png]]
+
+
 This is our empty operator precedence parsing table.
 
 | Terminals | `+` | `*` | `id` | `$` |
@@ -1410,6 +1419,7 @@ This is our empty operator precedence parsing table.
 | `*`       |     |     |      |     |
 | `id`      |     |     |      |     |
 | `$`       |     |     |      |     |
+|           |     |     |      |     |
 
 We fill in values with either `>` or `<`.
 
@@ -1442,9 +1452,9 @@ Next up, the `*` operator is up against the `+` operator. Since `*` operator has
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
-| `+`       | >   |     |      |     |
-| `*`       | >   |     |      |     |
-| `id`      | <   |     |      |     |
+| `+`       | >   | <   | <    | >   |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
 | `$`       |     |     |      |     |
 
 Next up we had `id`, which is an operand. Operands has lower priority than operators, so we will put a `<` next to it.
@@ -1453,48 +1463,48 @@ And then we have the `$` symbol, which has the lowest priority. So we will put a
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
-| `+`       | >   |     |      |     |
-| `*`       | >   |     |      |     |
-| `id`      | <   |     |      |     |
-| `$`       | <   |     |      |     |
+| `+`       | >   | <   | <    | >   |
+| `*`       |     |     |      |     |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
 
 For the next column, we will follow the rules as before and get this column :
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
-| `+`       | >   | <   |      |     |
-| `*`       | >   | >   |      |     |
-| `id`      | <   | <   |      |     |
-| `$`       | <   | <   |      |     |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      |     |     |      |     |
+| `$`       |     |     |      |     |
 
 For the operand `id`, we will follow the same rules as before.
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
-| `+`       | >   | <   | >    |     |
-| `*`       | >   | >   | >    |     |
-| `id`      | <   | <   |      |     |
-| `$`       | <   | <   |      |     |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      | >   | >   |      |     |
+| `$`       |     |     |      |     |
 
 However as we have seen before : **operand-operand rules are not parsed**. So we leave the field blank for `id` against `id`.
 
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
-| `+`       | >   | <   | >    |     |
-| `*`       | >   | >   | >    |     |
-| `id`      | <   | <   | __   |     |
-| `$`       | <   | <   |      |     |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      | >   | >   | __   | >   |
+| `$`       |     |     |      |     |
 
 And lastly `$` has the lowest precedence so we put a `<` in it's field.
 
 
 | Terminals | `+` | `*` | `id` | `$` |
 | --------- | --- | --- | ---- | --- |
-| `+`       | >   | <   | >    |     |
-| `*`       | >   | >   | >    |     |
-| `id`      | <   | <   | __   |     |
-| `$`       | <   | <   | <    |     |
+| `+`       | >   | <   | <    | >   |
+| `*`       | >   | >   | <    | >   |
+| `id`      | >   | >   | __   | >   |
+| `$`       |     |     |      |     |
 
 And for the column of `$` we follow the same rules as before to get :
 
@@ -1523,6 +1533,11 @@ Now, let's parse a string from this table : `id + id * id`.
 For this, we make this table, much more convenient than having separate stack and input buffer tables.
 
 And we start with the `$` symbol in the stack and the given string in the input section along with `$` at it's end
+
+We follow the main rule here : 
+
+![[Pasted image 20241211130539.png]]
+
 
 | Stack | Relation | Input            | Comment |
 | ----- | -------- | ---------------- | ------- |
