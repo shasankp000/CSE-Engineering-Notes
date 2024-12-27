@@ -2384,7 +2384,7 @@ For the operand `id`, we will follow the same rules as before.
 | --------- | --- | --- | ---- | --- |
 | `+`       | >   | <   | <    | >   |
 | `*`       | >   | >   | <    | >   |
-| `id`      | <   | <   |      |     |
+| `id`      | >   | >   |      |     |
 | `$`       |     |     |      |     |
 
 However as we have seen before : **operand-operand rules are not parsed**. So we leave the field blank for `id` against `id`.
