@@ -1,5 +1,5 @@
 ---
-title: Lexical Analysis -- Artificial Intelligence
+title: Lexical Analysis -- Compiler design
 tags:
   - Semester-5
 ---
