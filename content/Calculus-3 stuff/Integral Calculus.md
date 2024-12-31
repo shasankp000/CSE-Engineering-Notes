@@ -1,5 +1,5 @@
 ---
-title: Integral Calculus -- Mathematics III
+title: Multivariable Integral Calculus -- Mathematics III
 tags:
   - Semester-3
 ---
@@ -31,9 +31,9 @@ https://www.youtube.com/playlist?list=PLF-vWhgiaXWM7Iri0t_AjBfv51tF28PEy (Full p
 16. [[#How to calculate the determinant of a 2x2 matrix?]]
 17. [[#How to calculate the determinant of a 3x3 matrix?]]
 18. [[#Back to conversion of Cartesian to Polar co-ordinates]]
-19. [[#Green's Theorem (Statement only)]]
-20. [[#Gauss's Theorem (Statement only)]]
-21. [[#Stokes's Theorem (Statement only)]]
+19. [[#Green's Theorem (Statement only)]] (and detailed examples included)
+20. [[#Gauss's Theorem (Statement only)]] (and detailed examples included)
+21. [[#Stokes's Theorem (Statement only)]] (and detailed examples included)
 
 **Note** : If the equations on the website seem a bit to clumped up/clogged, please go to the resources section and download the PDF. It has better indentation.
 
@@ -868,20 +868,466 @@ or $$\frac{\pi a^3}{6}$$
 # Green's Theorem (Statement only)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8SwKD5_VL5o?si=dAU-hOBqUOej5wk9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+https://www.youtube.com/watch?v=8SwKD5_VL5o (since the embed can't be rendered in a PDF)
+
 Here's a very cool visual explanation of Green's Theorem
 
 ![[Pasted image 20241107203952.png]]
 
+
+or in another variant (a special case which actually becomes Stoke's Theorem)
+
+![[Pasted image 20241231142108.png]]
+
 And here's the statement.
+
+So let's say we have a curve **C**.
+
+![[Pasted image 20241231142151.png]]
+
+
+And we can call the region inside of this curve as **R**.
+
+![[Pasted image 20241231142244.png]]
+
+
+So Green's theorem states that the "The line integral of **F** over **C** is equal to the double integral of the 2-D **curl of F** over R".
+
+What does this mean? What is a line integral?
+
+![[Pasted image 20241231143159.png]]
+
+
+![[Pasted image 20241231153313.png]]
+
+So let's say we divided the curve into 4 smaller "line curves" or just lines.
+
+Naming them $c_1$, $c_2$, $c_3$, $c_4$, each.
+
+Now the LHS side, the "line integral of F over C" would be given by finding the line integrals of all the smaller line curves and summing them up.
+
+So we would get : $$\boxed{\int_c{F} \ dr = \int_{c_1}{F} \ dr \ + \int_{c_2}{F} \ dr + \ \int_{c_3}{F} \ dr + \ \int_{c_4}{F} \ dr} $$
+where the surface **C** ==is traversed in the counter-clockwise direction==.
+
+And on the RHS.
+
+Depending on what you have, two continuous functions M(x,y) and N(x,y) or a vector.
+
+We have two equations : 
+
+In case of a vector :
+
+![[Pasted image 20241231153519.png]]
+
+The curl of the vector **F** is the same as $\frac{dN}{dx} - \frac{dM}{dy}$ which we use if we have two continuous functions M and N.
+
+![[Pasted image 20241231153816.png]]
+
+
+So in case of us having two continuous functions M and N, we have the RHS as :
+
+![[Pasted image 20241231155146.png]]
+
+---
+## Some solved examples.
+
+### Example 1.
+
+Let's say we have to deal with this example where we are asked to verify Green's Theorem.
+
+![[Pasted image 20241231155316.png]]
+
+So we need to verify the LHS and RHS of Green's theorem
+
+So here we have **M** = $xy + y^2$ and **N** = $x^2$
+
+And we are given to curves, $y \ = \ x$  and  $y \ = \ x^2$
+
+So we can imagine $y \ = \ x^2$ as a parabolic line starting from the origin. And we the line $y \ = \ x$ as a line starting from the origin, going upward at a $45 \degree$ angle.
+
+![[Pasted image 20241231155627.png]]
+
+Let $C_1$ be the parabolic line  $y \ = \ x^2$ and $C_2$ be for $y \ = \ x$.
+
+So we see that both the lines intersect at point (1,1).
+
+The clockwise traversal will be like this : 
+
+![[Pasted image 20241231155903.png]]
+
+
+So $$\int_c{[M \ dx \ + \ N \ dy]} = \int_{c_1} {[M \ dx \ + \ N \ dy]} \ + \ \int_{c_2} {[M \ dx \ + \ N \ dy]}$$
+
+So, on $C_1$ we have $y \ = \ x^2$ . On differentiating both sides, we get : $dy = 2x \ dx$
+on $C_2$, we have $y = x$ . On differentiating both sides, we get: $dy \ = \ dx$
+
+Why did we differentiate the both sides of these equations? So that during the solving of the line integral we get an easier calculation in terms of a single variable.
+
+Limits for $C_1$ goes from origin (0,0) to point (1,1) so 0 to 1.
+
+Limits for $C_2$ goes from point (1,1) back to origin (0,0), so 1 to 0.
+
+Therefore we get : $$ \int_{c_1} {[M \ dx \ + \ N \ dy]} \ + \ \int_{c_2} {[M \ dx \ + \ N \ dy]} = \int_{0}^{1}{[xy + y^2 \ dx \ + x^2 \ dy]} + \int_{1}^{0}{[xy + y^2 \ dx \ + x^2 \ dy]}$$
+substituting $y = x^2$ for $C_1$ and $y=x$ for $C_2$ and their respective $dy$ values.
+
+$$= \int_{0}^{1}{[x^3 + x^4 \ dx \ + x^2 2x \ dx]} + \int_{1}^{0}{[x^2 + x^2 \ dx \ + x^2 \ dx]}$$
+
+$$ = \int_{0}^{1}{[3x^3 + x^4 \ dx]} + \int_{1}^{0}{[3x^2 \ dx]}$$
+
+![[Pasted image 20241231161334.png]]
+
+$$ = -\frac{1}{20}$$
+
+Now for the RHS.
+
+We need to figure out :  $$\int_R{\int_R{\frac{dN}{dx} - \frac{dM}{dy} \ dx} \ dy}$$
+And for R. we have $x$ going from origin (0,0) to point(1,1), so 0 to 1.
+
+And we already have y **parameterized** on x as in the given curves : 
+
+$y = x^2$  to $y = x$.
+
+$\frac{dN}{dx} = 2x$  and $\frac{dM}{dy} = x + 2y$
+
+$\therefore \frac{dN}{dx} - \frac{dM}{dy} =  2x - (x+2y) = x - 2y$
+
+$$\therefore \int_R{\int_R{\frac{dN}{dx} - \frac{dM}{dy} \ dx} \ dy} = \int_{0}^{1}{\int_{x^2}^{x}{\frac{dN}{dx} - \frac{dM}{dy} \ dx} \ dy} = \int_{0}^{1}{\int_{x^2}^{x}{\frac{dN}{dx} - \frac{dM}{dy} \ dy} \ dx}$$
+
+Note that we changed the order of integration from $dxdy$ to $dydx$ because of the how the limits were placed in the integral.
+
+$$ = \int_{0}^{1}{\int_{x^2}^{x}{x - 2y \ dy} \ dx}$$
+
+$$ = \int_{0}^{1}[{x\int_{x^2}^{x}{dy} \ - \ 2 \int_{x^2}^{x}{y \ dy}}]$$
+
+$$ = \int_{0}^{1} {x . {[x - x^2}] \ - \ [x^2 - x^4]  \ dx}$$
+
+$$ = \int_{0}^{1} {x^4 \ - \ x^3 \ dx}$$
+
+$$ = \frac{1}{5} - \frac{1}{4}$$
+$$ = -\frac{1}{20} $$
+
+which is the same as our LHS.
+
+Thus **LHS = RHS** and Green's theorem is verified!
+
+---
+### Example 2.
+
+![[Pasted image 20241231163345.png]]
+
+This is a pretty easy one. The question says "Evaluate" so we will only focus on finding the RHS here.
+
+We have ![[Pasted image 20241231163612.png]]
+
+Thus  
+
+$$\frac{dN}{dx} = cos(x)cos(y)$$ 
+and 
+
+$$\frac{dM}{dy} = cos(x)cos(y) - x$$
+
+$$\therefore \frac{dN}{dx} - \frac{dM}{dy} = cos(x)cos(y) - [cos(x)cos(y) - x] = x $$
+
+Since we are dealing with a circle here. 
+
+![[Pasted image 20241231165005.png]]
+
+We will have to change $x$ to $rcos\theta$ for polar co-ordinates.
+
+Thus $dxdy$ becomes $rdrd\theta$.
+
+And the above picture states how we get the limits of r and $\theta$ .
+
+There we get :
+
+$$\int_{0}^{2\pi}\int_{0}^{1}{r^2cos\theta \ drd\theta}$$
+$$ = \int_{0}^{2\pi} cos\theta \ d\theta . [\frac{r^3}{3}]_0^1 $$
+
+$$ \implies \frac{1}{3} . [sin\theta]_0^{2\pi} = \frac{1}{3} . 0 $$
+
+$$ = 0$$
+
+Thus we get zero as the answer for this one. 
+
+![[Pasted image 20241231165834.png]]
 
 ----
 # Gauss's Theorem (Statement only)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zZqxbwl3Dno?si=kcOPzI4fMolDjh_I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Here's a nice explanation video of Gauss's Theorem
+Here's a nice explanation video of Gauss's Theorem :  
+
+https://www.youtube.com/watch?v=zZqxbwl3Dno (since the embed can't be rendered in a PDF)
+
+
+So **The Divergence Theorem of Gauss** states that the flux of whatever volume of fluid/electric field/electromagnetic field passing through either a surface or all the surfaces of a 3-D object can be given by : 
 
 ![[Pasted image 20241107204215.png]]
+
+
+where $\nabla \cdot \mathbf{F}$ is the divergence of the vector **F**. Let's assume that : 
+
+$$F = x\hat{i} \ + \ y\hat{j} \ + z\hat{j}$$
+Thus $$\nabla \cdot \mathbf{F} = \frac{d(x)}{dx} + \frac{d(y)}{dy} + \frac{d(z)}{dz}$$
+
+Now to understand the RHS and how the $\hat{n}$ vector works, we need to understand the **Surface Integral**.
+
+---
+## What is a Surface Integral?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X2Z0tJG0rjU?si=3mybRBXVMgCXeMxN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+https://www.youtube.com/watch?v=X2Z0tJG0rjU (since the embed can't be rendered in a PDF).
+
+So a Surface Integral is basically **any integral which is to be evaluated over a surface**.
+
+That surface could be any type.
+
+![[Pasted image 20241231171812.png]]
+
+
+
+
+So here we have the surface **S**. The surface integral for this surface will be given by :
+
+![[Pasted image 20241231171939.png]]
+
+$$\int_S\int_S{F . \ dS} \ = \int_S\int_S{F . \hat{n} \ dS}$$
+
+
+
+where the unit vector $\hat{n}$ is the vector **normal to the surface S and pointing outwards**.
+
+Now there's a note we need to follow.
+
+Depending on what plane the surface which we are dealing with is on :
+
+![[Pasted image 20241231172158.png]]
+
+
+Thus,
+
+XY plane : $\hat{n} = \hat{k}$
+YZ plane: $\hat{n} = \hat{i}$
+XZ plane: $\hat{n} = \hat{j}$
+
+**What is a plane?**
+
+![[Pasted image 20241231182256.png]]
+
+
+In the event where there is plane specified or you are given terms like "first quadrant" or "first octant", we will simply default to the **x-y plane**.
+
+
+That's great, now how do we find the value of the unit normal vector, $\hat{n}$ ?
+
+We can find that using this formula : 
+
+For vector $F = 3xy^3 - 2xz^2$
+
+$$\hat{n} = \frac{gradient(F)}{magnitude \ of \ gradient(F)}$$
+
+$$gradient(F) = \frac{d(x)}{dx} \hat{i} + \frac{d(y)}{dy} \hat{j} + \frac{d(z)}{dz} \hat{k} = (3y^3 - 2z^2)\hat{i} + (9xy^2)\hat{j} + (4xz)\hat{k}$$
+
+And $$magnitude \ of \ gradient(F) = \sqrt{[{\frac{d(x)}{dx}]}^2 + {[\frac{d(y)}{dy}]}^2 + {[\frac{d(z)}{dz}]}^2}$$
+
+Now watch the attached video for surface integral, the two examples in there should clear up any doubts regarding this.
+
+---
+Back to Gauss's theorem.
+
+Let's solve two examples to better understand how Gauss's theorem works :
+
+### Example 1.
+
+![[Pasted image 20241231173711.png]]
+
+
+So we have been given a vector $F = 4xz \ \hat{i} - y^2 \ \hat{j} + yz \ \hat{k}$  and been given a 3-D cube's dimensions.
+
+The resulting cube will be like this : 
+
+![[Pasted image 20241231173947.png]]
+
+So first we need to find the LHS, which is : 
+
+![[Pasted image 20241231174048.png]]
+
+
+so the divergence of vector F will be : $4z - 2y + y = 4z - y$.
+
+Now we don't need to find the limits of V as it's been given pretty straightforward, all three, x, y and z go from 0 to 1.
+
+The order of integration will be $dx \ dy \ dz$.
+
+$$\therefore \int\int\int_V{\nabla \cdot \mathbf{F} \ dV} = \int_{0}^{1}\int_{0}^{1}\int_{0}^{1}{4z-y \ dxdydz}$$
+
+![[Pasted image 20241231174735.png]]
+
+which will result in $$\frac{3}{2}$$
+
+Now for the RHS, what we need to figure out is the flux of the volume through all the surfaces of this cube.
+
+![[Pasted image 20241231181051.png]]
+
+So for each face, we need to figure out what the $\hat{n}$ will be.
+
+![[Pasted image 20241231181129.png]]
+
+So what we did here was in each face, substitute the value of x, y or z.
+
+![[Pasted image 20241231181703.png]]
+
+Using the rules for each plane from our picture earlier, 
+
+XY plane : $\hat{n} = \hat{k}$
+YZ plane: $\hat{n} = \hat{i}$
+XZ plane: $\hat{n} = \hat{j}$, 
+
+**We figured out which face of the cube was parallel to which axes plane**, and corresponding that we figured out the vector component, and each variable's value.
+
+And thus we see that the RHS also has the same value as the LHS, $\frac{3}{2}$ and so Gauss's theorem is verified.
+
+---
+## Example 2 
+
+![[Pasted image 20241231215450.png]]
+
+
+So first of all we need to verify the LHS.
+
+So we have LHS as : 
+
+![[Pasted image 20250101014122.png]]
+
+Now, so the divergence of vector F will be : $4 - 4y + 2z = 4 - 4y + 2z$.
+
+
+Now let's say we were to cut the cylinder like this:
+
+![[Pasted image 20250101014849.png]]
+
+
+Each cross-section of the cylinder would result in a circle of radius x = 2.
+
+Thus we get x = -2 (lower) to +2 (upper) from the equation of $x^2 + y^2 = 4$.
+
+Now for a fixed value of x, y can range from $-\sqrt{4 - x^2}$  (lower) to $+\sqrt{4 - x^2}$ (upper).
+
+And we are already given that z goes from 0 to 3.
+
+
+So now we can write :  
+
+$$\therefore \int\int\int_V{\nabla \cdot \mathbf{F} \ dV} = \int_{-2}^{2}\int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}}\int_{0}^{3}{ 4 - 4y + 2z \ dxdydz}$$
+
+Now eventually after solving this integral you will reach a step where you will have :
+
+$$\therefore \ 42 \int_{-2}^{2}\sqrt{4-x^2} \ dx$$
+
+Now we will convert to polar coordinates, but instead of choosing $x = rcos\theta$, we will choose 
+
+$x = rsin\theta$ since otherwise LHS = RHS doesn't happen (I spent an entire day on this shit I know that it's right.)
+
+and we already know that radius of the circle = 2.
+
+Thus $$x = 2sin\theta$$
+And so for $x = -2$
+
+$$-2 = 2 sin\theta \implies -1 = sin \theta \implies \theta = -\frac{\pi}{2}$$
+And for $x = 2$
+
+
+$$ 2 = 2sin\theta \implies 1 = sin\theta \implies \theta = \frac{\pi}{2} $$
+
+Differentiating for both sides : 
+
+$$dx = 2cos\theta$$
+
+Thus we get  
+
+$$ = 42 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{\sqrt{4 - (2sin\theta)^2} \ 2cos\theta \ d\theta}$$
+$$ = 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{\sqrt{4 - 4sin^2\theta} \ cos\theta \ d\theta}$$
+
+$$ = 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{\sqrt{4(1 - sin^2{\theta})} \ cos\theta \ d\theta}$$
+
+$$ = 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{\sqrt{4 \cos^2\theta} \ cos\theta \ d\theta}$$
+
+$$ = 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{2 \ cos\theta . cos\theta \ d\theta}$$
+$$ = 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{2 \ cos^2{\theta}}$$
+
+$$ = 168 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{cos^2\theta}$$
+
+$$ = 168 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{\frac{1 + cos2\theta}{2}} \ d\theta$$
+
+$$ = 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{1 \ d\theta} \ + \ 84 \int_{\frac{-\pi}{2}}^{\frac{\pi}{2}}{cos2\theta \ d \theta}$$
+
+$$ = 84 \  [\theta]_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \ + \ 84 \  . \ [\frac{sin2\theta}{2}]_{-\frac{\pi}{2}}^{\frac{\pi}{2}}$$
+
+$$ = 84 \ [\frac{2\pi}{2}] + 42 \ [sin(\pi) - sin(-\pi)]$$
+
+$$ = 84\pi + 0$$
+$$ = 84\pi$$
+
+Now for the RHS.
+
+$$ \int\int_S{F.\hat{n} \ dS} = \int\int_{S_1}{F . \hat{n} \ dS_1} + \int\int_{S_2}{F. \hat{n} \ dS_2} + \int\int_{S_3}{F . \hat{n} \ dS_3}$$
+
+![[Pasted image 20250101022821.png]]
+
+
+where $S_1$ is the circular base of the cylinder.
+$S_2$ is the circular top of the cylinder.
+$S_3$ is the curved surface of the cylinder given by $x^2 \ + \ y^2 = 4$
+
+For $S_1$, z = 0, the circle is on the XY plane, so $\hat{n} = -\hat{k}$.
+
+$$\therefore \ \int\int_{S_1}{F . \hat{n}} = 0$$
+
+For $S_2$, z = 3, the circle is parallel to the XY plane, so $\hat{n} = \hat{k}$
+
+$$\therefore \int\int_{S_2}{F. \hat{n} \ dS_1} \ = \int\int_{S_2} [4x \ \hat{i} - 2 y^2 \ \hat{j} + 9 \ \hat{k}] . \hat{k} \ dx \ dy$$
+
+$$ = 9 \int\int_{S_2}{dx \ dy}$$
+
+$$ = 9 \  \cdot area \ of \ the \ circular \ base$$
+
+$$ = 9 \ \cdot \ \pi r^2 \implies 36 \pi$$
+
+![[Pasted image 20250101024021.png]]
+
+
+$$ \therefore \int\int_{S_3}{F . \hat{n} \ dS_3} = \int\int_{S_3}{(2x^2 \ - \ y^3) \ dS_3}$$
+
+Now the surface goes along the XZ plane.
+
+Therefore x will be set to $rcos\theta$ and $y \ = \ rsin\theta$
+
+And $\theta$'s limits will go from 0 to $2\pi$ for the circular ends of the surface.
+
+We already have z's limits.
+
+The order of integration will be $r \ dz \ d\theta$, the $r$ being there because of the co-ordinate change.
+
+So we will have 
+
+$$\int_{0}^{2\pi}\int_{0}^{3}{(2x^2 \ - \ y^3) \ r \ dz \ d\theta}$$
+
+And on solving this ridiculously large integral we will get :
+
+![[Pasted image 20250101024915.png]]
+
+$$48\pi$$
+
+as the value for the third surface integral.
+
+Adding them up, we get : 
+
+$$ \int\int_S{F.\hat{n} \ dS} \  = \  \int\int_{S_1}{F . \hat{n} \ dS_1} + \int\int_{S_2}{F. \hat{n} \ dS_2} + \int\int_{S_3}{F . \hat{n} \ dS_3} \  =  \ 0 \ + \ 36 \pi \ + \ 48 \pi \ = \ 84\pi$$
+
+Thus, LHS = RHS and Gauss's Divergence theorem is verified!
 
 ---
 # Stokes's Theorem (Statement only)
@@ -894,5 +1340,160 @@ Here's a nice explanation video on Stokes's Theorem
 
 ![[Pasted image 20241107212155.png]]
 
----
 
+Or to explain it in a better way : 
+
+![[Pasted image 20250101025642.png]]
+
+
+![[Pasted image 20250101031242.png]]
+
+
+
+This is **the special case for Green's Theorem**
+
+
+![[Pasted image 20241231153519.png]]
+
+The curl of the vector **F** is the same as $\frac{dN}{dx} - \frac{dM}{dy}$ which we use if we have two continuous functions M and N.
+
+![[Pasted image 20241231153816.png]]
+
+
+However for Stoke's theorem we usually won't have two continuous functions M and N, instead we will have a vector field F.
+
+
+Since we already dealt with Green's theorem and surface integrals, the process will be more or less similar.
+### Example 1
+
+![[Pasted image 20250101031358.png]]
+
+which is the same question as :
+
+![[Pasted image 20250101031429.png]]
+
+
+Note that the vectors given in the two questions are different but the equation is the same for the circle so we have the same diagrams in both questions : 
+
+![[Pasted image 20250101031736.png]]
+
+
+![[Pasted image 20250101031747.png]]
+
+
+
+So, for the LHS : 
+
+$$\int F \ \cdot dr$$
+which the line integral over the entire sphere's boundary, including the circle on the XY plane.
+
+So we will get : 
+
+$$\int{(y\hat{i} + z\hat{j} + \ x\hat{k})}  \  \cdot  {(dx\hat{i} + dy\hat{j} + \ dz\hat{k})} = \ \int{y \ dx + z \ dy + x \ dz}$$
+
+Now since we only concerned with the XZ plane, $z = 0$ and $dz = 0$
+
+Thus, 
+
+$$\int{y \ dx + z \ dy + x \ dz} = \int{y \ dx}$$
+
+Converting to polar co-ordinates, 
+
+$x = rcos\theta$ and $y = rsin\theta$ and $\theta$ will go from 0 to $2\pi$ since we are only dealing the circle here as the equation has changed from $x^2 + y^2 + z^2 = 1$ to $x^2 + y^2 = 1$ which is the equation of a circle (as z = 0)
+
+From the equation $$x^2 + y^2 = 1 \implies r^2 = 1 \implies r = \pm 1$$
+
+However since we are concerned with the XY plane we will have r = 1.
+
+
+Thus differentiating both sides of $x = rcos\theta$, we get $dx = 1.-sin\theta \ d\theta$
+
+
+Thus, 
+
+$$\int{y \ dx + z \ dy + x \ dz} = \int{y \ dx}$$
+
+becomes : 
+
+$$\int_{0}^{2\pi}{sin\theta \ . -sin\theta \ d\theta} = \int_{0}^{2\pi}{-sin^2\theta \ d\theta} \ = \  - \int_{0}^{2\pi}{\frac{1-cos2\theta}{2}} \  = \ - \frac{1}{2}[\theta - \frac{sin2\pi}{2}]_{0}^{2\pi}$$
+
+$$ = \frac{1}{2}[2\pi - 0]$$
+
+$$ = -\pi$$
+
+
+
+and for the RHS here : 
+
+![[Pasted image 20250101031631.png]]
+
+We need to find the curl of the given vector. Let's go with the vector in the example from the video as it's a simpler one.
+
+![[Pasted image 20250101031831.png]]
+
+Thus we get $$curl(F) = -\hat{i} - \hat{j}  - \hat{k}$$
+And what about the unit normal vector $\hat{n}$ ? 
+
+Since in both, the video and the book, we see that the sphere is sitting on the XY plane, from our rules :
+
+XY plane : $\hat{n} = \hat{k}$
+YZ plane: $\hat{n} = \hat{i}$
+XZ plane: $\hat{n} = \hat{j}$, 
+
+We will have $\hat{n} = \hat{k}$. ( $\ + \ \hat{k}$  since the question explicitly says "above the XY plane", so the vector will point inwards of the sphere).
+
+Thus, 
+
+$$\int\int_S (-\hat{i} - \hat{j}  - \hat{k}) \ \cdot \ \hat{k} \ dx \ dy$$
+
+
+And we are left with : 
+
+$$  = - \int\int_S dx \ dy$$
+which is the formula of the area of a circle
+
+$$ = - \pi \ r^2$$
+
+
+Now if we set $x = rcos\theta$ and $y = rsin\theta$
+
+From the equation $$x^2 + y^2 = 1 \implies r^2 = 1 \implies r = \pm 1$$
+
+However since we are concerned with the XY plane we will have r = 1.
+
+Thus ,
+
+$$\int\int_S (-\hat{i} - \hat{j}  - \hat{k}) \ \cdot \ \hat{k} \ dx \ dy \ = \ - \int\int_S dx \ dy \ = \ -\pi r^2 \ = \ -\pi$$
+
+Thus LHS = RHS, and Stoke's theorem is verified!
+
+
+For the vector given in the book, it was the same result, just was positive instead of negative.
+
+![[Pasted image 20250101034849.png]]
+
+![[Pasted image 20250101034901.png]]
+
+---
+### Example 2:
+
+The second example in the video :
+
+![[Pasted image 20250101035016.png]]
+
+is the same as :
+
+![[Pasted image 20250101035031.png]]
+
+however just with a different vector and shape, but contains 4 line integrals overall.
+
+![[Pasted image 20250101035109.png]]
+
+![[Pasted image 20250101035123.png]]
+
+![[Pasted image 20250101035139.png]]
+
+This is the solution for the book's problem. To understand this, watch the example 2 in the video as the procedure is the same more or less, like the previous question.
+
+
+---
