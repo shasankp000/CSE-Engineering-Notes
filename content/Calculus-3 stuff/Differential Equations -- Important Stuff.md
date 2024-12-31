@@ -56,7 +56,7 @@ This equation will be considered exact, ==**if and only if**==
 $$\frac{dM}{dy} = \frac{dN}{dx}$$
 and the solution of the equation will be given by:
 
-$$\boxed{y=\int{Mdx} + \int{(no-x-containing-term-from-N)}dy = constant}$$
+$$\boxed{y=\int{Mdx} + \int{(no \ x \ containing \ term \ from \ N)}dy = constant}$$
 
 However there are times when :
 
