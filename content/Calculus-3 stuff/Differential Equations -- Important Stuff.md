@@ -94,8 +94,8 @@ Proceeding from here:
 
 ### For the alternate form
 
-1. If equation is of form $$\boxed{y(f(x,y)dx + g(x,y)dy) = 0}$$
-2. **M** = $y(f(x,y)$ , **N** = $g(x,y)$.
+1. If equation is of form $$\boxed{y(f(x,y)dx + xg(x,y)dy) = 0}$$
+2. **M** = $y(f(x,y)$ , **N** = $xg(x,y)$.
 3. If $$Mx-Ny \neq 0$$, then 
 4. Integrating factor = $$\boxed{\frac{1}{Mx-Ny}}$$
 5. Multiply this I.F to the original equation to get the exact equation. Proceed solving from there as previously discussed.
