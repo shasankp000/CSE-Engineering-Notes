@@ -1620,7 +1620,7 @@ We see that `+ < *`, so we shift `*`.
 | `$ T`       | <        | `+ id * id $`    | Shift `+`          |
 | `$ T +`     | <        | `id * id $`      | Shift `id`         |
 | `$ T + id`  | >        | `* id $`         | Reduce `id` to `3` |
-| `$ T + T`   | <        | `* id $`         | Shift `+`          |
+| `$ T + T`   | <        | `* id $`         | Shift `*`          |
 | `$ T + T *` |          | `id $`           |                    |
 
 We now compare `*` to `id`.
@@ -1634,7 +1634,7 @@ We see that `* < id`, so we shift `id`.
 | `$ T`          | <        | `+ id * id $`    | Shift `+`          |
 | `$ T +`        | <        | `id * id $`      | Shift `id`         |
 | `$ T + id`     | >        | `* id $`         | Reduce `id` to `3` |
-| `$ T + T`      | <        | `* id $`         | Shift `+`          |
+| `$ T + T`      | <        | `* id $`         | Shift `*`          |
 | `$ T + T *`    | <        | `id $`           | Shift `id`         |
 | `$ T + T * id` |          | `$`              |                    |
 
@@ -1649,7 +1649,7 @@ We see that `id > $`, so we reduce `id` to production `3`.
 | `$ T`          | <        | `+ id * id $`    | Shift `+`          |
 | `$ T +`        | <        | `id * id $`      | Shift `id`         |
 | `$ T + id`     | >        | `* id $`         | Reduce `id` to `3` |
-| `$ T + T`      | <        | `* id $`         | Shift `+`          |
+| `$ T + T`      | <        | `* id $`         | Shift `*`          |
 | `$ T + T *`    | <        | `id $`           | Shift `id`         |
 | `$ T + T * id` | >        | `$`              | Reduce `id` to `3` |
 | `$ T + T * T`  |          | `$`              |                    |
@@ -1667,7 +1667,7 @@ We reduce `T * T` to our numbered production `2`.
 | `$ T`          | <        | `+ id * id $`    | Shift `+`             |
 | `$ T +`        | <        | `id * id $`      | Shift `id`            |
 | `$ T + id`     | >        | `* id $`         | Reduce `id` to `3`    |
-| `$ T + T`      | <        | `* id $`         | Shift `+`             |
+| `$ T + T`      | <        | `* id $`         | Shift `*`             |
 | `$ T + T *`    | <        | `id $`           | Shift `id`            |
 | `$ T + T * id` | >        | `$`              | Reduce `id` to `3`    |
 | `$ T + T * T`  | >        | `$`              | Reduce `T * T` to `2` |
@@ -1684,7 +1684,7 @@ We see that `+ > $`, so we reduce `T + T` to production `1`.
 | `$ T`          | <        | `+ id * id $`    | Shift `+`             |
 | `$ T +`        | <        | `id * id $`      | Shift `id`            |
 | `$ T + id`     | >        | `* id $`         | Reduce `id` to `3`    |
-| `$ T + T`      | <        | `* id $`         | Shift `+`             |
+| `$ T + T`      | <        | `* id $`         | Shift `*`             |
 | `$ T + T *`    | <        | `id $`           | Shift `id`            |
 | `$ T + T * id` | >        | `$`              | Reduce `id` to `3`    |
 | `$ T + T * T`  | >        | `$`              | Reduce `T * T` to `2` |
@@ -1704,7 +1704,7 @@ So finally :
 | `$ T`          | <        | `+ id * id $`    | Shift `+`             |
 | `$ T +`        | <        | `id * id $`      | Shift `id`            |
 | `$ T + id`     | >        | `* id $`         | Reduce `id` to `3`    |
-| `$ T + T`      | <        | `* id $`         | Shift `+`             |
+| `$ T + T`      | <        | `* id $`         | Shift `*`             |
 | `$ T + T *`    | <        | `id $`           | Shift `id`            |
 | `$ T + T * id` | >        | `$`              | Reduce `id` to `3`    |
 | `$ T + T * T`  | >        | `$`              | Reduce `T * T` to `2` |
