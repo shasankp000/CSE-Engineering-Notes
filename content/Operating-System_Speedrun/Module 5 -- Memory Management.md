@@ -354,7 +354,13 @@ A very nice explanation from stack-overflow as to the clear difference between p
 https://stackoverflow.com/questions/15628671/page-number-and-offset
 
 ```python
-Let me talk around this a bit and hopefully I can be of some help. First, an analogy - imagine that you're trying to locate a house in a city. Imagine that each house was given a unique number - you can imagine that the number of houses would soon get very large and confusing. Now imagine that you introduce the concept of streets - the house numbers now become a bit more managable as you've grouped them into nice chunks. So: Streets = Page number, house number = offset address.
+Let me talk around this a bit and hopefully I can be of some help. 
+
+First, an analogy - imagine that you're trying to locate a house in a city. Imagine that each house was given a unique number - you can imagine that the number of houses would soon get very large and confusing. 
+
+Now imagine that you introduce the concept of streets - the house numbers now become a bit more managable as you've grouped them into nice chunks. 
+
+So: Streets = Page number, house number = offset address.
 ```
 
 Now sometimes people often confuse `page offset` with `page size`.
