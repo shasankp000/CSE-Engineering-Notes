@@ -112,7 +112,7 @@ A **decision point** includes conditional constructs like `if`, `while`, `for`, 
     - 1−10: Low complexity, easy to maintain and test.
     - 11−20: Moderate complexity, requires careful testing.
     - 21−50: High complexity, testing and maintenance become difficult.
-    - >50: Very high complexity, indicates poor design and should be refactored.
+    - greater than 50: Very high complexity, indicates poor design and should be refactored.
       
 - **Applications**:
     
@@ -143,7 +143,7 @@ def example(x, y):
 ```
 
 - Number of decision points = 2 (`if x > 0` and `if y > 0`)
-- Cyclomatic Complexity = 2+1=32 + 1 = 32+1=3
+- Cyclomatic Complexity = 2+1=3
 
 This indicates there are 3 independent paths to test.
 
