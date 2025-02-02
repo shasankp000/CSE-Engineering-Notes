@@ -42,3 +42,8 @@ A dedicated resources section is in [[Textbooks and YouTube Playlists]] (CTRL + 
 
 
 P.S if you like the notes, and have a github account, then please drop a star on https://github.com/shasankp000/CSE-Engineering-Notes!
+
+---
+# Stargazers over time [![Stargazers over time](https://starchart.cc/shasankp000/CSE-Engineering-Notes.svg?variant=adaptive)](https://starchart.cc/shasankp000/CSE-Engineering-Notes)
+
+---
