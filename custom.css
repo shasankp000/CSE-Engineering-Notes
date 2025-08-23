@@ -1,9 +1,0 @@
-/* Fix for MathJax clipping on mobile/overflow issues */
-mjx-container {
-  display: block !important;
-  overflow: auto !important;   /* adds horizontal/vertical scrollbars if needed */
-  max-width: 100% !important;
-  padding: 4px;
-  border-radius: 6px;
-  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-}
