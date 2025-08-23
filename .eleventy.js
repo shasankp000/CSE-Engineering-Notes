@@ -275,19 +275,30 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("link", function (str) {
-    return (
-      str &&
-      str.replace(/\[\[(.*?\|.*?)\]\]/g, function (match, p1) {
-        //Check if it is an embedded excalidraw drawing or mathjax javascript
-        if (p1.indexOf("],[") > -1 || p1.indexOf('"$"') > -1) {
-          return match;
-        }
-        const [fileLink, linkTitle] = p1.split("|");
+  return (
+    str &&
+    str.replace(/\[\[(.*?)(\|.*?)?\]\]/g, function (match, p1, p2) {
+      // Ignore excalidraw/mathjax
+      if (p1.indexOf("],[") > -1 || p1.indexOf('"$"') > -1) {
+        return match;
+      }
 
-        return getAnchorLink(fileLink, linkTitle);
-      })
-    );
-  });
+      // Case 1: [[#Header]] → same-note header
+      if (p1.startsWith("#")) {
+        const header = p1.substring(1);
+        const title = p2 ? p2.substring(1) : header;
+        return `<a class="internal-link" href="#${headerToId(header)}">${title}</a>`;
+      }
+
+      // Case 2 & 3: [[Note Title]] or [[Note Title#Header]]
+      const fileLink = p1;
+      const linkTitle = p2 ? p2.substring(1) : undefined;
+      return getAnchorLink(fileLink, linkTitle);
+    })
+  );
+});
+
+  
 
   eleventyConfig.addFilter("taggify", function (str) {
     return (
