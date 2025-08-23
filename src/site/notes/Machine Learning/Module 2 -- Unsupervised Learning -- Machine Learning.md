@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/machine-learning/module-2-unsupervised-learning-machine-learning/","title":"Unsupervised Learning -- Module 2 -- Machine Learning","tags":["Semester-7","Machine-Learning"],"created":"2025-07-28T13:29:36.234+05:30","updated":"2025-08-23T20:00:10.327+05:30"}
+{"dg-publish":true,"permalink":"/machine-learning/module-2-unsupervised-learning-machine-learning/","title":"Unsupervised Learning -- Module 2 -- Machine Learning","tags":["Semester-7","Machine-Learning"],"created":"2025-07-28T13:29:36.234+05:30","updated":"2025-08-23T23:10:26.871+05:30"}
 ---
 
 ---
@@ -642,6 +642,7 @@ Think of it as finding the "best" coordinate system to represent your data with 
 ---
 **Warning: Following content cannot be properly understood without proper knowledge of the follow matrix related operations:**
 
+Please go through [[Mathematics - 1A/Module 3 -- Matrices\|Module 3 -- Matrices]], [[Mathematics - 1A/Module 4 -- Vector Spaces\|Module 4 -- Vector Spaces]], [[Mathematics - 1A/Module 5 -- Vector Spaces -- Continued\|Module 5 -- Vector Spaces -- Continued]] and [[Numerical Methods/Module 4 -- Numerical Solutions\|Module 4 -- Numerical Solutions]] (Matrices from Numerical Methods, the Gaussian elimination, Gauss-Jordan, matrix-inversion and LU factorization methods)
 ## **Matrices**
 
 - Matrix multiplication and properties
@@ -653,7 +654,7 @@ Think of it as finding the "best" coordinate system to represent your data with 
 
 - **Definition**: For matrix A, if $Av = \lambda v$, then $\lambda$ is an eigenvalue and $v$ is the corresponding eigenvector
 - **Geometric interpretation**: Eigenvectors are directions that don't change when the matrix transformation is applied (only scaled)
-- **Eigendecomposition**: Breaking down a matrix into eigenvalues and eigenvectors
+- **Eigen decomposition**: Breaking down a matrix into eigenvalues and eigenvectors
 - **Properties of symmetric matrices**: Always have real eigenvalues and orthogonal eigenvectors
 
 ## **Covariance and Variance**
