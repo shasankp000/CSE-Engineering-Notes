@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/artificial-intelligence/module-2-search-strategies-and-adversarial-search/","title":"Search Strategies and Adversarial Search -- Artificial Intelligence","tags":["Semester-5","Semester-4"],"created":"2025-03-06T18:33:20.082+05:30"}
+{"dg-publish":true,"permalink":"/artificial-intelligence/module-2-search-strategies-and-adversarial-search/","title":"Search Strategies and Adversarial Search -- Artificial Intelligence","tags":["Semester-5","Semester-4"],"created":"2025-08-23T18:06:00.391+05:30"}
 ---
 
 
@@ -172,16 +172,16 @@ Take this graph here for example:
 
 ```mermaid
 flowchart TD;
-	6<-->5;
-	5<-->7;
-	5<-->2;
-	2<-->8;
-	2<-->1;
-	2<-->3;
-	1<-->4;
-	3<-->4;
-	3<-->10;
-	3<-->9;
+	6---5;
+	5---7;
+	5---2;
+	2---8;
+	2---1;
+	2---3;
+	1---4;
+	3---4;
+	3---10;
+	3---9;
 ```
 
 **Choosing a Depth Limit:**
@@ -247,12 +247,12 @@ Another Example:
 
 ```mermaid
 flowchart TD;
-	A<-->B;
-	B<-->D;
-	B<-->E;
-	A<-->C;
-	C<-->F;
-	C<-->G;
+	A---B;
+	B---D;
+	B---E;
+	A---C;
+	C---F;
+	C---G;
 ```
 
 Using a depth limit of 4 this time.
@@ -313,12 +313,12 @@ Using graph:
 
 ```mermaid
 flowchart TD;
-	A<-->B;
-	B<-->D;
-	B<-->E;
-	A<-->C;
-	C<-->F;
-	C<-->G;
+	A---B;
+	B---D;
+	B---E;
+	A---C;
+	C---F;
+	C---G;
 ```
 
 So we set two queues, one from start node and another one from the goal node
@@ -368,16 +368,16 @@ B-->A;
 
 ```mermaid
 flowchart TD;
-	6<-->5;
-	5<-->7;
-	5<-->2;
-	2<-->8;
-	2<-->1;
-	2<-->3;
-	1<-->4;
-	3<-->4;
-	3<-->10;
-	3<-->9;
+	6---5;
+	5---7;
+	5---2;
+	2---8;
+	2---1;
+	2---3;
+	1---4;
+	3---4;
+	3---10;
+	3---9;
 ```
 
 Let's set goal node to `6` and start node to `10`,
@@ -537,16 +537,16 @@ Taking our graph example again
 
 ```mermaid
 flowchart LR;
-	6<-->5;
-	5<-->7;
-	5<-->2;
-	2<-->8;
-	2<-->1;
-	2<-->3;
-	1<-->4;
-	3<-->4;
-	3<-->10;
-	3<-->9;
+	6---5;
+	5---7;
+	5---2;
+	2---8;
+	2---1;
+	2---3;
+	1---4;
+	3---4;
+	3---10;
+	3---9;
 ```
 
 For this example, let's assume our **goal node is node 10**. We also need to define a **heuristic function** that estimates the distance from each node to node 10. You can choose any reasonable heuristic for this example graph. For simplicity, let's say the heuristic assigns a value equal to the number of edges we need to traverse to reach node 10 directly.
@@ -639,16 +639,16 @@ Taking our examples graph again:
 
 ```mermaid
 flowchart LR;
-	6<-->5;
-	5<-->7;
-	5<-->2;
-	2<-->8;
-	2<-->1;
-	2<-->3;
-	1<-->4;
-	3<-->4;
-	3<-->10;
-	3<-->9;
+	6---5;
+	5---7;
+	5---2;
+	2---8;
+	2---1;
+	2---3;
+	1---4;
+	3---4;
+	3---10;
+	3---9;
 ```
 
 Let's say for now we have some dummy heuristic and cost values
