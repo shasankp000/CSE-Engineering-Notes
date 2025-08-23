@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/machine-learning/module-2-unsupervised-learning-machine-learning/","title":"Unsupervised Learning -- Module 2 -- Machine Learning","tags":["Semester-7","Machine-Learning"],"created":"2025-07-28T13:29:36.234+05:30"}
+{"dg-publish":true,"permalink":"/machine-learning/module-2-unsupervised-learning-machine-learning/","title":"Unsupervised Learning -- Module 2 -- Machine Learning","tags":["Semester-7","Machine-Learning"],"created":"2025-07-28T13:29:36.234+05:30","updated":"2025-08-23T20:00:10.327+05:30"}
 ---
 
 ---
@@ -391,13 +391,23 @@ This is a **double sum** over all pairs $(x_j, x_k)$ where both $x_j, x_k \in 
 
 The pairs are: $(x_1, x_1)$, $(x_1, x_3)$, $(x_3, x_1)$, $(x_3, x_3)$
 
-So, $$\sum_{x_j, x_k \in C_1}{K(x_j, x_k)} \ = \ K(x_1, x_1) \ + \ K(x_1, x_3) \ + \ K(x_3, x_1) \ + \ K(x_3, x_3)$$
+So, 
+
+$$\sum_{x_j, x_k \in C_1}{K(x_j, x_k)} \ = \ K(x_1, x_1) \ + \ K(x_1, x_3) \ + \ K(x_3, x_1) \ + \ K(x_3, x_3)$$
+
+
 
 $$= 1\ +\ 0.000123 \ + 0.000123 \ + \ 1 \ = \ 2.000246$$
 
+
+
 And $\frac{1}{|C_1|^2} \ = \ \frac{1}{2^2} \ = \ \frac{1}{4}$
 
-So, $$\frac{1}{4} \ \times \ 2.000246 \ = \ 0.500061$$
+So, 
+
+$$\frac{1}{4} \ \times \ 2.000246 \ = \ 0.500061$$
+
+
 
 So, final distance of point $x_1$ to cluster $C_1^{(0)}$ :
 
