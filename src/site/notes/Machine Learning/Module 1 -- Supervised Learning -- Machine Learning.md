@@ -120,7 +120,6 @@ So, getting back to K-Means clustering,
 4. Re-compute centroids as the **mean** of all points in the cluster (using the centroid formula).
 5. Repeat steps 3 & 4 until centroids don’t change (convergence is reached) or a maximum number of iterations is reached.
 
-
 ![Pasted image 20250414181534.png](/img/user/media/Pasted%20image%2020250414181534.png)
 
 ---
