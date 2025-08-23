@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-23T20:34:09.036+05:30"}
+{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-23T20:42:51.377+05:30"}
 ---
 
 ---
@@ -14,11 +14,6 @@ Hello I am Shasank (www.github.com/shasankp000)
 I made this notes website so that I and my friends and whoever that comes here has access to a free repository of high quality notes on a various number of topics under CS, starting from Operating Systems, Computer Networks, Linear Algebra, Machine Learning and so on...
 
 And to also bypass the very poor quality of education we are offered at my college.
-
----
-# Important
-
-Sometimes while viewing on mobile if certain math equations are too long, they may get clipped across the screen and you may not get the full equation. I have tried fixing it, but so far to no use. Please use `desktop mode` on the browser you are viewing on phone.
 
 ---
 # Resources
