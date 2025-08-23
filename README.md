@@ -14,3 +14,7 @@ Docs are available at [dg-docs.ole.dev](https://dg-docs.ole.dev/)
 I made this notes website so that I and my friends and whoever that comes here has access to a free repository of high quality notes on a various number of topics under CS, starting from Operating Systems, Computer Networks, Linear Algebra, Machine Learning and so on...
 
 And to also bypass the very poor quality of education we are offered at my college.
+
+---
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/shasankp000/CSE-Engineering-Notes.svg?variant=adaptive)](https://starchart.cc/shasankp000/CSE-Engineering-Notes)
