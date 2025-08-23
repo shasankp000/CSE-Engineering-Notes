@@ -1,9 +1,11 @@
 ---
-{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30"}
+{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-23T20:06:57.249+05:30"}
 ---
 
 ---
 # Welcome to the CSE-Engineering-Notes website!
+
+A free repository of high quality crafted notes for the average computer science student.
 
 ## What is this website about?
 
