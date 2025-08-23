@@ -501,12 +501,17 @@ module.exports = function (eleventyConfig) {
     return str && parsed.innerHTML;
   });
 
-  eleventyConfig.addTransform("htmlMinifier", (content, outputPath) => {
+    eleventyConfig.addTransform("htmlMinifier", (content, outputPath) => {
     if (
       (process.env.NODE_ENV === "production" || process.env.ELEVENTY_ENV === "prod") &&
       outputPath &&
       outputPath.endsWith(".html")
     ) {
+      // Skip minification if Mermaid blocks are present
+      if (content.includes("```mermaid") || content.includes('<pre class="mermaid">')) {
+        return content;
+      }
+
       return htmlMinifier.minify(content, {
         useShortDoctype: true,
         removeComments: true,
@@ -520,6 +525,7 @@ module.exports = function (eleventyConfig) {
     }
     return content;
   });
+
 
   eleventyConfig.addPassthroughCopy("src/site/img");
   eleventyConfig.addPassthroughCopy("src/site/scripts");
