@@ -1,12 +1,13 @@
 ---
-{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-23T20:42:51.377+05:30"}
+{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-24T22:49:14.501+05:30"}
 ---
 
 ---
 # Welcome to the CSE-Engineering-Notes website!
 
-A free repository of high quality crafted notes for the average computer science student.
+A free repository of high quality crafted notes for the average computer science student. Submitted on [Obsidian Community Vaults](https://vaults.obsidian-community.com/).
 
+---
 ## What is this website about?
 
 Hello I am Shasank (www.github.com/shasankp000)
@@ -44,3 +45,6 @@ You can search subject by subject or chapter or a specific topic in the search s
 
 ---
 ## Stargazers over time [![Stargazers over time](https://starchart.cc/shasankp000/CSE-Engineering-Notes.svg?variant=adaptive)](https://starchart.cc/shasankp000/CSE-Engineering-Notes)
+----
+
+
