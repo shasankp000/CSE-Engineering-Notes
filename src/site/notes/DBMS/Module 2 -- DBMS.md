@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/dbms/module-2-dbms/","title":"Module 2-- Database Management Systems","tags":["DBMS","SQL","Semester-6","Relational-Algebra","Relational-Calculus"],"created":"2025-03-07T20:14:16.886+05:30"}
+{"dg-publish":true,"permalink":"/dbms/module-2-dbms/","title":"Module 2-- Database Management Systems","tags":["DBMS","SQL","Semester-6","Relational-Algebra","Relational-Calculus"],"created":"2025-03-07T20:14:16.886+05:30","updated":"2025-08-26T14:28:39.388+05:30"}
 ---
 
 ---
@@ -41,22 +41,33 @@
     
     - **Purpose**: Filters rows based on a specified condition.
     - **Notation**:
-        - $$\sigma_{\text{condition}}(R)$$
+      
+    $$\sigma_{\text{condition}}(R)$$
     - **Example**:
-        - If $R$ is an **Employee** table, then $$\sigma_{\text{salary} > 50000}(Employee)$$(returns all employees with a salary greater than 50,000.
+        - If $R$ is an **Employee** table, then 
+    
+$$\sigma_{\text{salary} > 50000}(Employee)$$
+
+
+(returns all employees with a salary greater than 50,000.
           
 - **Projection (π)**
     
     - **Purpose**: Extracts specific columns from a relation.
     - **Notation**:
-        - $$\pi_{\text{column}_1, \text{column}_2, \ldots}(R)$$
+    
+    
+    $$\pi_{\text{column}_1, \text{column}_2, \ldots}(R)$$
     - **Example**:
-        - To obtain only the names and departments from **Employee**, write: $$\pi_{\text{name, department}}(\text{Employee})$$ 
+        - To obtain only the names and departments from **Employee**, write: 
+        
+$$\pi_{\text{name, department}}(\text{Employee})$$ 
 - **Union (∪)**
     
     - **Purpose**: Combines the tuples of two relations that have the same schema, eliminating duplicates.
     - **Notation**:
-        - $$R \cup S$$
+        
+$$R \cup S$$
     - **Example**:
         - Combining two relations **R** and **S** that store similar data.
           
@@ -66,7 +77,8 @@
     
     - **Purpose**: Returns tuples that are in one relation but not in another.
     - **Notation**:
-        - $$R - S$$
+    
+$$R - S$$
     - **Example**:
         - If **R** is the set of all employees and **S** is the set of employees in the IT department, then $R - S$ gives you employees not in IT.
           
@@ -75,7 +87,9 @@
 - **Intersection (∩)**
     
     - **Purpose**: Returns only the tuples common to both relations.
-    - **Note**: Intersection can be derived using union and difference: $$R \cap S = R - (R - S)$$
+    - **Note**: Intersection can be derived using union and difference: 
+    
+$$R \cap S = R - (R - S)$$
       
       ![Pasted image 20250308201720.png](/img/user/media/Pasted%20image%2020250308201720.png)
       
@@ -83,9 +97,14 @@
     
     - **Purpose**: Combines every tuple of one relation with every tuple of another relation.
     - **Notation**:
-        - $$R \times S$$
+
+$$R \times S$$
     - **Example**:
-        - If **R** has 3 tuples and **S** has 4 tuples, then $$R \times S$$ will have $$3 \times 4 = 12$$ tuples.
+        - If **R** has 3 tuples and **S** has 4 tuples, then 
+        
+$$R \times S$$ will have 
+
+$$3 \times 4 = 12$$ tuples.
     - **Note**: Cartesian product is the basis for more refined operations like joins.
       
 - **Join Operations** (Advanced, but important for context)
@@ -98,7 +117,11 @@
     
     - **Purpose**: Renames a relation or its attributes, which is useful for clarity or to perform self-joins.
     - **Notation**:
-        - $$\rho_{\text{newName}}(R)$$ or $$\rho_{\text{newName}(\text{attr}_1, \text{attr}_2, \ldots)}(R)$$
+
+$$\rho_{\text{newName}}(R)$$ or 
+
+$$\rho_{\text{newName}(\text{attr}_1, \text{attr}_2, \ldots)}(R)$$
+
 ---
 ## Worked out examples
 
