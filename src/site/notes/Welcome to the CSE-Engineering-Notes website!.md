@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-24T22:49:14.501+05:30"}
+{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-23T17:27:42.895+05:30","updated":"2025-08-28T13:20:44.326+05:30"}
 ---
 
 ---
@@ -24,7 +24,7 @@ You can search subject by subject or chapter or a specific topic in the search s
 ---
 # Work-in-Progress Notes:
 
-1. Machine Learning (50% done)
+1. Machine Learning (60% done)
 2. Soft Computing (Neural networks) (not started -- not in course -- still will do)
 3. Cyber Security (not started)
 4. Operations Research (not started)
