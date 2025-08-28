@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/machine-learning/module-3-ml-model-evaluation-statistical-learning-ensemble-methods/","title":"Module 3 -- ML Model evaluation, Statistical Learning, Ensemble methods","tags":["Semester-7","Machine-Learning"],"created":"2025-08-18T16:35:36.552+05:30","updated":"2025-08-28T13:09:03.781+05:30"}
+{"dg-publish":true,"permalink":"/machine-learning/module-3-ml-model-evaluation-statistical-learning-ensemble-methods/","title":"Module 3 -- ML Model evaluation, Statistical Learning, Ensemble methods","tags":["Semester-7","Machine-Learning"],"created":"2025-08-18T16:35:36.552+05:30","updated":"2025-08-28T13:14:45.551+05:30"}
 ---
 
 ---
@@ -576,7 +576,7 @@ Generally for exams and standard ML projects, the  **loss function is chosen pr
 
 - **For typical exam questions:**
     
-    - If not specified, use Mean Squared Error for regression, and Cross-Entropy for classification.[](https://www.elastic.co/docs/explore-analyze/machine-learning/data-frame-analytics/dfa-regression-lossfunction)[](https://www.elastic.co/docs/explore-analyze/machine-learning/data-frame-analytics/dfa-regression-lossfunction)
+    - If not specified, use Mean Squared Error for regression, and Cross-Entropy for classification.
         
     - You do **not** need to justify changing the loss function unless the question mentions special needs (like outliers or custom objectives).
         
