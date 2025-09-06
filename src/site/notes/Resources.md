@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/resources/","tags":["Resource"],"created":"2025-08-23T18:58:38.182+05:30"}
+{"dg-publish":true,"permalink":"/resources/","tags":["Resource"],"created":"2025-09-04T21:42:49.460+05:30","updated":"2025-09-06T21:33:46.232+05:30"}
 ---
 
 ---
@@ -92,5 +92,15 @@ Also:
 - https://www.youtube.com/watch?v=i_LwzRVP7bg&list=PLF-vWhgiaXWO_LDT0I0gv6gGHXIALlGBC (first and third video should be enough if you have taken Soft Computing or you want to study full ML + neural networks then don't leave out any source.)
   
 - https://www.youtube.com/playlist?list=PLQVvvaa0QuDezJFIOU5wDdfy4e9vdnx-7 (for reinforcement learning)
+
+- https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi (Neural networks playlist by 3blue1brown)
+
+- https://www.youtube.com/playlist?list=PLxGL0qHs2IM0eZxOcYROIBd11XVKiyTeg (a hindi dubbed playlist for the same neural networks videos by 3blue1brown)
+
+- https://www.youtube.com/watch?v=KuXjwB4LzSA (Convolution video which is the basis for CNN (Convolutional Neural Networks), by 3blue1brown)
+
+- https://www.youtube.com/watch?v=CznICCPa63Q (sequence modeling using CNNs, RNNs from MIT 6.S191)
+
+- https://www.youtube.com/watch?v=dqoEU9Ac3ek (RNNs from the same.)
 
 ---
