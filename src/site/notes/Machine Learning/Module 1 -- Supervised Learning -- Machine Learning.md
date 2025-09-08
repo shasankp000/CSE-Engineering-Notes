@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/machine-learning/module-1-supervised-learning-machine-learning/","title":"Supervised Learning -- Machine Learning Module 1","tags":["Semester-7","Machine-Learning"],"created":"2025-07-24T22:03:17.487+05:30"}
+{"dg-publish":true,"permalink":"/machine-learning/module-1-supervised-learning-machine-learning/","title":"Supervised Learning -- Machine Learning Module 1","tags":["Semester-7","Machine-Learning"],"created":"2025-08-29T17:21:00.620+05:30","updated":"2025-09-08T11:54:45.048+05:30"}
 ---
 
 ---
@@ -1902,7 +1902,7 @@ where:
 
 Let's hang back for a bit and understand this equation visually
 
-![[Pasted image 20250725202523.png\|Pasted image 20250725202523.png]]
+![Pasted image 20250725212756.png](/img/user/media/Pasted%20image%2020250725212756.png)
 
 
 The white plane at the bottom is the hyperplane, separating between two classes, one on top, the other on the bottom.
