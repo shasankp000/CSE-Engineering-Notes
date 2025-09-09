@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/resources/","tags":["Resource"],"created":"2025-09-04T21:42:49.460+05:30","updated":"2025-09-06T21:33:46.232+05:30"}
+{"dg-publish":true,"permalink":"/resources/","tags":["Resource"],"created":"2025-08-29T17:20:39.210+05:30","updated":"2025-09-09T18:44:47.855+05:30"}
 ---
 
 ---
@@ -51,6 +51,8 @@ Kudos to https://github.com/arkapg211002 for maintaining a detailed archive of s
 - Differential Calculus (pre calc-3, school level stuff + semester 1 calculus):  https://www.youtube.com/playlist?list=PLF-vWhgiaXWMnp6o_KU0xlbDQRUTm4nEm
   
 - Differential Equations (school level stuff + calc-3): https://www.youtube.com/playlist?list=PLF-vWhgiaXWN4RrcfIx0VkMKX39jM0cn5
+
+- Differential Equations high level stuff (Partial differential equations and all) by 3blue1brown: https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftqH6
 
 - DSA (C) (Linked Lists) : https://www.youtube.com/playlist?list=PLnccP3XNVxGrWkKFJMCtL5mDEcOnrjjib and full DSA playlist : https://www.youtube.com/playlist?list=PLu0W_9lII9ahIappRPN0MCAgtOu3lQjQi
 
