@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/data-warehousing-and-data-mining/data-mining-practice-module-2/","title":"Data Mining Numericals Practice -- Module 2","tags":["Data-Mining","Semester-6"],"created":"2025-05-17T12:25:18.809+05:30"}
+{"dg-publish":true,"permalink":"/data-warehousing-and-data-mining/data-mining-practice-module-2/","title":"Data Mining Numericals Practice -- Module 2","tags":["Data-Mining","Semester-6"],"created":"2025-08-29T17:20:44.330+05:30","updated":"2025-09-10T10:45:46.224+05:30"}
 ---
 
 
@@ -1822,17 +1822,17 @@ Color has two values:
 
 ###### For Red:
 
-$$Gini(Red) \ = \ 1 \ - \ (\frac{0}{6})^2 \ - \ (\frac{3}{6})^2$$
+$$Gini(Red) \ = \ 1 \ - \ (\frac{0}{3})^2 \ - \ (\frac{3}{3})^2$$
 
-$$Gini(Red) \ = \ 1 \ - \ 0 \ - \ 0.25$$
+$$Gini(Red) \ = \ 1 \ - \ 0 \ - \ 1$$
 
-$$Gini(Red) \ = \ 0.75$$
+$$Gini(Red) \ = \ 0$$
 
 ###### For Green:
 
-$$Gini(Green) \ = \ 1 \ - \ (\frac{3}{6})^2 \ - \ (\frac{0}{6})^2$$
+$$Gini(Green) \ = \ 1 \ - \ (\frac{3}{3})^2 \ - \ (\frac{0}{3})^2$$
 
-$$Gini(Green) \ = \ 1 \ - \ 0.25 \ = \ 0.75$$
+$$Gini(Green) \ = \ 1 \ - \ 1 \ - \ 0 = \ 0$$
 
 ###### Weighted Gini Index for Color:
 
@@ -1840,9 +1840,9 @@ $$Weighted \ Gini \ = \ \sum{(\frac{Total \ number \ of \ samples \ of \ part}{T
 
 So,
 
-$$Weighted \ Gini (Color) \ = \ [ \ (\frac{3}{6} \ \times\  0.75 ) \ + \ (\frac{3}{6} \ \times \ 0.75)\ ]$$
+$$Weighted \ Gini (Color) \ = \ [ \ (\frac{3}{6} \ \times\  0 ) \ + \ (\frac{3}{6} \ \times \ 0)\ ]$$
 
-$$Weighted \ Gini(Color) \ = \ [ \ 0.375 \ + \ 0.375] \ = \ 0.75$$
+$$Weighted \ Gini(Color) \ = \ [ \ 0 \ + \ 0] \ = \ 0$$
 
 ---
 ##### Gini Index for Size Attribute
@@ -1887,14 +1887,14 @@ $$Weighted \ Gini(Color) \ = \ [ \ 0.3333 \ + \ 0.1666] \ = \ 0.4999$$
 
 We have so far:
 
-- `Color`: Gini = `0.75`
+- `Color`: Gini = `0`
 - `Size`: Gini = `0.4999`
 
 Unlike what we do in ID3, where we choose the attribute with the highest information gain, in CART, we choose the attribute with the lowest Gini Index
 
-A `min(0.75, 0.4999)` results in `0.4999`
+A `min(0, 0.4999)` results in `0`
 
-So we choose the starting attribute as `Size`, on the root node.
+So we choose the starting attribute as `Color`, on the root node.
 
 | ID  | Color | Size  | Edible |
 | --- | ----- | ----- | ------ |
@@ -1907,36 +1907,36 @@ So we choose the starting attribute as `Size`, on the root node.
 
 ```mermaid
 flowchart TD;
-	Size-->Large
-	Size-->Small
+	Color-->Green
+	Color-->Red
 ```
 
 Now we need to decide which node is the leaf and which will be continued.
 
-So we need to recalculate the Gini Indexes of Large and Small on a **node** level.
+So we need to recalculate the Gini Indexes of Green and Red on a **node** level.
 
-| Size  | Edible |
+| Color | Edible |
 | ----- | ------ |
-| Small | Yes    |
-| Small | No     |
-| Small | Yes    |
-| Small | No     |
+| Green | Yes    |
+| Green | Yes    |
+| Green | Yes    |
 
-Total samples = 4 -> 2 yes, 2 no
+Total samples = 3 -> 3 yes, 0 no
 
-$$Gini(Small) \ = \ 1 \ - \ (\frac{1}{2})^2 \ - \ (\frac{1}{2})^2$$
-$$Gini(Small) \ = \ 0.5$$
+$$Gini(Green) \ = \ 1 \ - \ (\frac{3}{3})^2 \ - \ (\frac{0}{3})^2$$
+$$Gini(Green) \ = \ 0$$
 
-| Size  | Edible |
-| ----- | ------ |
-| Large | Yes    |
-| Large | No     |
+| Size | Edible |
+| ---- | ------ |
+| Red  | No     |
+| Red  | No     |
+| Red  | No     |
 
-Total samples = 2 -> 1 yes, 1 no
+Total samples = 3 -> 0 yes, 3 no
 
-$$Gini(Large) \ = \ 1 \ - \ (\frac{1}{2})^2 \ - \ (\frac{1}{2})^2$$
+$$Gini(Large) \ = \ 1 \ - \ (\frac{0}{3})^2 \ - \ (\frac{3}{3})^2$$
 
-$$Gini(Large) \ = \ 0.5$$
+$$Gini(Red) \ = \ 0$$
 
 This was technically not needed since we are still in the first split and it was calculated before, but I did this to demonstrate that we recalculate Gini index at each node level.
 
@@ -1944,63 +1944,64 @@ Now,
 
 A leaf node is decided when an attribute has a Gini index of `0`.
 
-Both `Large` and `Small` have a Gini index of `0.5`.
+Both `Green` and `Red` have a Gini index of `0.5`.
 
 So neither are leaf nodes and need to be continued to split.
 
-So we remove `Size` from the dataset as it has been used.
+So we remove `Color` from the dataset as it has been used.
 
-| ID  | Color | Edible |
+| ID  | Size  | Edible |
 | --- | ----- | ------ |
-| 1   | Green | Yes    |
-| 2   | Green | Yes    |
-| 3   | Red   | No     |
-| 4   | Red   | No     |
-| 5   | Green | Yes    |
-| 6   | Red   | No     |
+| 1   | Small | Yes    |
+| 2   | Large | Yes    |
+| 3   | Small | No     |
+| 4   | Large | No     |
+| 5   | Small | Yes    |
+| 6   | Small | No     |
 
-Color is the only remaining attribute with a Gini index of `0.75`, so we will split on `Color`.
+Size is the only remaining attribute with a Gini index of `0.4999`, so we will split on `Size`.
 
 ```mermaid
 flowchart TD;
-	Size-->Large
-	Size-->Small
-	Large-->Color
-	Small-->Color
 	Color-->Red
 	Color-->Green
+	Green-->Size
+	Red-->Size
+	Size-->Large
+	Size-->Small
 ```
 
-Now if we recalculate the Gini indexes of `Red` and `Green` based on this dataset (We wouldn't need to since `Red` and `Green` are evidently the two last nodes in the tree, but for practice's sake ):
+Now if we recalculate the Gini indexes of `Small` and `Large` based on this dataset (We wouldn't need to since `Red` and `Green` are evidently the two last nodes in the tree, but for practice's sake ):
 
-We split `Red` and `Green` datasets entirely on the node level.
-###### 🔴 Red Node (Subset of size 3):
+We split `Large` and `Small` datasets entirely on the node level.
+###### Large Node (Subset of size 2):
 
-|Color|Edible|
-|---|---|
-|Red|No|
-|Red|No|
-|Red|No|
+| Color | Edible |
+| ----- | ------ |
+| Large | Yes    |
+| Large | No     |
+
 
 So:
 
-- Total = 3
-- Class distribution = `[0 Yes, 3 No]`
+- Total = 2
+- Class distribution = `[1 Yes, 1 No]`
 
-$$Gini(Red) \ = \ 1 \ - \ (\frac{0}{3})^2 \ - \ (\frac{3}{3})^2 \ = \ 0$$
+$$Gini(Large) \ = \ 1 \ - \ (\frac{1}{2})^2 \ - \ (\frac{1}{2})^2 \ = \ 0.5$$
 
-###### 🟢 Green Node (Subset of size 3):
+######  Small Node (Subset of size 4):
 
-|Color|Edible|
-|---|---|
-|Green|Yes|
-|Green|Yes|
-|Green|Yes|
+| Color | Edible |
+| ----- | ------ |
+| Small | Yes    |
+| Small | Yes    |
+| Small | No     |
+| Small | No     |
 
-- Total = 3
-- Class distribution = `[3 Yes, 0 No]`
+- Total = 4
+- Class distribution = `[2 Yes, 2 No]`
 
-$$Gini(Green) \ = \ 1 \ - \ (\frac{3}{3})^2 \ - \ (\frac{0}{3})^2 \ = \ 0$$
+$$Gini(Small) \ = \ 1 \ - \ (\frac{2}{4})^2 \ - \ (\frac{2}{4})^2 \ = \ 0.5$$
 
 So both are **pure nodes** and can be classified as leaf nodes.
 
@@ -2008,21 +2009,21 @@ So our final decision tree looks like:
 
 ```mermaid
 flowchart TD;
-	Size-->Large
-	Size-->Small
-	Large-->Color
-	Small-->Color
 	Color-->Red
 	Color-->Green
-	Red-->RedLeaf[Yes]
-	Green-->GreenLeaf[Yes]
+	Green-->Size
+	Red-->Size
+	Size-->Large
+	Size-->Small
+	Large-->LargeLeaf[Yes]
+	Small-->SmallLeaf[Yes]
 ```
 
 Now if you are thinking that why didn't we do the same node level calculations in ID3, we did that, however it was a different quantity, the entropy, which was done at each node (or value) level, but it was all done beforehand.
 
 Since CART deals with only one quantity, the **Gini Index**, the precomputed values on the entire dataset are not applicable after the first split, so we need to recalculate at the node level per level.
 
-So, even though both `Red` and `Green` in the final split had the same Gini before splitting (`0.75` when considered globally), once split into individual nodes, each subset turned out to be pure — which is only revealed through local node-level Gini calculation.
+So, even though both `Small` and `Large` in the final split had the same Gini before splitting (`0.5` when considered globally), once split into individual nodes, each subset turned out to be pure — which is only revealed through local node-level Gini calculation.
 
 This was not necessary in this particular dataset, but of dataset of increasing attributes and sizes this step is very important.
 
