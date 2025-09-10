@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/data-warehousing-and-data-mining/data-mining-practice-module-2/","title":"Data Mining Numericals Practice -- Module 2","tags":["Data-Mining","Semester-6"],"created":"2025-08-29T17:20:44.330+05:30","updated":"2025-09-10T10:45:46.224+05:30"}
+{"dg-publish":true,"permalink":"/data-warehousing-and-data-mining/data-mining-practice-module-2/","title":"Data Mining Numericals Practice -- Module 2","tags":["Data-Mining","Semester-6"],"created":"2025-08-29T17:20:44.330+05:30","updated":"2025-09-10T11:49:36.796+05:30"}
 ---
 
 
@@ -1944,7 +1944,7 @@ Now,
 
 A leaf node is decided when an attribute has a Gini index of `0`.
 
-Both `Green` and `Red` have a Gini index of `0.5`.
+Both `Green` and `Red` have a Gini index of `0`.
 
 So neither are leaf nodes and need to be continued to split.
 
