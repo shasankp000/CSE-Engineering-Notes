@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/machine-learning/module-1-supervised-learning-machine-learning/","title":"Supervised Learning -- Machine Learning Module 1","tags":["Semester-7","Machine-Learning"],"created":"2025-08-29T17:21:00.620+05:30","updated":"2025-09-10T10:43:43.510+05:30"}
+{"dg-publish":true,"permalink":"/machine-learning/module-1-supervised-learning-machine-learning/","title":"Supervised Learning -- Machine Learning Module 1","tags":["Semester-7","Machine-Learning"],"created":"2025-08-29T17:21:00.620+05:30","updated":"2025-09-10T11:48:42.726+05:30"}
 ---
 
 ---
@@ -1138,7 +1138,7 @@ Now,
 
 A leaf node is decided when an attribute has a Gini index of `0`.
 
-Both `Green` and `Red` have a Gini index of `0.5`.
+Both `Green` and `Red` have a Gini index of `0`.
 
 So neither are leaf nodes and need to be continued to split.
 
