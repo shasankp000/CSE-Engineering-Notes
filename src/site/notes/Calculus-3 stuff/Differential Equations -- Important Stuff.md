@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/calculus-3-stuff/differential-equations-important-stuff/","title":"Differential Equations -- Important Stuff -- Mathematics III","tags":["Semester-3"],"created":"2025-03-06T18:33:20.144+05:30"}
+{"dg-publish":true,"permalink":"/calculus-3-stuff/differential-equations-important-stuff/","title":"Differential Equations -- Important Stuff -- Mathematics III","tags":["Semester-3"],"created":"2025-08-29T17:20:43.300+05:30","updated":"2025-09-11T13:21:17.984+05:30"}
 ---
 
 ---
@@ -389,7 +389,7 @@ or $$\boxed{y = 2\sqrt{x} + x + 1}$$
 # Second Order Differential Equations
 
 A linear D.E of second order with constant coefficients is of the form:
-$$\frac{d^2}{dx^2} + P_1.\frac{dy}{dx} + P_2y = x$$
+$$\frac{d^2y}{dx^2} + P_1.\frac{dy}{dx} + P_2y = x$$
 
 where $P_1$ and $P_2$ are constants and $x$ is either a constant or a function of $x$ itself.
 
