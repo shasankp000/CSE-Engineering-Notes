@@ -274,6 +274,7 @@ module.exports = function (eleventyConfig) {
     return date && date.toISOString();
   });
 
+  
   eleventyConfig.addFilter("link", function (str) {
   return (
     str &&
@@ -512,7 +513,7 @@ module.exports = function (eleventyConfig) {
     return str && parsed.innerHTML;
   });
 
-    eleventyConfig.addTransform("htmlMinifier", (content, outputPath) => {
+  eleventyConfig.addTransform("htmlMinifier", (content, outputPath) => {
     if (
       (process.env.NODE_ENV === "production" || process.env.ELEVENTY_ENV === "prod") &&
       outputPath &&
@@ -523,16 +524,31 @@ module.exports = function (eleventyConfig) {
         return content;
       }
 
-      return htmlMinifier.minify(content, {
-        useShortDoctype: true,
-        removeComments: true,
-        collapseWhitespace: true,
-        conservativeCollapse: true,
-        preserveLineBreaks: true,
-        minifyCSS: true,
-        minifyJS: true,
-        keepClosingSlash: true,
-      });
+      try {
+        return htmlMinifier.minify(content, {
+          useShortDoctype: true,
+          removeComments: true,
+          collapseWhitespace: true,
+          conservativeCollapse: true,
+          preserveLineBreaks: true,
+          minifyCSS: true,
+          minifyJS: true,
+          keepClosingSlash: true,
+          // Add these options to handle Unicode characters better
+          caseSensitive: true,
+          collapseBooleanAttributes: false,
+          removeAttributeQuotes: false,
+          removeEmptyAttributes: false,
+          // This is crucial for handling Unicode in attributes and IDs
+          decodeEntities: false,
+          // Prevent issues with malformed anchor links
+          ignoreCustomFragments: [/<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/, /\{\{[\s\S]*?\}\}/]
+        });
+      } catch (error) {
+        console.warn(`HTML minification failed for ${outputPath}:`, error.message);
+        // Return original content if minification fails
+        return content;
+      }
     }
     return content;
   });
