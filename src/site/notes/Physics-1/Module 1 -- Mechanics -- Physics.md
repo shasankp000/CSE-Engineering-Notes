@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/physics-1/module-1-mechanics-physics/","tags":["Semester-1","Physics","Mechanics"],"created":"2025-09-06T16:25:27.484+05:30","updated":"2025-09-19T13:08:23.528+05:30"}
+{"dg-publish":true,"permalink":"/physics-1/module-1-mechanics-physics/","tags":["Semester-1","Physics","Mechanics"],"created":"2025-09-06T16:25:27.484+05:30","updated":"2025-09-19T15:07:52.537+05:30"}
 ---
 
 ---
@@ -1482,6 +1482,8 @@ The simple harmonic oscillator is by the simplest and most important system in p
 ![Pasted image 20250915131904.png](/img/user/media/Pasted%20image%2020250915131904.png)
 
 
+In the picture we can see the ohm symbol, in practice, all equations use $\omega$ (omega) instead.
+
 So, we have our simple harmonic oscillator setup here where a simple square block of mass $m$ is attached to a spring whose other end is stuck to a wall.
 
 Now, by default, the spring is at rest, or at equilibrium. **The equilibrium of an object is defined by the state ==when all external forces and torques acting on it are balanced, resulting in zero net force and zero net torque==. This balance means the object experiences no linear or angular acceleration, so it either remains at rest (static equilibrium) or moves at a constant velocity (dynamic equilibrium).**
@@ -1518,19 +1520,19 @@ a \ = \ \frac{-kx}{m}
 $$
 
 
-Now we can set $\sqrt{\frac{k}{m}}$  to a simpler constant $\ohm$. This is just to simplify the equation.
+Now we can set $\sqrt{\frac{k}{m}}$  to a simpler constant $\omega$. This is just to simplify the equation.
 
-So, $\ohm^2 \ = \ \frac{k}{m}$
+So, $\omega^2 \ = \ \frac{k}{m}$
 
-## Why Define $\ohm^2 \ = \ \frac{k}{m}$
+## Why Define $\omega^2 \ = \ \frac{k}{m}$
 
 Two reasons:
 
 1. **Simplicity** — instead of always writing $\frac{k}{m}$ we use a single symbol.
     
-2. **Physical meaning** — $\ohm$ (sometimes also denoted by $\omega$) turns out to be the **angular frequency** of oscillation.
+2. **Physical meaning** — $\omega$ 
 
-And the value of $\ohm$ is fixed, it is determined by the stiffness of the spring $k$  and the mass of the block $m$.
+And the value of $\omega$ is fixed, it is determined by the stiffness of the spring $k$  and the mass of the block $m$.
 
 Now, we can set 
 
