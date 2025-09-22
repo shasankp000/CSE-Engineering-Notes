@@ -1,10 +1,7 @@
 ---
-tags:
-  - Semester-1
-  - Physics
-  - Mechanics
-dg-publish: true
+{"dg-publish":true,"permalink":"/physics-1/module-1-mechanics-physics/","tags":["Semester-1","Physics","Mechanics"],"created":"2025-09-06T16:25:27.484+05:30","updated":"2025-09-19T15:07:52.537+05:30"}
 ---
+
 ---
 # Index
 
@@ -55,7 +52,7 @@ Let's dive into a simple and easy to understand example
 
 Imagine a small bead threaded onto a fixed circular wire of radius $R$. The bead can move freely on the wire, but it cannot leave the wire.
 
-![[Pasted image 20250906222108.png]]
+![Pasted image 20250906222108.png](/img/user/media/Pasted%20image%2020250906222108.png)
 
 #### 1. **Free Particle in 2D**
 
@@ -121,7 +118,7 @@ Before we talk about friction laws, we need one simple concept:
 
 **Normal Force** = How hard the two surfaces are pressed together
 
-![[Pasted image 20250907144429.png]]
+![Pasted image 20250907144429.png](/img/user/media/Pasted%20image%2020250907144429.png)
 
 ## Examples:
 
@@ -203,7 +200,7 @@ Let's combine the two concepts with a classic **example**:
 
 A $5$ kg block sits on a rough inclined plane that makes a $30\textdegree$ angle with the horizontal. The coefficient of static friction is $\mu_s = 0.6$ and kinetic friction is $μₖ = 0.4$.
 
-![[Pasted image 20250907164532.png]]
+![Pasted image 20250907164532.png](/img/user/media/Pasted%20image%2020250907164532.png)
 
 
 **Questions:**
@@ -221,7 +218,7 @@ This means we only need to consider motion **parallel** to the plane (green li
 ---
 ### Step 2: Draw and Identify forces
 
-![[Pasted image 20250907165725.png]]
+![Pasted image 20250907165725.png](/img/user/media/Pasted%20image%2020250907165725.png)
 
 This diagram I drew, is called a **Free body diagram (FBD)** and it's a must for visualizing the problem better.
 
@@ -288,7 +285,7 @@ https://www.youtube.com/watch?v=XipB_uEexF0&list=PLF-vWhgiaXWNi9OuPCbguaPgL67XH7
 
 A very simple method of solving a multivariable calculus equation via the chain rule is to draw a tree like this:
 
-![[Pasted image 20250901032455.png]]
+![Pasted image 20250901032455.png](/img/user/media/Pasted%20image%2020250901032455.png)
 
 
 And once we have constructed the equation, we can then just perform standard differentiation rules to solve it.
@@ -451,29 +448,29 @@ https://www.youtube.com/watch?v=hXOrQ0Ao4UE&list=PLF-vWhgiaXWM7Iri0t_AjBfv51tF28
 
 The above link points to a full comprehensive recap of class 12 recap. Watch it only if you have time.
 
-Following recap section taken from [[Integral Calculus#Class 12 level recap]]
+Following recap section taken from [[Calculus-3 stuff/Integral Calculus#Class 12 level recap\|Integral Calculus#Class 12 level recap]]
 
 ## Basic Integral Formulae
 
-![[WhatsApp Image 2024-11-06 at 11.09.36_8ab79753.jpg]]
+![WhatsApp Image 2024-11-06 at 11.09.36_8ab79753.jpg](/img/user/media/WhatsApp%20Image%202024-11-06%20at%2011.09.36_8ab79753.jpg)
 
-![[WhatsApp Image 2024-11-06 at 11.09.36_a529dee3.jpg]]
+![WhatsApp Image 2024-11-06 at 11.09.36_a529dee3.jpg](/img/user/media/WhatsApp%20Image%202024-11-06%20at%2011.09.36_a529dee3.jpg)
 
 ---
 ## Some basic trigonometric identities
 
 https://www.youtube.com/watch?app=desktop&v=m1OitPmkydY
 
-![[Pasted image 20241106111131.png]]
+![Pasted image 20241106111131.png](/img/user/media/Pasted%20image%2020241106111131.png)
 
 https://www.geeksforgeeks.org/trigonometric-identities/
 
-![[Trigonometry-Identities.webp]]
+![Trigonometry-Identities.webp](/img/user/media/Trigonometry-Identities.webp)
 
 
 https://www.geeksforgeeks.org/trigonometry-table/
 
-![[Trogonometry-2.png]]
+![Trogonometry-2.png](/img/user/media/Trogonometry-2.png)
 
 ---
 ## Methods of integration 
@@ -588,7 +585,7 @@ So here we see that the column of **D** has reached `0`.
 
 So we multiply downwards, diagonally, along with each respective sign, and write them together for the final answer.
 
-![[Pasted image 20241106211308.png]]
+![Pasted image 20241106211308.png](/img/user/media/Pasted%20image%2020241106211308.png)
 
 Like this.
 
@@ -596,7 +593,7 @@ So the final answer becomes,
 
 $$\int{x^2.sin(3x)dx} = \boxed{\frac{-x^{2}.cos(3x)}{3}+\frac{2sin(3x)}{9}+\frac{2cos(3x)}{27}}$$
 
-![[Pasted image 20241106211458.png]]
+![Pasted image 20241106211458.png](/img/user/media/Pasted%20image%2020241106211458.png)
 
 ---
 ### Example 2
@@ -621,7 +618,7 @@ So we stop at the second row itself, since the third row makes the math complica
 
 And we make the diagonal products.
 
-![[Pasted image 20241106213018.png]]
+![Pasted image 20241106213018.png](/img/user/media/Pasted%20image%2020241106213018.png)
 
 So the final answer would be : $$x^4.log(x)dx = \boxed{\frac{x^5.ln(x)}{5} - \int{\frac{x^4}{5}}}$$. **Yes, in such instances of a row being possible to integrate, we write it in the answer**.
 
@@ -647,7 +644,7 @@ So ,
 In the third row we see that our original question has appeared.
 
 
-![[Pasted image 20241106213952.png]]
+![Pasted image 20241106213952.png](/img/user/media/Pasted%20image%2020241106213952.png)
 
 
 So we stop the operations and write diagonal products first. 
@@ -735,10 +732,10 @@ If you happen to think that line integrals are regular, double or triple integra
 
 What does this mean? 
 
-![[Pasted image 20241231143159.png]]
+![Pasted image 20241231143159.png](/img/user/media/Pasted%20image%2020241231143159.png)
 
 
-![[Pasted image 20241231153313.png]]
+![Pasted image 20241231153313.png](/img/user/media/Pasted%20image%2020241231153313.png)
 
 So let's say we divided the curve into 4 smaller "line curves" or just lines.
 
@@ -795,7 +792,7 @@ Imagine walking along a trail where you pick up rocks. The "density" tells you h
 
 ==We can find the line integral for a vector field, let's say a curve in it, by taking the dot product of the curve plugged into the vector field function and the derivative of the curve==.
 
-![[Pasted image 20250908212038.png]]
+![Pasted image 20250908212038.png](/img/user/media/Pasted%20image%2020250908212038.png)
 
 
 Let's try to understand this with a simple example.
@@ -1204,9 +1201,9 @@ And that's all that's needed for a very basic idea of PDEs
 
 Now, how can we find the best way to decrease a system from higher to lower potential energy?
 
-Well, if you are someone like me who studied Machine Learning before physics, in [[Module 4 -- Sparse Modeling and Estimation, Modeling Time-Series Data, Deep Learning and Feature Representation Learning.#What is Gradient Descent?]] deep learning, you would that we use Gradient Descent method to minimize the cost function of a network, to "effectively nudge the system towards a desired pattern of weights and biases to get a desired output."
+Well, if you are someone like me who studied Machine Learning before physics, in [[Machine Learning/Module 4 -- Sparse Modeling and Estimation, Modeling Time-Series Data, Deep Learning and Feature Representation Learning.#What is Gradient Descent?\|Module 4 -- Sparse Modeling and Estimation, Modeling Time-Series Data, Deep Learning and Feature Representation Learning.#What is Gradient Descent?]] deep learning, you would that we use Gradient Descent method to minimize the cost function of a network, to "effectively nudge the system towards a desired pattern of weights and biases to get a desired output."
 
-![[Pasted image 20250912211124.png]]
+![Pasted image 20250912211124.png](/img/user/media/Pasted%20image%2020250912211124.png)
 
 An image depiction of how the gradient descent method would look when let's a man is trying to find the way downhill from a point high up in the hills. The image on the right shows a faster variant of Gradient Descent called "Stochastic Gradient Descent" which is a method not as accurate as the original Gradient Descent, but faster than it, typically useful in deep learning. The original Gradient descent method would represent a man taking careful and calculated steps downward, which is slow, and the stochastic gradient descent method would represent a drunken man taking large abrupt steps downhill, but getting down faster.
 
@@ -1255,11 +1252,11 @@ In mechanics, an equipotential surface is ==a three-dimensional surface where t
 
 Just as electric field lines are always perpendicular to equipotential surfaces in electrostatics, **[gravitational field lines](https://www.google.com/search?q=gravitational+field+lines&sca_esv=740b1856071a0588&ei=VEDEaJLIMJu7vr0PzM-u6Ak&ved=2ahUKEwjt5KP9yNOPAxX9h1YBHXLeFnEQgK4QegQIARAE&uact=5&oq=equipotential+surfaces+in+mechanics&gs_lp=Egxnd3Mtd2l6LXNlcnAiI2VxdWlwb3RlbnRpYWwgc3VyZmFjZXMgaW4gbWVjaGFuaWNzMgYQABgWGB4yCBAAGBYYChgeMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTIFEAAY7wUyCBAAGIAEGKIEMggQABiABBiiBEjBH1D0A1iwHnAEeAGQAQCYAeABoAHlFKoBBjAuMTMuMrgBA8gBAPgBAZgCE6ACkRXCAgoQABiwAxjWBBhHwgINEAAYgAQYsAMYQxiKBcICBRAAGIAEwgIKEAAYgAQYQxiKBcICBRAhGKABmAMAiAYBkAYKkgcGNC4xMi4zoAf6drIHBjAuMTIuM7gHiBXCBwQxLjE4yAcm&sclient=gws-wiz-serp&mstk=AUtExfAmfvMC3mUPkfqkHXdChP6OJejf_r3Thc7HsL3xcTU248qZckPb-rwlSr0YgdkZtx9XYC-o5BX1VLV2HT24fg0e7zrMP6COFLVmpg2JocKXHaajwLg78ZvF-ROP9_30vOAGLgrmU-Vjja9scaucPlA3fQ4udB-DyoBglUIUb1aORHCiuBu_rtZh6rk793EfE4JNx1iDDIDFFgCMonpfkCZ_jA&csui=3) are perpendicular to equipotential surfaces in mechanics**. The concept is applicable to any potential field, such as gravity, so the equipotential surfaces for a uniform gravitational field are horizontal planes.
 
-  ![[Pasted image 20250912212019.png]]
+  ![Pasted image 20250912212019.png](/img/user/media/Pasted%20image%2020250912212019.png)
 
 Gravitational field lines are ==imaginary lines used to visualize the gravitational field around a mass==, with **arrows indicating the direction of the attractive force** and **the density of the lines showing the field's strength**. The lines point radially inward towards the source of the mass, and they are closer together where the field is stronger and spread out where it is weaker, such as farther from the Earth.
 
-![[Pasted image 20250912212053.png]]
+![Pasted image 20250912212053.png](/img/user/media/Pasted%20image%2020250912212053.png)
 
 This image applies to any field, in this picture, it's an electric field shown which is perpendicular to the surface, and thus there is zero work done.
 
@@ -1267,7 +1264,7 @@ The gradient $\nabla V$ is **always perpendicular to equipotential surfaces**, b
 
 This means that, in the above image, if we turn the field to a horizontal one, the acting force becomes a vertical one, so it's easier for us to understand:
 
-![[Pasted image 20250912212819.png]]
+![Pasted image 20250912212819.png](/img/user/media/Pasted%20image%2020250912212819.png)
 
 
 So, 
@@ -1298,7 +1295,7 @@ Because the dot product vanishes, no work is needed to move along that surface.
 
 https://www.youtube.com/watch?v=N7DAqKuSCsk
 
-![[Pasted image 20250913135807.png]]
+![Pasted image 20250913135807.png](/img/user/media/Pasted%20image%2020250913135807.png)
 
 
 ==A conservative force does the same amount of work regardless of the path taken between two points, such as gravity.== ==In contrast, a non-conservative force's work depends on the path followed, and it often dissipates mechanical energy into forms like heat or sound, with examples including friction and air resistance==
@@ -1339,7 +1336,7 @@ If there were **air resistance**, mechanical energy would be less at the bottom 
 
 https://byjus.com/physics/law-of-conservation-of-energy/
 
-![[Pasted image 20250913141107.png]]
+![Pasted image 20250913141107.png](/img/user/media/Pasted%20image%2020250913141107.png)
 
 
 
@@ -1392,7 +1389,7 @@ $$
 m_1 u_1 \ + \ m_2u_2 \ = \ m_1v_1 \ + \ m_2v_2 
 $$
 
-![[Pasted image 20250913140629.png]]
+![Pasted image 20250913140629.png](/img/user/media/Pasted%20image%2020250913140629.png)
 
 ---
 ## 3. **Law of Conservation of Angular Momentum**
@@ -1404,7 +1401,7 @@ But, what is Torque?
 Torque is ==a "twisting" or rotational force that causes an object to rotate or spin around an axis==. It's the rotational equivalent of a linear force, meaning that just as force causes an object to accelerate in a straight line, torque causes an object to experience angular acceleration. You apply torque when you use a wrench to tighten a bolt or when you push on a doorknob.
 
 
-![[Pasted image 20250913164153.png]]
+![Pasted image 20250913164153.png](/img/user/media/Pasted%20image%2020250913164153.png)
 
 
 
@@ -1456,12 +1453,12 @@ Newton's first law of motion, also called the Law of Inertia, states that an ob
 - Either at rest or moving with **constant velocity** (no acceleration).
 - Example: A lab fixed on Earth (ignoring rotation/curvature for basic problems). 
 
-![[Pasted image 20250913204643.png]]
+![Pasted image 20250913204643.png](/img/user/media/Pasted%20image%2020250913204643.png)
 
 ---
 ## Step 4: **Non-Inertial Frame of Reference**
 
-![[Pasted image 20250913221540.png]]
+![Pasted image 20250913221540.png](/img/user/media/Pasted%20image%2020250913221540.png)
 
 
 A non-inertial frame of reference is a system that is accelerating or rotating relative to an inertial frame, meaning ==it is not moving at a constant velocity==. Diagrams of non-inertial frames ==often show an accelerating or rotating environment, such as a merry-go-round or an elevator, with a stationary "pseudo-force" acting on objects within it to explain their apparent acceleration==. These diagrams typically compare the non-inertial frame's motion with an external, inertial frame
@@ -1471,7 +1468,7 @@ A non-inertial frame of reference is a system that is accelerating or rotating r
 - To make sense of motion, you need to add **fictitious/inertial forces**.
     - E.g. centrifugal force, Coriolis force, pseudo-force in an accelerating car.
 
-![[Pasted image 20250913222025.png]]
+![Pasted image 20250913222025.png](/img/user/media/Pasted%20image%2020250913222025.png)
 
 A good example for the centrifugal non-inertial frame of reference would be a satellite going around the earth, since it won't be moving at a constant velocity.
 
@@ -1482,7 +1479,7 @@ https://www.youtube.com/watch?v=bmGqhM-tUk4
 
 The simple harmonic oscillator is by the simplest and most important system in physics that we going to continue to meet time and time again across different dimensions of physics, so it's imperative that we properly understand the inner workings of this system.
 
-![[Pasted image 20250915131904.png]]
+![Pasted image 20250915131904.png](/img/user/media/Pasted%20image%2020250915131904.png)
 
 
 In the picture we can see the ohm symbol, in practice, all equations use $\omega$ (omega) instead.
@@ -1507,7 +1504,7 @@ Now, from newton's second law of motion, which says:
 
 The equation **F = ma** states that ==the net force (F) acting on an object is equal to its mass (m) multiplied by its acceleration (a)==. This is Newton's second law of motion which fundamentally links an object's mass and the force applied to it to the resulting acceleration it experiences.
 
-![[Pasted image 20250915140127.png]]
+![Pasted image 20250915140127.png](/img/user/media/Pasted%20image%2020250915140127.png)
 
 
 We can say that :
@@ -1617,7 +1614,7 @@ Here, $C$ is the amplitude and $\phi$ is the phase.
 
 Again, what is the amplitude of a wave?
 
-![[Pasted image 20250916122232.png]]
+![Pasted image 20250916122232.png](/img/user/media/Pasted%20image%2020250916122232.png)
 
 In physics, ==**amplitude is the maximum displacement** of a point on a vibrating body or a wave from its equilibrium (or resting) position. It measures the **strength, intensity, or power** of the wave==, such as the loudness of a sound wave or the width of a water wave. For example, in a sound wave, a larger amplitude corresponds to a louder sound.
 
@@ -1642,7 +1639,7 @@ $$ C = \sqrt{A^2 + B^2}, \quad \tan\phi = \frac{B}{A}$$
 ## Graphical View
 
 
-![[Pasted image 20250915181329.png]]
+![Pasted image 20250915181329.png](/img/user/media/Pasted%20image%2020250915181329.png)
 
 
 This is how the equation plotted over some $x$ and $t$ values would look.
@@ -1918,10 +1915,10 @@ First off, let's start with angular displacement.
 
 Angular displacement is ==the **angle through which a body rotates around a fixed axis** or center, measuring the change in its angular position over time==. Unlike linear displacement, which measures straight-line distance, ==angular displacement quantifies how much an object has "turned" from its starting point, with units like radians or degrees. It is a vector quantity==, meaning it has both magnitude (the size of the angle) and direction.
 
-![[Pasted image 20250918144838.png]]
+![Pasted image 20250918144838.png](/img/user/media/Pasted%20image%2020250918144838.png)
 
 
-![[Pasted image 20250918144901.png]]
+![Pasted image 20250918144901.png](/img/user/media/Pasted%20image%2020250918144901.png)
 
 ---
 ## Angular Velocity
@@ -1932,7 +1929,7 @@ Angular velocity (symbolized by the Greek letter omega, ω) is ==the rate at wh
 
 The direction is often determined by the right-hand rule. ==If you curl your fingers around the axis of rotation in the direction of the object's spin, your thumb points in the direction of the angular velocity vector. It's also known as Fleming's right-hand rule==.
 
-![[Pasted image 20250918150115.png]]
+![Pasted image 20250918150115.png](/img/user/media/Pasted%20image%2020250918150115.png)
 
 ---
 ## Formula of Angular Velocity
