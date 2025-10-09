@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/physics-1/module-2-optics-physics/","tags":["Semester-1","Physics"],"created":"2025-10-01T09:20:44.515+05:30","updated":"2025-10-09T11:26:44.476+05:30"}
+{"dg-publish":true,"permalink":"/physics-1/module-2-optics-physics/","tags":["Semester-1","Physics"],"created":"2025-10-01T09:20:44.515+05:30","updated":"2025-10-09T12:05:58.627+05:30"}
 ---
 
 ---
@@ -657,6 +657,8 @@ When these two components combine, the resultant electric field vector rotates, 
   
 - **Left-handed (Counterclockwise) Circular Polarization**: If the electric field vector rotates **counterclockwise**, it's left-circularly polarized.
 
+![Pasted image 20251006115035.png](/img/user/media/Pasted%20image%2020251006115035.png)
+
 ## Practical Production
 
 The most common way to produce circularly polarized light is by passing **linearly polarized light through a quarter-wave plate** oriented at **45° to the polarization axis**. The quarter-wave plate introduces a 90° phase difference between the two perpendicular components, creating circular polarization.
@@ -707,7 +709,7 @@ Elliptical polarization is produced by passing linearly polarized light through 
 
 ==**Optical activity** (also called **optical rotation**) is the ability of certain substances to **rotate the plane of polarization** of linearly polarized light passing through them. When plane-polarized light enters an optically active material, the plane in which the electric field oscillates gradually rotates as the light travels through the substance==.
 
-Think of it like "rotating a screw" when we rotate a screw inwards through a material by using a screwdriver.
+==Think of it like "rotating a screw" when we rotate a screw inwards through a material by using a screwdriver==.
 
 The "optically active" material in this case, would be whatever material the wall is made out of in which the screw is being driven into, and the angle of rotation will be given by the [[#Specific rotation formula]].
 
@@ -725,10 +727,10 @@ When linearly polarized light passes through an optically active substance:
 ---
 ## Two Types of Optically Active Substances
 
-1. **Dextrorotatory (d- or +)**: Rotates the plane of polarization to the **right (clockwise)** when viewed against the direction of light propagation.
+1. **Dextrorotatory (d- or +)**: ==Rotates the plane of polarization to the **right (clockwise)** when viewed against the direction of light propagation==.
     - Example: D-glucose (dextrose)
         
-2. **Levorotatory (l- or -)**: Rotates the plane of polarization to the **left (counterclockwise)** when viewed against the direction of light propagation.
+2. **Levorotatory (l- or -)**: ==Rotates the plane of polarization to the **left (counterclockwise)** when viewed against the direction of light propagation==.
     
     - Example: L-fructose
 
