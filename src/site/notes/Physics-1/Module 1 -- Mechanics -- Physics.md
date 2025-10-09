@@ -1782,7 +1782,7 @@ So,
 
 Now, there are three types of this dampened oscillation that the system can have, depending on the relative size of $\gamma$ and $\omega_0$:
 
-### (a) Underdamped case $\gamma \ \lt \ \omega$
+### (a) Underdamped case $\gamma < \omega$
 
 - Motion is still oscillatory, but amplitude decays exponentially (in the early stages of motion of the system):
   
@@ -1797,14 +1797,14 @@ with $\omega' \ = \ \sqrt{\omega^2 \ - \ \gamma^2}$
 - Looks like a sinusoid with a shrinking envelope.
 
 ---
-### (b) Critically damped case $\gamma \ = \ \omega$ 
+### (b) Critically damped case $\gamma = \omega$ 
 
 - System **just barely avoids oscillating**.
 - Returns to equilibrium as fast as possible without overshoot. (almost about to stop)
 - Solution is a non-oscillatory exponential.
 
 ---
-### (c) Overdamped case $\gamma \ \gt \ \omega$
+### (c) Overdamped case $\gamma > \omega$
 
 - No oscillation (in the very last stages of stopping, to us visually, it's already stopped moving since we can't perceive that many discrete frames of motion.)
 - System returns slowly to equilibrium, more sluggish than critical damping.

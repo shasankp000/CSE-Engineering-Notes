@@ -513,6 +513,8 @@ module.exports = function (eleventyConfig) {
     return str && parsed.innerHTML;
   });
 
+  // Temporarily disabled HTML minification due to parsing issues with mathematical content
+  /*
   eleventyConfig.addTransform("htmlMinifier", (content, outputPath) => {
     if (
       (process.env.NODE_ENV === "production" || process.env.ELEVENTY_ENV === "prod") &&
@@ -552,6 +554,7 @@ module.exports = function (eleventyConfig) {
     }
     return content;
   });
+  */
 
 
   eleventyConfig.addPassthroughCopy("src/site/img");
