@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/machine-learning/module-3-ml-model-evaluation-statistical-learning-ensemble-methods/","title":"Module 3 -- ML Model evaluation, Statistical Learning, Ensemble methods","tags":["Semester-7","Machine-Learning"],"created":"2025-08-18T16:35:36.552+05:30","updated":"2025-08-28T13:14:45.551+05:30"}
+{"dg-publish":true,"permalink":"/machine-learning/module-3-ml-model-evaluation-statistical-learning-ensemble-methods/","title":"Module 3 -- ML Model evaluation, Statistical Learning, Ensemble methods","tags":["Semester-7","Machine-Learning"],"created":"2025-09-04T21:43:11.700+05:30","updated":"2025-10-08T12:53:09.314+05:30"}
 ---
 
 ---
@@ -31,6 +31,9 @@ To understand if your ML model:
 ***
 ## 2. **The Train/Test Split**
 
+
+![Pasted image 20251008123931.png](/img/user/media/Pasted%20image%2020251008123931.png)
+
 - **Training set:** For fitting (learning) the model.
 - **Testing set:** For evaluating how well it works on new data.
 - Sometimes, we also use a **validation set** to tune hyperparameters without touching the test set.
@@ -53,10 +56,10 @@ In class imbalance, you're usually trying to detect a **rare but important event
 
 A confusion matrix summarizes predictions:
 
-| Truth           | Predicted Positive     | Predicted Negative     |
-| --------------- | ---------------------- | ---------------------- |
-| Actual Positive | **TP**(True Positive)  | **FN**(False Negative) |
-| Actual Negative | **FP**(False Positive) | **TN**(True Negative)  |
+| Truth                     | Predicted Positive                               | Predicted Negative                                      |
+| ------------------------- | ------------------------------------------------ | ------------------------------------------------------- |
+| Actual Positive(Spam)     | **TP**(True Positive) (Actually predicted spam)  | **FN**(False Negative) (False predicted as not spam)    |
+| Actual Negative(Not spam) | **FP**(False Positive) (False predicted as spam) | **TN**(True Negative) (Correctly predicted as not spam) |
 
 A confusion matrix is often used in **binary classification problems**, where operating under class imbalance, ML models often classify differently than what's expected between **two categories**.
 
@@ -138,7 +141,6 @@ So in our case, from the confusion matrix, we see that:
 | Actual Positive | **TP** = 5         | **FN** = 5         |
 | Actual Negative | **FP** = 3         | **TN** = 87        |
 
-
 The model detected 5 frauds (TP = 5), but:
 
 - It **missed** 5 other actual frauds → FN = 5
@@ -163,7 +165,6 @@ So what do these metrics **mean**?
 - This tells us the model is **moderately precise**, but still wastes some effort on false positives.
 
 ---
-
 ### 📉 Recall = **50%**
 
 > "Out of all the actual frauds in the data, the model **only caught half of them**."
