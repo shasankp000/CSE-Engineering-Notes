@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/physics-1/module-3-electromagnetism-and-dielectric-magnetic-properties-of-materials/","tags":["Semester-1","Physics"],"created":"2025-10-08T14:27:08.988+05:30","updated":"2025-10-17T14:23:19.756+05:30"}
+{"dg-publish":true,"permalink":"/physics-1/module-3-electromagnetism-and-dielectric-magnetic-properties-of-materials/","tags":["Semester-1","Physics"],"created":"2025-10-08T14:27:08.988+05:30","updated":"2025-10-17T14:29:21.750+05:30"}
 ---
 
 ---
@@ -1322,7 +1322,17 @@ At **higher** field strengths:​
 
 ## Why Hysteresis Occurs
 
-==**Domain wall pinning**: As domain walls move through the material, they encounter **defects** (impurities, dislocations, grain boundaries) that **pin** them in place. Energy is needed to unpin them, which is why the magnetization lags behind the field==.​
+==**Domain wall pinning**: As domain walls move through the material, they encounter **defects** (impurities, dislocations, grain boundaries) that **pin** them in place. Energy is needed to unpin them, which is why the magnetization lags behind the field==.​ This right here causes the magnetic material to retain the magnetization even after the field is removed, since these domains don't go back to their original positions as they get stuck.
+
+## Retentivity (Remanence)
+
+**Retentivity exists because of pinning**:​
+
+- After saturating the magnet, favorable domains have grown large.
+- When you remove the external field, domain walls **want** to move back to reduce magnetization​
+- But they're **pinned** at defects and can't move freely​
+- Result: The material **retains** significant magnetization even at $H=0$​
+- This is why permanent magnets work!
 
 ## Energy Loss
 
