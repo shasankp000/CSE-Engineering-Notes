@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/physics-1/module-3-electromagnetism-and-dielectric-magnetic-properties-of-materials/","tags":["Semester-1","Physics"],"created":"2025-10-08T14:27:08.988+05:30","updated":"2025-10-17T14:17:53.371+05:30"}
+{"dg-publish":true,"permalink":"/physics-1/module-3-electromagnetism-and-dielectric-magnetic-properties-of-materials/","tags":["Semester-1","Physics"],"created":"2025-10-08T14:27:08.988+05:30","updated":"2025-10-17T14:23:19.756+05:30"}
 ---
 
 ---
@@ -1322,11 +1322,37 @@ At **higher** field strengths:​
 
 ## Why Hysteresis Occurs
 
-**Domain wall pinning**: As domain walls move through the material, they encounter **defects** (impurities, dislocations, grain boundaries) that **pin** them in place. Energy is needed to unpin them, which is why the magnetization lags behind the field.​
+==**Domain wall pinning**: As domain walls move through the material, they encounter **defects** (impurities, dislocations, grain boundaries) that **pin** them in place. Energy is needed to unpin them, which is why the magnetization lags behind the field==.​
 
 ## Energy Loss
 
 The **area inside the hysteresis loop** represents **energy dissipated as heat** during one complete magnetization cycle. This energy goes into moving domain walls against friction/pinning.
+
+---
+## Summary: The Complete Picture
+
+**Unmagnetized ferromagnet**:
+
+- Many randomly oriented domains​
+- Net magnetization = zero​
+
+**Apply external field**:
+
+- Domain walls move (favorable domains grow)​
+- Domain rotation at higher fields​
+- Saturation: single domain state​
+
+**Remove field**:
+
+- Domains don't return to original state (pinning)​
+- **Retentivity**: Material stays magnetized![](https://byjus.com/jee/hysteresis/)​
+- This is how permanent magnets work
+
+**Hysteresis loop**:
+
+- Shows magnetization vs. field relationship​
+- Loop area = energy loss​
+- Shape determines applications
 
 ---
 # Applications of Dielectrics
