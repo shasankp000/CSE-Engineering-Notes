@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/operations-research/module-3-game-theory/","tags":["Operations-Research","Semester-7"],"created":"2025-11-11T11:45:51.860+05:30","updated":"2025-11-12T23:08:31.291+05:30"}
+{"dg-publish":true,"permalink":"/operations-research/module-3-game-theory/","tags":["Operations-Research","Semester-7"],"created":"2025-11-11T11:45:51.860+05:30","updated":"2025-11-14T13:34:17.309+05:30"}
 ---
 
 ---
@@ -628,7 +628,7 @@ For each **row** (A’s strategy),
 the expected payoff to A, _given B plays with probability q_, is:
 
 $$
-E_{A_i} \ = \ A_{i1} \ + \ A_{i2} \ (1 \ - \ q)
+E_{A_i} \ = \ A_{i1}q \ + \ A_{i2} \ (1 \ - \ q)
 $$
 
 That’s the same pattern as earlier, just flipped.
