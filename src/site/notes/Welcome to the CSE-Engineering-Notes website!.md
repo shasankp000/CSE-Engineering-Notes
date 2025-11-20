@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-08-29T17:20:39.260+05:30","updated":"2025-11-15T15:56:56.557+05:30"}
+{"dg-publish":true,"permalink":"/welcome-to-the-cse-engineering-notes-website/","tags":["gardenEntry"],"created":"2025-09-04T21:42:49.470+05:30","updated":"2025-11-20T13:31:28.793+05:30"}
 ---
 
 ---
@@ -25,9 +25,9 @@ You can search subject by subject or chapter or a specific topic in the search s
 # Work-in-Progress Notes:
 
 1. Machine Learning (includes Deep Learning) (completed)
-2. Cyber Security (40% done)
+2. Cyber Security (90% done)
 3. Operations Research (completed)
-4. Physics - 1 (80% done)
+4. Physics - 1 (85% done)
 5. Basic Electrical Engineering (30% done)
 6. Mathematics - 1A (70% done)
 7. Mathematics - 2A (notes generated, editing pending.)
