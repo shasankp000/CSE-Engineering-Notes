@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/physics-1/module-3-electromagnetism-and-dielectric-magnetic-properties-of-materials/","tags":["Semester-1","Physics"],"created":"2025-10-08T14:27:08.988+05:30","updated":"2025-10-17T14:29:21.750+05:30"}
+{"dg-publish":true,"permalink":"/physics-1/module-3-electromagnetism-and-dielectric-magnetic-properties-of-materials/","tags":["Semester-1","Physics"],"created":"2026-02-14T13:57:27.032+05:30","updated":"2026-03-10T05:37:20.876+05:30"}
 ---
 
 ---
@@ -255,7 +255,7 @@ $$
 $$
 
 
-Here's what this means: ==if you have a closed loop (like a wire), and the magnetic flux== $\theta_B$ ==through that loop changes with time, an electric field (and hence a voltage) will be induced around the loop. The negative sign is Lenz's Law - the induced electric field opposes the change in magnetic flux==.
+Here's what this means: ==if you have a closed loop (like a wire), and the magnetic flux== $\theta_B$ ==through that loop changes with time, an electric field (and hence a voltage) will be induced around the loop. The negative sign is Lenz's Law - which states that the direction of the induced magnetic field (or EMF) opposes the change that caused the EMF==.
 
 ---
 ### Physical Meaning of Faraday's Law
