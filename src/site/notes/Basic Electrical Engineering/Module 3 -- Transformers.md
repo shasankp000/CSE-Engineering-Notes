@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-3-transformers/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-03-10T03:37:36.427+05:30","updated":"2026-03-17T13:56:07.616+05:30"}
+{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-3-transformers/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-03-10T03:37:36.427+05:30","updated":"2026-03-18T23:09:34.750+05:30"}
 ---
 
 ---
@@ -225,6 +225,51 @@ $$
 
 **The core intuition:** ==Voltage scales _with_ turns ratio, current scales _inversely_. Step up voltage → step down current, and vice versa. Power is conserved==.
 
+Also in an ideal transformer:
+
+$$
+E_1 = V_1
+$$
+
+and:
+
+$$
+E_2 \ = \ V_2
+$$
+
+The EMF equation of a single phase transformer is:
+
+$$
+E \ = \ 4.44 \ \times \ f \ \times N_{windings} \ \times \ \phi_m
+$$
+
+where:
+
+- $E$ is the EMF
+- $f$ is the frequency
+- $N$ is the number of windings, for whichever coil (primary/secondary)
+- $\phi_m$ is the maximum flux.
+
+Also:
+
+$$
+\phi_m \ = \ B_m \ \times \ A
+$$
+
+where:
+
+- $\phi_m$ is the maximum flux.
+- $B_m$ is the magnetic flux density
+- $A$ is the core cross section size.
+
+Full load current $I_{FL}$ from a $kVA$ current rating:
+
+$$
+I_{FL} \ = \ kVA \ \times \ \frac{1000}{V}
+$$
+where $V$ is the given voltage.
+
+
 ---
 ## Practical Transformer — The Real World
 
@@ -289,6 +334,13 @@ In the ideal transformer, 100% of input power reaches the output. In the practic
 | ----------------------------------------- | -------------------- | --------------------------------------------- |
 | **Copper loss** ($I^2R$)                  | Winding resistance   | Load current (load-dependent)                 |
 | **Core loss** (hysteresis + eddy current) | Core material & flux | Supply voltage & frequency (load-independent) |
+
+Copper loss scaling, if we are given a copper loss at full load, $\text{Loss}_{FL}$, the copper loss at $x$ fraction of load is given by:
+
+$$
+\text{Loss}_{xL} \ = \ x^2 \ \times \ \text{Loss}_{FL}
+$$
+
 
 ---
 # Regulation, Efficiency, Auto-Transformer and 3-Phase Transformer Connections
