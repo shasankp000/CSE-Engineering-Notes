@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-2-ac-circuits/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-02-14T13:57:23.558+05:30","updated":"2026-03-04T03:25:25.923+05:30"}
+{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-2-ac-circuits/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-02-14T13:57:23.558+05:30","updated":"2026-03-18T23:18:18.538+05:30"}
 ---
 
 ---
@@ -1341,6 +1341,8 @@ $$
 ==In a single-phase AC circuit, resonance occurs when the inductive reactance== ($X_L$) ==equals the capacitive reactance== $X_C$
 ==causing the circuit's impedance to be at its minimum and the phase angle between the voltage and current to be zero==. This condition results in maximum current flow for a given voltage and ==causes the circuit to behave like a purely resistive circuit at that specific resonant frequency==.
 
+At resonance, $Z \ = \ R$. (impedance = resistance)
+
 The resonant frequency $f_0$ in a single-phase AC circuit, typically an [RLC circuit](https://www.google.com/search?q=RLC+circuit&sca_esv=79231a2a76414654&source=hp&ei=hHoRae6mGqif4-EPqfrb2AI&iflsig=AOw8s4IAAAAAaRGIlPB9WUY4mSxeotCmf5qTvSsPLc2e&oq=what+is+resonance+in+single+p&gs_lp=Egdnd3Mtd2l6Ih13aGF0IGlzIHJlc29uYW5jZSBpbiBzaW5nbGUgcCoCCAAyBhAAGBYYHjILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTILEAAYgAQYhgMYigUyCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogQyCBAAGIAEGKIEMggQABiABBiiBEjAJlAAWMUbcAB4AJABAZgBlwKgAY0lqgEGMC4yNS4zuAEDyAEA-AEBmAIboALvI8ICERAuGIAEGLEDGNEDGIMBGMcBwgILEAAYgAQYsQMYgwHCAggQABiABBixA8ICDhAAGIAEGLEDGIMBGIoFwgIIEC4YgAQYsQPCAgsQABiABBixAxiKBcICBRAAGIAEwgILEAAYgAQYsQMYxwOYAwCSBwYwLjI1LjKgB4SuAbIHBjAuMjUuMrgH7yPCBwgwLjQuMjIuMcgHXA&sclient=gws-wiz&mstk=AUtExfAYYO-Lmwu0NOgbjXcXFrRyb8TJovm1TjE8Hoc08sAHUFmyiad-eqXqM66e7niM_3_GCnG0bo_1CkDehimBO9OPXjXnXure2UQCFtYeX4hzxnPpy8KQUf4NbIpc5FFAzXEKZ9EYNrkxrBk4DBzCH8s85clKcElQHIsRRRsQ_P3mlVyT4aF1Le5KC8ogXvYJ-6vL&csui=3&ved=2ahUKEwj1qNC-9-aQAxVXR-sIHa7eIBkQgK4QegQIARAC), is the specific frequency at which capacitive and inductive reactances are equal, resulting in minimum impedance for a series circuit.
 
 It is given by:
@@ -1348,6 +1350,39 @@ It is given by:
 $$
 f_0 \ = \ \frac{1}{2\pi\sqrt{LC}}
 $$
+
+The new impedance, $Z_{new})$ at a different frequency, is given by:
+
+$$
+Z_{new} \ = \ \sqrt{R^2 \ + \ (X_L \ - \ X_C)^2}
+$$
+
+The inductive reactance, $X_L$ is given by:
+
+$$
+X_L \ = \ \frac{2\pi \ f}{L}
+$$
+
+The capacitative reactance, $X_C$ is given by:
+
+$$
+X_C \ = \ 2 \pi f \ \times \ C
+$$
+
+
+The quality factor,
+
+$$
+Q \ = \ \frac{\omega L}{R} \ = \ \frac{1}{R} \ \times \ \sqrt{\frac{L}{C}} 
+$$
+
+Bandwidth:
+
+$$
+BW \ = \ \frac{f_0}{Q} \ = \ \frac{R}{2\pi L}
+$$
+
+
 
 ---
 # Three Phase AC Circuits
@@ -1362,9 +1397,7 @@ $$
 In a single-phase AC system, you have:
 
 - **Two wires:** one “live” (carrying alternating voltage) and one “return” (or neutral).
-    
 - The voltage between them is the **supply voltage** (e.g. 230 V in homes).
-    
 - The current through the wire is the same as the current through the load.
 
 So voltage and current are straightforward — one voltage, one current, one path.
@@ -1619,9 +1652,6 @@ $$
 $$
 P \ = \ \sqrt{3} \ \times \ V_L \ \times \ \cos{\phi} \ = \ 1.732 \ \times \ 400 \ \times \ 0.9 \ = \  12470 \ \text{W}
 $$
-
----
-
 
 
 ---
