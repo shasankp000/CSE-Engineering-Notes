@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-3-transformers/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-03-10T03:37:36.427+05:30","updated":"2026-03-18T23:09:34.750+05:30"}
+{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-3-transformers/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-03-10T03:37:36.427+05:30","updated":"2026-03-18T23:28:41.736+05:30"}
 ---
 
 ---
@@ -17,7 +17,7 @@
 10. [[#Why current goes the opposite way]]
 11. [[#Practical Transformer — The Real World]]
 12. [[#What actually goes wrong in a real transformer?]]
-13. [[#The Two Categories of Loss — Exam Critical]]
+13. [[#The Three Categories of Loss — Exam Critical]]
 14. [[#Regulation, Efficiency, Auto-Transformer and 3-Phase Transformer Connections]]
 15. [[#1. Voltage Regulation]]
 16. [[#2. Efficiency]]
@@ -117,6 +117,13 @@ Transformer cores use **soft magnetic materials** precisely because narrow loop 
 ## The Connection to Transformers
 
 Here's the link: ==a transformer core is a magnetic material through which a time-varying flux is constantly cycling B up and down — meaning it's going around the hysteresis loop _every single AC cycle_ (50 times per second at 50 Hz). Every loop = energy lost. This is why core material choice matters enormously.==
+
+---
+## Core Transformer vs Shell Transformer
+
+![Pasted image 20260318232454.png](/img/user/media/Pasted%20image%2020260318232454.png)
+
+Core type and shell type transformers differ primarily in construction: the copper core type features windings surrounding the magnetic core(two limbs), while shell type features the iron core surrounding the windings. Core type is suited for high voltage, low power applications, for better cooling, while shell type offers better mechanical strength, lower flux leakage, and all the more better performance for low voltage, high power applications.
 
 ---
 # Ideal Transformer vs Practical Transformer
@@ -328,12 +335,14 @@ In the ideal transformer, 100% of input power reaches the output. In the practic
 **Copper loss tax** — paid based on how much current you draw (load-dependent)
 
 ---
-### The Two Categories of Loss — Exam Critical
+### The Three Categories of Loss — Exam Critical
 
-| Loss                                      | Cause                | Varies with?                                  |
-| ----------------------------------------- | -------------------- | --------------------------------------------- |
-| **Copper loss** ($I^2R$)                  | Winding resistance   | Load current (load-dependent)                 |
-| **Core loss** (hysteresis + eddy current) | Core material & flux | Supply voltage & frequency (load-independent) |
+| Loss                                      | Cause                               | Varies with?                                                     |
+| ----------------------------------------- | ----------------------------------- | ---------------------------------------------------------------- |
+| **Copper loss** ($I^2R$)                  | Winding resistance                  | Load current (load-dependent)                                    |
+| **Core loss** (hysteresis + eddy current) | Core material & flux                | Supply voltage & frequency (load-independent)                    |
+| **Iron Loss** (in shell transfomers)      | Hysteresis loss + eddy current loss | Varies with flux, which depends on supply voltage and frequency. |
+
 
 Copper loss scaling, if we are given a copper loss at full load, $\text{Loss}_{FL}$, the copper loss at $x$ fraction of load is given by:
 
@@ -341,6 +350,11 @@ $$
 \text{Loss}_{xL} \ = \ x^2 \ \times \ \text{Loss}_{FL}
 $$
 
+## Iron Losses in Shell Type Transformers
+
+Iron losses (core losses) = hysteresis loss + eddy current loss. Both depend only on the **supply voltage and frequency** — not on the load current. Here's why:
+
+The core flux is determined by the applied primary voltage (from Faraday's law: $V \ \approx \ 4.44 \ N \ \phi_m$). As long as the supply voltage and frequency don't change, the flux in the core doesn't change — and therefore the energy lost per BH cycle doesn't change. Whether you connect a `1kW` load or a `10kW` load on the secondary, the core is still cycling at the same flux level 50 times per second. So core loss stays constant. Copper loss on the other hand depends on I²R — it grows with load current.
 
 ---
 # Regulation, Efficiency, Auto-Transformer and 3-Phase Transformer Connections
