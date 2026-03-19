@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-2-ac-circuits/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-02-14T13:57:23.558+05:30","updated":"2026-03-18T23:18:18.538+05:30"}
+{"dg-publish":true,"permalink":"/basic-electrical-engineering/module-2-ac-circuits/","tags":["Basic-Electrical-Engineering","Semester-1"],"created":"2026-02-14T13:57:23.558+05:30","updated":"2026-03-19T06:18:53.323+05:30"}
 ---
 
 ---
@@ -1568,13 +1568,13 @@ $$
 ### Reactive Power
 
 $$
-Q \ = \ \sqrt{3} \ \times \ V_L \ \times \ I_L \ \times \ \sin{\phi}
+Q \ = \ 3 \ \times \ V_{ph} \ \times \ I_{ph} \ \times \ \sin{\phi}
 $$
 
 ### Apparent Power
 
 $$
-S \ = \ \sqrt{3} \ \times \ V_L \ \times \ I_L
+S \ = \ 3 \ \times \ V_{ph} \ \times \ I_{ph}
 $$
 
 ### Power Factor
